@@ -1,0 +1,136 @@
+``html
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  body { background-color: #0d1117; color: #39FF14; font-family: sans-serif; padding: 20px; }
+  h1 { color: white; border-bottom: 2px solid #39FF14; }
+  
+  /* Miidhagina Gabatee */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #161b22;
+  }
+  th, td {
+    border: 1px solid #30363d;
+    padding: 12px;
+    text-align: left;
+  }
+  th { background-color: #21262d; color: #39FF14; }
+  tr:nth-child(even) { background-color: #0d1117; }
+</style>
+</head>
+<body>
+
+  <h1>Maashinii SBM - Inventarii</h1>
+  <p>Odeeffannoo meeshaalee Station:</p>
+
+  <table>
+    <tr>
+      <th>Maqaa Meeshaa</th>
+      <th>Lakk. Serial</th>
+      <th>Haala Isaa (Status)</th>
+    </tr>
+    <tr>
+      <td>Cone Crusher Motor</td>
+      <td>SBM-8890</td>
+      <td style="color: yellow;">Checking...</td>
+    </tr>
+    <tr>
+      <td>Conveyor Belt</td>
+      <td>CB-2024</td>
+      <td style="color: lime;">Active</td>
+    </tr>
+    <tr>
+      <td>Oil Sensor</td>
+      <td>SN-441</td>
+      <td style="color: red;">Faulty</td>
+    </tr>
+  </table>
+
+  <h3>Suuraa Maashinii:</h3>
+  <img src="https://www.sbmchina.com/d/files/home/mobile-crusher.jpg" width="250" style="border-radius: 10px;">
+
+</body>
+</html>
+```
+
+
+
+```html
+<h3 style="margin-top: 30px;">Inventarii Meeshaalee SBM</h3>
+<table border="1" style="width:100%; border-collapse: collapse; text-align: left;">
+  <tr style="background-color: #21262d; color: white;">
+    <th>Maqaa Meeshaa</th>
+    <th>Status</th>
+    <th>Lakk.</th>
+  </tr>
+  <tr>
+    <td>Electrical Motor</td>
+    <td>Hojjechaa jira</td>
+    <td>01</td>
+  </tr>
+  <tr>
+    <td>Cone Crusher Liner</td>
+    <td>Haaraa</td>
+    <td>04</td>
+  </tr>
+  <tr>
+    <td>Oil Pump</td>
+    <td>Maintenance barbaada</td>
+    <td>01</td>
+  </tr>
+</table>
+```
+
+
+
+```html
+<div style="background-color: #21262d; padding: 20px; border-radius: 10px; margin-top: 20px;">
+  <h3 style="color: white;">Ajaja Meeshaa Galchi</h3>
+  
+  <label>Maqaa Kee:</label><br>
+  <input type="text" placeholder="Maqaa kee asitti barreessi..." style="width: 90%; padding: 10px; margin-bottom: 15px;"><br>
+
+  <label>Meeshaa Barbaaddu Fili:</label><br>
+  <select style="width: 95%; padding: 10px; margin-bottom: 15px;">
+    <option>Motor (Star-Delta)</option>
+    <option>Sensor</option>
+    <option>Conveyor Belt</option>
+  </select><br>
+
+  <button onclick="alert('Galatoomaa! Ajajni keessan nu gaheera.')" 
+          style="background-color: #39FF14; color: black; padding: 10px 20px; border: none; border-radius: 5px; font-weight: bold; cursor: pointer;">
+    Ajaja Ergi
+  </button>
+</div>
+```
+
+-----
+
+
+```html
+<div style="background-color: #1a1a1a; color: #39FF14; padding: 20px; border: 2px solid #39FF14; border-radius: 15px;">
+  <h2>🛒 Ajaja Meeshaa Crusher</h2>
+  
+  <label>Maqaa Teeknishianii:</label><br>
+  <input type="text" placeholder="Maqaa kee asitti barreessi..." style="width: 100%; padding: 8px; margin: 10px 0;"><br>
+
+  <label>Gosa Maashinii:</label><br>
+  <select style="width: 100%; padding: 8px; margin: 10px 0;">
+    <option>Jaw Crusher (PE Series)</option>
+    <option>Cone Crusher (HP Series - 75 kW)</option>
+    <option>Vibrating Screen</option>
+    <option>Belt Conveyor</option>
+  </select><br>
+
+  <label>Rakkoo Mudate (Fault):</label><br>
+  <textarea placeholder="Wiring, Motor, ykn Mechanical..." style="width: 100%; height: 60px;"></textarea><br>
+
+  <button onclick="alert('Odeeffannoon Jaw/Cone Crusher galmaa\'eera!')" 
+          style="background-color: #39FF14; color: black; border: none; padding: 10px 20px; font-weight: bold; cursor: pointer; margin-top: 10px;">
+    Gabaasa Ergi
+  </button>
+</div>
