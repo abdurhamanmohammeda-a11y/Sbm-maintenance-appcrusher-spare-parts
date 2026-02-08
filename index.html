@@ -91,4 +91,55 @@
     }
 </script>
 
+<script>
+function getPDF() {
+    // Barreeffama guutuu PDF keessatti mul'atu
+    let content = `
+=====================================================
+ABDURHAMAN MECHATRONICS SOLUTIONS - TECHNICAL GUIDE
+=====================================================
+Technician: Abdurhaman Mohammed Ahamed
+Experience: 8+ Years (Instrumentation & Control)
+Location: Dire Dawa, Ethiopia
+Contact: +251 904 267 186
+-----------------------------------------------------
+
+1. MECHANICAL MAINTENANCE (SBM CRUSHERS)
+   - Inspect Jaw plates for wear every 200 hours.
+   - Lubricate main bearings of the Cone Crusher daily.
+   - Tighten foundation bolts to prevent excessive vibration.
+
+2. ELECTRICAL SYSTEMS & CONTROL
+   - Motors > 75kW: Always verify Star-Delta connection.
+   - Control Panel: Check for loose wiring & dust accumulation.
+   - Instrumentation: Calibrate sensors weekly for accuracy.
+
+3. TROUBLESHOOTING GUIDE
+   - Issue: Crusher stops under load.
+     Solution: Check V-belt tension and motor current.
+   - Issue: Excessive noise.
+     Solution: Inspect bearings and internal chamber.
+
+4. SERVICE & PAYMENT DETAILS
+   - For expert online consultation, send photos via WhatsApp.
+   - Service Fee Payments:
+     * CBE Account: 1000347503707
+     * Telebirr: 0988535068
+
+-----------------------------------------------------
+© 2026 Abdurhaman Mechatronics. All Rights Reserved.
+=====================================================
+    `;
+
+    // Fayila uumuu fi Download gochuu
+    let blob = new Blob([content], { type: "text/plain" });
+    let link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "Abdurhaman_SBM_Technical_Guide.txt";
+    link.click();
+    
+    alert("Technical Guide-ni kee bifa Document-tiidhaan download ta'eera!");
+}
+</script>
+
 </body>
