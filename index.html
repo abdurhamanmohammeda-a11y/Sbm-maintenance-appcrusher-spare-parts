@@ -7,104 +7,124 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Abdurhaman Mechatronics Solutions</title>
     <style>
-        body { background-color: #0d1117; color: #c9d1d9; font-family: 'Segoe UI', sans-serif; padding: 20px; line-height: 1.6; }
-        .card { background-color: #161b22; padding: 20px; border: 1px solid #30363d; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
-        h1, h2, h3 { color: #39FF14; text-align: center; margin-top: 0; }
-        img { width: 100%; max-width: 550px; border-radius: 12px; border: 2px solid #39FF14; display: block; margin: 0 auto 20px; }
+        :root { --primary: #39FF14; --bg: #0d1117; --card-bg: #161b22; --text: #c9d1d9; }
+        body { background-color: var(--bg); color: var(--text); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 15px; line-height: 1.6; margin: 0; }
+        .container { max-width: 800px; margin: auto; }
+        .card { background-color: var(--card-bg); padding: 20px; border: 1px solid #30363d; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        h1, h2 { color: var(--primary); text-align: center; }
+        img { width: 100%; max-width: 100%; border-radius: 12px; border: 2px solid var(--primary); margin-bottom: 20px; }
         
-        /* Form Styling */
+        /* Table Styling */
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; background: #0d1117; border-radius: 8px; overflow: hidden; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #30363d; font-size: 14px; }
+        th { background-color: #21262d; color: var(--primary); }
+
+        /* Form & Buttons */
         input, select, textarea { width: 100%; padding: 12px; margin: 10px 0; border-radius: 8px; border: 1px solid #30363d; background: #0d1117; color: white; box-sizing: border-box; }
-        label { font-weight: bold; color: #8b949e; }
-        
-        /* Button Styling */
-        .btn { display: block; width: 100%; padding: 15px; border-radius: 8px; text-decoration: none; font-weight: bold; text-align: center; border: none; cursor: pointer; font-size: 16px; margin-top: 10px; transition: 0.3s; }
+        .btn { display: block; width: 100%; padding: 15px; border-radius: 8px; text-decoration: none; font-weight: bold; text-align: center; border: none; cursor: pointer; font-size: 16px; margin-top: 10px; }
         .btn-wa { background-color: #25D366; color: white; }
         .btn-pdf { background-color: #4285F4; color: white; }
-        .btn-wa:hover { background-color: #128C7E; transform: scale(1.02); }
         
-        /* Payment Section */
-        .payment-box { background: #1c2128; border-left: 5px solid #39FF14; padding: 15px; border-radius: 8px; margin-top: 15px; }
-        .bank-name { color: #39FF14; font-weight: bold; font-size: 1.1em; }
-        .acc-number { font-family: 'Courier New', Courier, monospace; font-size: 1.2em; letter-spacing: 1px; color: white; }
+        .payment-info { border: 2px dashed var(--primary); padding: 15px; border-radius: 10px; text-align: center; background: #1c2128; }
+        .acc-no { font-size: 1.4em; font-weight: bold; color: white; letter-spacing: 1px; }
     </style>
 </head>
 <body>
 
-    <header>
-        <div style="text-align: center; margin-bottom: 30px;">
-            <h1>🛠 Abdurhaman Mechatronics Solutions</h1>
-            <p>Expert in Instrumentation, Control & SBM Machine Maintenance</p>
-            <p><span style="border: 1px solid #39FF14; padding: 3px 8px; border-radius: 5px; font-size: 0.8em;">8+ YEARS EXPERIENCE</span></p>
-        </div>
+<div class="container">
+    <header style="text-align: center; padding: 20px 0;">
+        <h1>🛠 Abdurhaman Mechatronics</h1>
+        <p>Expert in Instrumentation, Control & SBM Machines</p>
+        <p style="background: var(--primary); color: black; display: inline-block; padding: 4px 12px; border-radius: 20px; font-weight: bold;">8 YEARS EXPERIENCE</p>
     </header>
 
-    <img src="Maashinii.jpg" alt="SBM Industrial Machine">
+    <img src="Mashini.jpg" alt="SBM Machine">
 
     <div class="card">
-        <h2>👨‍🔧 Expert Online Consultation</h2>
-        <p>Rakkoo Instrumentation, PLC, ykn Mechanical maashinii keessanii online-naan hiikna. Odeeffannoo armaan gadii guutaa.</p>
+        <h2>🔧 Professional Services</h2>
+        <p>Instrumentation, Electrical wiring (Star-Delta), PLC troubleshooting, and Mechanical maintenance for SBM Crushers.</p>
         
-        <form id="consultForm" onsubmit="sendExpertRequest(event)">
-            <label>Full Name / Maqaa:</label>
-            <input type="text" id="cName" placeholder="Maqaa keessan barreessaa" required>
-            
-            <label>Machine / System Type:</label>
-            <select id="mType">
-                <option value="SBM Crusher (Jaw/Cone)">SBM Crusher (Jaw/Cone)</option>
-                <option value="Instrumentation & Control">Instrumentation & PLC Control</option>
-                <option value="75kW Motor / Star-Delta">75kW Motor / Star-Delta</option>
-                <option value="Hydraulic System">Hydraulic System</option>
+        <h3>Spare Parts & Systems</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>System / Part</th>
+                    <th>Maintenance Cycle</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Main Motor (75kW)</td>
+                    <td>Monthly Check</td>
+                    <td>Operational</td>
+                </tr>
+                <tr>
+                    <td>Cone Crusher Sensors</td>
+                    <td>Weekly Calibration</td>
+                    <td>Ready</td>
+                </tr>
+                <tr>
+                    <td>Control Panel PLC</td>
+                    <td>6 Months Update</td>
+                    <td>Secured</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="card">
+        <h2>👨‍🔧 Expert Consultation</h2>
+        <form id="expertForm" onsubmit="sendRequest(event)">
+            <input type="text" id="name" placeholder="Maqaa Keessan" required>
+            <select id="service">
+                <option value="Instrumentation & Control">Instrumentation & Control</option>
+                <option value="Electrical Troubleshooting">Electrical Troubleshooting</option>
+                <option value="Mechanical Maintenance">Mechanical Maintenance</option>
             </select>
-            
-            <label>Problem Description:</label>
-            <textarea id="issue" rows="4" placeholder="Maashiniin maal ta'e? Ibsa gabaabaa asitti barreessaa..." required></textarea>
-            
-            <p style="font-size: 13px; color: #8b949e;">*Suuraa rakkoo sanaa WhatsApp irratti naaf ergaa.</p>
-            <button type="submit" class="btn btn-wa">💬 Gorsa Argachuuf WhatsApp Ergi</button>
+            <textarea id="msg" rows="4" placeholder="Rakkoo maashinii keessanii asitti ibsaa..." required></textarea>
+            <button type="submit" class="btn btn-wa">💬 WhatsApp-iin Ergi</button>
         </form>
     </div>
 
     <div class="card">
-        <h2>💳 Service Payment / Kaffaltii</h2>
-        <p>Tajaajila gorsaa fi suphaa online kaffaltii raawwachuuf lakkoofsota herregaa armaan gadii fayyadamaa:</p>
-        
-        <div class="payment-box">
-            <span class="bank-name">Telebirr / CBE (Commercial Bank of Ethiopia)</span><br>
-            Account Name: <strong>Abdurhaman Mohammed Ahamed</strong><br>
-            Account Number: <span class="acc-number">0988535068</span>
+        <h2>💳 Kaffaltii / Payment</h2>
+        <div class="payment-info">
+            <p>Commercial Bank of Ethiopia (CBE) / Telebirr</p>
+            <p>Name: <strong>Abdurhaman Mohammed Ahamed</strong></p>
+            <p class="acc-no">0988535068</p>
         </div>
-        <p style="font-size: 12px; margin-top: 10px; color: #8b949e;">*Erga kaffaltii raawwattanii booda "Screenshot" WhatsApp irratti naaf ergaa.</p>
+        <p style="font-size: 12px; text-align: center; color: #8b949e; margin-top: 10px;">*Kaffaltii raawwatanii Screenshot WhatsApp-iin naaf ergaa.</p>
     </div>
 
     <div class="card">
-        <h2>📚 Technical Resources</h2>
-        <p>Barnoota maashinii Crusher fi Troubleshooting Guide asirraa buufadhaa.</p>
-        <button class="btn btn-pdf" onclick="downloadGuide()">📄 Download Maintenance Guide (PDF)</button>
+        <button class="btn btn-pdf" onclick="getPDF()">📄 Download Technical Guide</button>
     </div>
 
-    <footer style="text-align: center; margin-top: 40px; font-size: 14px; color: #8b949e;">
+    <footer style="text-align: center; padding: 20px; font-size: 14px; color: #8b949e;">
         <p>&copy; 2026 Abdurhaman Mohammed | Dire Dawa, Ethiopia</p>
-        <p>Mechatronics & Instrumentation Expert</p>
     </footer>
+</div>
 
-    <script>
-        function sendExpertRequest(event) {
-            event.preventDefault();
-            let name = document.getElementById('cName').value;
-            let type = document.getElementById('mType').value;
-            let details = document.getElementById('issue').value;
-            
-            let msg = `Hello Abdurhaman, I need Expert Advice.%0A%0A*Name:* ${name}%0A*Machine:* ${type}%0A*Details:* ${details}%0A%0A(I will send the payment screenshot next)`;
-            window.open(`https://wa.me/251904267186?text=${msg}`, '_blank');
-        }
+<script>
+    function sendRequest(e) {
+        e.preventDefault();
+        let n = document.getElementById('name').value;
+        let s = document.getElementById('service').value;
+        let m = document.getElementById('msg').value;
+        let text = `Hello Abdurhaman, I need Expert Advice.%0A*Name:* ${n}%0A*Service:* ${s}%0A*Issue:* ${m}`;
+        window.open(`https://wa.me/251904267186?text=${text}`, '_blank');
+    }
 
-        function downloadGuide() {
-            let content = "SBM MAINTENANCE GUIDE\n====================\n1. Mechanical: Inspect Jaw plates every 200 hours.\n2. Electrical: Ensure Star-Delta for 75kW motors.\n3. Troubleshooting: High vibration? Check foundation bolts.\n\nTechnician: Abdurhaman Mohammed (0988535068)";
-            let blob = new Blob([content], { type: "text/plain" });
-            let link = document.createElement("a");
-            link.href = URL.createObjectURL(blob);
-            link.download = "Abdurhaman_Technical_Guide.txt";
-            link.click();
-        }
-    </script>
+    function getPDF() {
+        let doc = "TECHNICAL GUIDE - ABDURHAMAN MECHATRONICS\n\n1. Check Motor Amps.\n2. Calibrate Sensors.\n3. Greasing bearings every 8h.\nContact: 0988535068";
+        let blob = new Blob([doc], {type: "text/plain"});
+        let a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = "Abdurhaman_SBM_Guide.txt";
+        a.click();
+    }
+</script>
+
 </body>
+</html>
