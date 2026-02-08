@@ -1,24 +1,23 @@
 
 <!DOCTYPE html>
-<html lang="om">
-<head>
+<html lang="en"> <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SBM Maintenance - Abdurhaman</title>
+    <title>SBM Maintenance - Abdurhaman Mohammed</title>
     <style>
-        body { background-color: #0d1117; color: #39FF14; font-family: sans-serif; padding: 20px; line-height: 1.6; }
+        body { background-color: #0d1117; color: #39FF14; font-family: 'Segoe UI', sans-serif; padding: 20px; line-height: 1.6; }
         h1, h2, h3 { color: white; border-bottom: 2px solid #39FF14; padding-bottom: 10px; }
         #google_translate_element { margin-bottom: 20px; background: #161b22; padding: 10px; border-radius: 10px; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; background-color: #161b22; }
-        th, td { border: 1px solid #30363d; padding: 12px; text-align: left; }
-        th { background-color: #21262d; color: #39FF14; }
-        .btn { display: block; width: 100%; padding: 15px; margin: 10px 0; border-radius: 50px; text-decoration: none; font-weight: bold; text-align: center; border: none; cursor: pointer; font-size: 16px; }
-        .btn-check { background-color: #ff4d4d; color: white; }
-        .btn-call { background-color: #39FF14; color: black; }
-        .btn-wa { background-color: #25D366; color: white; }
-        .btn-map { background-color: #4285F4; color: white; }
         .card { background-color: #1a1a1a; padding: 20px; border: 2px solid #30363d; border-radius: 15px; margin-top: 20px; }
         img { width: 100%; max-width: 500px; border-radius: 15px; border: 3px solid #39FF14; margin: 20px 0; }
+        
+        /* Testimonials Style */
+        .testimonial { background: #21262d; border-left: 5px solid #39FF14; padding: 15px; margin: 10px 0; border-radius: 5px; font-style: italic; }
+        .client-name { font-weight: bold; color: white; display: block; margin-top: 5px; font-style: normal; }
+
+        .btn { display: block; width: 100%; padding: 15px; margin: 10px 0; border-radius: 50px; text-decoration: none; font-weight: bold; text-align: center; border: none; cursor: pointer; font-size: 16px; }
+        .btn-call { background-color: #39FF14; color: black; }
+        .btn-wa { background-color: #25D366; color: white; }
     </style>
 </head>
 <body>
@@ -26,47 +25,41 @@
     <div id="google_translate_element"></div>
     <script type="text/javascript">
         function googleTranslateElementInit() {
-            new google.translate.TranslateElement({pageLanguage: 'om'}, 'google_translate_element');
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
         }
     </script>
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
     <h1>🛠 SBM Maintenance App</h1>
 
-    <img src="maashinii.jpg" alt="SBM Mobile Crushing Station">
+    <img src="maashinii.jpg" alt="SBM Mobile Crushing Station S1848CS75">
 
     <div class="card">
-        <h3>⚡ Mirkaneessa Nageenya Motorii</h3>
-        <button class="btn btn-check" onclick="checkMotor()">Check 75kW Safety</button>
-    </div>
+        <h2>⭐ Client Testimonials</h2>
+        
+        <div class="testimonial">
+            "Abdurhaman fixed our SBM Cone Crusher motor in record time. His technical knowledge is unmatched in Dire Dawa."
+            <span class="client-name">- Mohammed K. (Site Manager)</span>
+        </div>
 
-    <h2>📊 Inventarii Meeshaalee SBM</h2>
-    <table>
-        <tr><th>Meeshaa</th><th>Serial No.</th><th>Status</th></tr>
-        <tr><td>Cone Crusher Motor</td><td>SBM-8890</td><td style="color: yellow;">Checking...</td></tr>
-        <tr><td>Conveyor Belt</td><td>CB-2024</td><td style="color: lime;">Active</td></tr>
-        <tr><td>Oil Sensor</td><td>SN-441</td><td style="color: red;">Faulty</td></tr>
-    </table>
+        <div class="testimonial">
+            "Highly professional! The safety check he performed on our 75kW motor saved us from a major electrical failure."
+            <span class="client-name">- Ahmed J. (Crusher Owner)</span>
+        </div>
+
+        <div class="testimonial">
+            "Fast, reliable, and uses digital tools to track our inventory. The best technician for SBM machinery."
+            <span class="client-name">- Samuel T. (Maintenance Head)</span>
+        </div>
+    </div>
 
     <div class="card" style="border-color: #39FF14;">
-        <h2>👤 Odeeffannoo Teeknishianii</h2>
-        <p><strong>Maqaa Guutuu:</strong> Abdurhaman Mohammed Ahamed</p>
-        <p><strong>Idoo Hojii:</strong> Dire Dawa, Ethiopia 📍</p>
+        <h2>👤 Contact Technician</h2>
+        <p><strong>Full Name:</strong> Abdurhaman Mohammed Ahamed</p>
+        <p><strong>Location:</strong> Dire Dawa, Ethiopia 📍</p>
         
-        <a href="tel:+251904267186" class="btn btn-call">📞 Nuuf Bilbilaa</a>
-        <a href="https://wa.me/251904267186?text=Akkaam%20Abdurhaman" class="btn btn-wa">💬 WhatsApp: Suuraa Ergi</a>
-        <a href="https://www.google.com/maps/search/Dire+Dawa" class="btn btn-map">📍 Iddoo Hojii (Maps)</a>
+        <a href="tel:+251904267186" class="btn btn-call">📞 Call Now</a>
+        <a href="https://wa.me/251904267186?text=Hello%20Abdurhaman,%20I%20saw%20your%20SBM%20Maintenance%20App" class="btn btn-wa">💬 WhatsApp Me</a>
     </div>
-
-    <script>
-        function checkMotor() {
-            let size = prompt("Hamma Motorii (kW) galchi:");
-            if (size >= 75) {
-                alert("⚠️ AKEKKACHIISA: Motorri " + size + "kW sun wiring Star-Delta (6-wire) barbaada!");
-            } else if (size != null) {
-                alert("✅ Motorri " + size + "kW sun rakkoo hin qabu.");
-            }
-        }
-    </script>
 
 </body>
