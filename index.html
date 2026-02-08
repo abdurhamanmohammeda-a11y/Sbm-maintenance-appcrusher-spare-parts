@@ -98,6 +98,53 @@ function checkMachineStatus() {
 
 <script>
     
+<script>
+// Logic 1: Ho'a Maashinii Check Gochuuf
+function checkMachineStatus() {
+    let limit = 90;
+    let temperature = prompt("Ho'a maashinii (Temperature) galchi:");
+    
+    if (temperature === null) return; // Yoo cancel jedhe dhaabuf
+    
+    if (temperature > limit) {
+        alert("⚠️ WARNING: Ho'i digrii " + limit + " darbeera! Dhaabaa.");
+    } else {
+        alert("✅ SAFE: Maashiniin Set Point (" + limit + ") gadi jira.");
+    }
+}
+
+// Logic 2: Koodii Dogoggoraa Hiikuuf
+function interpretFault() {
+    let faultCodes = {
+        "E01": "Phase Failure: Electrical supply keessan sakatta'aa.",
+        "E02": "High Temperature: Ho'i mootoraa baay'ee dabaleera.",
+        "E03": "Vibration Sensor: Maashiniin baay'ee raafamaa jira.",
+        "E04": "Oil Pressure Low: Zayita hidha (Hydraulic) sakatta'aa."
+    };
+
+    let code = prompt("Fault Code galchaa (E01, E02, E03, E04):");
+    
+    if (code === null) return;
+    
+    let result = faultCodes[code.toUpperCase()]; // Qubee xixinnaas gurguddaas ni danda'a
+
+    if (result) {
+        alert("🔍 Result: " + result);
+    } else {
+        alert("❓ Koodiin '" + code + "' hin beekamu. Abdurhaman quunnamaa.");
+    }
+}
+
+// PDF Download
+function getPDF() {
+    let content = "TECHNICAL GUIDE - ABDURHAMAN MECHATRONICS\nCBE: 1000347503707\nTelebirr: 0988535068";
+    let blob = new Blob([content], {type: "text/plain"});
+    let a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "Abdurhaman_SBM_Guide.txt";
+    a.click();
+}
+</script>
 let ho-a_mootoraa = 85; // Variable (Bakka data kuufamu)
 
 if (ho-a_mootoraa > 80) {
