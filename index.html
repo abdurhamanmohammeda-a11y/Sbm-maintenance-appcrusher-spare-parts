@@ -36,7 +36,54 @@
     <script type="text/javascript">
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
-        }
+        } 
+<script>
+function generatePDF() {
+    let content = `
+    =========================================
+    SBM INDUSTRIAL MAINTENANCE & TROUBLESHOOTING
+    Technician: Abdurhaman Mohammed
+    =========================================
+
+    1. MECHANICAL MAINTENANCE:
+    - Inspect Jaw plates for wear every 200 hours.
+    - Lubricate main bearings of the Cone Crusher.
+
+    2. ELECTRICAL SYSTEMS:
+    - Motors > 75kW: Verify Star-Delta connection.
+    - Check for loose wiring in the control panel.
+
+    3. 🛠 TROUBLESHOOTING GUIDE (Rakkoo fi Furmaata):
+    
+    A. Problem: Crusher stops under load (Maashiniin yeroo dhagaa qabu dhaabachuu).
+       - Cause: V-belts are loose or motor is overloaded.
+       - Solution: Tighten V-belts and check motor current (Amps).
+
+    B. Problem: Excessive vibration (Maashiniin baay'ee rukkutuu/hoollachuu).
+       - Cause: Loose foundation bolts or unbalanced rotor.
+       - Solution: Tighten all bolts and inspect the internal plates.
+
+    C. Problem: High bearing temperature (Bearing ho'u).
+       - Cause: Lack of lubrication or contaminated grease.
+       - Solution: Clean old grease and apply high-quality SBM recommended lubricant.
+
+    D. Problem: Electrical Motor won't start (Motorri ka'uu dide).
+       - Cause: Tripped circuit breaker or phase failure.
+       - Solution: Reset the breaker and check 3-phase voltage stability.
+
+    4. DIGITAL MONITORING:
+    - Log every fault into the SBM Maintenance App.
+    - Follow-up on "Faulty" status items immediately.
+    `;
+    
+    let blob = new Blob([content], { type: "text/plain" }); // Salphaatti akka download ta'uuf
+    let link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "SBM_Full_Troubleshooting_Guide.txt";
+    link.click();
+}
+</script>
+
     </script>
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
