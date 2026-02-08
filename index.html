@@ -1,50 +1,30 @@
 
+
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
   body { background-color: #0d1117; color: #39FF14; font-family: sans-serif; padding: 20px; }
   h1 { color: white; border-bottom: 2px solid #39FF14; }
-  
-  /* Miidhagina Gabatee */
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    background-color: #161b22;
-  }
-  th, td {
-    border: 1px solid #30363d;
-    padding: 12px;
-    text-align: left;
-  }
+  table { width: 100%; border-collapse: collapse; margin-top: 20px; background-color: #161b22; }
+  th, td { border: 1px solid #30363d; padding: 12px; text-align: left; }
   th { background-color: #21262d; color: #39FF14; }
   tr:nth-child(even) { background-color: #0d1117; }
+  img { max-width: 100%; height: auto; border-radius: 10px; }
 </style>
 </head>
 <body> 
 
-
+  <h1>Maashinii SBM - Inventarii</h1>
   <img src="https://www.sbmchina.com/d/files/home/mobile-crusher.jpg" width="250">
 
-  <hr> <h3>Mirkaneessa Nageenya Motorii</h3>
-  <button onclick="checkMotor()" style="background-color: red; color: white; padding: 15px; border-radius: 10px; cursor: pointer; font-weight: bold;">
+  <hr> 
+  <h3>Mirkaneessa Nageenya Motorii</h3>
+  <button onclick="checkMotor()" style="background-color: red; color: white; padding: 15px; border-radius: 10px; cursor: pointer; font-weight: bold; border: none;">
     Check 75kW Safety
   </button>
 
-  <script>
-    function checkMotor() {
-      let size = prompt("Hamma Motorii (kW) galchi:");
-      if (size >= 75) {
-        alert("⚠️ AKEKKACHIISA: Motorri " + size + "kW sun wiring Star-Delta (6-wire) barbaada. Maaloo mirkaneessi!");
-      } else {
-        alert("✅ Motorri " + size + "kW sun rakkoo hin qabu. Hojii gaarii!");
-      }
-    }
-  </script>
-
-</body> 
-  <h1>Maashinii SBM - Inventarii</h1>
   <p>Odeeffannoo meeshaalee Station:</p>
 
   <table>
@@ -70,108 +50,49 @@
     </tr>
   </table>
 
-  <h3>Suuraa Maashinii:</h3>
-  <img src="https://www.sbmchina.com/d/files/home/mobile-crusher.jpg" width="250" style="border-radius: 10px;">
+  <div style="background-color: #1a1a1a; color: #39FF14; padding: 25px; border: 2px solid #39FF14; border-radius: 20px; margin-top: 30px; text-align: center;">
+    <h2 style="text-transform: uppercase; border-bottom: 2px solid #39FF14; padding-bottom: 10px;">👤 Odeeffannoo Teeknishianii</h2>
+    <p><strong>Maqaa Guutuu:</strong> Abdurhaman Mohammed Ahamed</p>
+    <p><strong>Idoo Hojii:</strong> Dire Dawa, Ethiopia 📍</p>
 
-</body>
-
-<div style="background-color: #1a1a1a; color: #39FF14; padding: 25px; border: 2px solid #39FF14; border-radius: 20px; margin-top: 30px; font-family: sans-serif; text-align: center;">
-  <h2 style="text-transform: uppercase; border-bottom: 2px solid #39FF14; padding-bottom: 10px;">👤 Odeeffannoo Teeknishianii</h2>
-  
-  <p style="font-size: 18px; margin: 10px 0;">
-    <strong>Maqaa Guutuu:</strong> Abdurhaman Mohammed Ahamed
-  </p>
-  
-  <p style="font-size: 18px; margin: 10px 0;">
-    <strong>Idoo Hojii:</strong> Dire Dawa, Ethiopia 📍
-  </p>
-
-  <div style="margin-top: 20px;">
-    <a href="tel:+251904267186" style="background-color: #39FF14; color: black; padding: 15px 25px; text-decoration: none; border-radius: 50px; font-weight: bold; display: inline-block; font-size: 18px;">
-      📞 Nuuf Bilbilaa: +251904267186
-    </a>
+    <div style="margin-top: 20px;">
+      <a href="tel:+251904267186" style="background-color: #39FF14; color: black; padding: 15px 25px; text-decoration: none; border-radius: 50px; font-weight: bold; display: block; margin-bottom: 10px;">
+        📞 Nuuf Bilbilaa: +251904267186
+      </a>
+      <a href="https://wa.me/251904267186?text=Akkaam%20Abdurhaman" style="background-color: #25D366; color: white; padding: 15px 25px; text-decoration: none; border-radius: 50px; font-weight: bold; display: block; margin-bottom: 10px;">
+        💬 WhatsApp natti ergi
+      </a>
+      <a href="https://www.google.com/maps?q=Dire+Dawa" style="background-color: #4285F4; color: white; padding: 15px 25px; text-decoration: none; border-radius: 50px; font-weight: bold; display: block;">
+        📍 Iddoo Hojii (Maps)
+      </a>
+    </div>
   </div>
-  
-<div style="margin-top: 15px;">
-  <a href="https://wa.me/251904267186?text=Akkaam%20Abdurhaman,%20suphaa%20maashinii%20barbaadeen%20ture." 
-     style="background-color: #25D366; color: white; padding: 12px 20px; text-decoration: none; border-radius: 50px; font-weight: bold; display: inline-block; width: 80%;">
-    💬 WhatsApp natti ergi
-  </a>
-</div>
 
-<div style="margin-top: 15px;">
-  <a href="https://www.google.com/maps/search/?api=1&query=Dire+Dawa,+Ethiopia" 
-     style="background-color: #4285F4; color: white; padding: 12px 20px; text-decoration: none; border-radius: 50px; font-weight: bold; display: inline-block; width: 80%;">
-    📍 Iddoo Hojii (Maps)
-  </a>
-</div>
+  <div style="background-color: #1a1a1a; color: #39FF14; padding: 20px; border: 2px solid #39FF14; border-radius: 15px; margin-top: 30px;">
+    <h2>🛒 Ajaja Meeshaa Crusher</h2>
+    <label>Maqaa Teeknishianii:</label><br>
+    <input type="text" placeholder="Maqaa kee..." style="width: 100%; padding: 10px; margin: 10px 0; background: #000; color: #39FF14; border: 1px solid #39FF14;"><br>
 
-  <p style="font-size: 14px; color: #888; margin-top: 15px;">
-    *Suphaa Maashinii SBM, Jaw Crusher fi Cone Crusher (75kW).*
-  </p>
-</div>
-<h3 style="margin-top: 30px;">Inventarii Meeshaalee SBM</h3>
-<table border="1" style="width:100%; border-collapse: collapse; text-align: left;">
-  <tr style="background-color: #21262d; color: white;">
-    <th>Maqaa Meeshaa</th>
-    <th>Status</th>
-    <th>Lakk.</th>
-  </tr>
-  <tr>
-    <td>Electrical Motor</td>
-    <td>Hojjechaa jira</td>
-    <td>01</td>
-  </tr>
-  <tr>
-    <td>Cone Crusher Liner</td>
-    <td>Haaraa</td>
-    <td>04</td>
-  </tr>
-  <tr>
-    <td>Oil Pump</td>
-    <td>Maintenance barbaada</td>
-    <td>01</td>
-  </tr>
-</table>
-<div style="background-color: #21262d; padding: 20px; border-radius: 10px; margin-top: 20px;">
-  <h3 style="color: white;">Ajaja Meeshaa Galchi</h3>
-  
-  <label>Maqaa Kee:</label><br>
-  <input type="text" placeholder="Maqaa kee asitti barreessi..." style="width: 90%; padding: 10px; margin-bottom: 15px;"><br>
+    <label>Gosa Maashinii:</label><br>
+    <select style="width: 100%; padding: 10px; margin: 10px 0; background: #000; color: #39FF14; border: 1px solid #39FF14;">
+      <option>Jaw Crusher (PE Series)</option>
+      <option>Cone Crusher (HP Series - 75 kW)</option>
+    </select><br>
 
-  <label>Meeshaa Barbaaddu Fili:</label><br>
-  <select style="width: 95%; padding: 10px; margin-bottom: 15px;">
-    <option>Motor (Star-Delta)</option>
-    <option>Sensor</option>
-    <option>Conveyor Belt</option>
-  </select><br>
+    <button onclick="alert('Odeeffannoon galmaa\'eera!')" style="background-color: #39FF14; color: black; border: none; padding: 15px; font-weight: bold; cursor: pointer; width: 100%;">
+      Gabaasa Ergi
+    </button>
+  </div>
 
-  <button onclick="alert('Galatoomaa! Ajajni keessan nu gaheera.')" 
-          style="background-color: #39FF14; color: black; padding: 10px 20px; border: none; border-radius: 5px; font-weight: bold; cursor: pointer;">
-    Ajaja Ergi
-  </button>
-</div>
-<div style="background-color: #1a1a1a; color: #39FF14; padding: 20px; border: 2px solid #39FF14; border-radius: 15px;">
-  <h2>🛒 Ajaja Meeshaa Crusher</h2>
-  
-  <label>Maqaa Teeknishianii:</label><br>
-  <input type="text" placeholder="Maqaa kee asitti barreessi..." style="width: 100%; padding: 8px; margin: 10px 0;"><br>
+  <script>
+    function checkMotor() {
+      let size = prompt("Hamma Motorii (kW) galchi:");
+      if (size >= 75) {
+        alert("⚠️ AKEKKACHIISA: Motorri " + size + "kW sun wiring Star-Delta (6-wire) barbaada!");
+      } else {
+        alert("✅ Motorri " + size + "kW sun rakkoo hin qabu.");
+      }
+    }
+  </script>
 
-  <label>Gosa Maashinii:</label><br>
-  <select style="width: 100%; padding: 8px; margin: 10px 0;">
-    <option>Jaw Crusher (PE Series)</option>
-    <option>Cone Crusher (HP Series - 75 kW)</option>
-    <option>Vibrating Screen</option>
-    <option>Belt Conveyor</option>
-  </select><br>
-
-  <label>Rakkoo Mudate (Fault):</label><br>
-  <textarea placeholder="Wiring, Motor, ykn Mechanical..." style="width: 100%; height: 60px;"></textarea><br>
-
-  <button onclick="alert('Odeeffannoon Jaw/Cone Crusher galmaa\'eera!')" 
-          style="background-color: #39FF14; color: black; border: none; padding: 10px 20px; font-weight: bold; cursor: pointer; margin-top: 10px;">
-    Gabaasa Ergi
-  </button>
-</div>
-
-
+</body> 
