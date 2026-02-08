@@ -1,39 +1,24 @@
 
-
 <!DOCTYPE html>
 <html lang="om">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SBM Maintenance - Abdurhaman Mohammed</title>
+    <title>SBM Maintenance - Abdurhaman</title>
     <style>
-        body { background-color: #0d1117; color: #39FF14; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 20px; line-height: 1.6; }
+        body { background-color: #0d1117; color: #39FF14; font-family: sans-serif; padding: 20px; line-height: 1.6; }
         h1, h2, h3 { color: white; border-bottom: 2px solid #39FF14; padding-bottom: 10px; }
-        
-        /* Language Translator Box */
-        #google_translate_element { margin-bottom: 20px; padding: 10px; background: #161b22; border-radius: 10px; }
-
-        /* Tables */
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; background-color: #161b22; border-radius: 10px; overflow: hidden; }
+        #google_translate_element { margin-bottom: 20px; background: #161b22; padding: 10px; border-radius: 10px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; background-color: #161b22; }
         th, td { border: 1px solid #30363d; padding: 12px; text-align: left; }
         th { background-color: #21262d; color: #39FF14; }
-        tr:nth-child(even) { background-color: #0d1117; }
-
-        /* Images */
-        .crusher-img { width: 100%; max-width: 400px; border-radius: 15px; border: 3px solid #39FF14; margin-top: 15px; }
-        
-<img src="sbm_machine.jpg" alt="SBM Mobile Crusher" class="crusher-img">
-
-        /* Buttons */
-        .btn { display: block; width: 100%; padding: 15px; margin: 10px 0; border-radius: 50px; text-decoration: none; font-weight: bold; text-align: center; font-size: 18px; border: none; cursor: pointer; }
-        .btn-check { background-color: red; color: white; }
+        .btn { display: block; width: 100%; padding: 15px; margin: 10px 0; border-radius: 50px; text-decoration: none; font-weight: bold; text-align: center; border: none; cursor: pointer; font-size: 16px; }
+        .btn-check { background-color: #ff4d4d; color: white; }
         .btn-call { background-color: #39FF14; color: black; }
         .btn-wa { background-color: #25D366; color: white; }
         .btn-map { background-color: #4285F4; color: white; }
-
-        /* Input Fields */
-        input, select, textarea { width: 100%; padding: 12px; margin: 10px 0; background: #000; color: #39FF14; border: 1px solid #30363d; border-radius: 5px; box-sizing: border-box; }
-        .card { background-color: #1a1a1a; padding: 20px; border: 2px solid #30363d; border-radius: 15px; margin-top: 30px; }
+        .card { background-color: #1a1a1a; padding: 20px; border: 2px solid #30363d; border-radius: 15px; margin-top: 20px; }
+        img { width: 100%; max-width: 500px; border-radius: 15px; border: 3px solid #39FF14; margin: 20px 0; }
     </style>
 </head>
 <body>
@@ -47,8 +32,8 @@
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
     <h1>🛠 SBM Maintenance App</h1>
-    
-    <img src="https://www.sbmchina.com/d/files/home/mobile-crusher.jpg" alt="SBM Crusher" class="crusher-img">
+
+    <img src="maashinii.jpg" alt="SBM Mobile Crushing Station S1848CS75">
 
     <div class="card">
         <h3>⚡ Mirkaneessa Nageenya Motorii</h3>
@@ -57,30 +42,10 @@
 
     <h2>📊 Inventarii Meeshaalee SBM</h2>
     <table>
-        <thead>
-            <tr>
-                <th>Maqaa Meeshaa</th>
-                <th>Lakk. Serial</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Cone Crusher Motor</td>
-                <td>SBM-8890</td>
-                <td style="color: yellow;">Checking...</td>
-            </tr>
-            <tr>
-                <td>Conveyor Belt</td>
-                <td>CB-2024</td>
-                <td style="color: lime;">Active</td>
-            </tr>
-            <tr>
-                <td>Oil Sensor</td>
-                <td>SN-441</td>
-                <td style="color: red;">Faulty</td>
-            </tr>
-        </tbody>
+        <tr><th>Meeshaa</th><th>Serial No.</th><th>Status</th></tr>
+        <tr><td>Cone Crusher Motor</td><td>SBM-8890</td><td style="color: yellow;">Checking...</td></tr>
+        <tr><td>Conveyor Belt</td><td>CB-2024</td><td style="color: lime;">Active</td></tr>
+        <tr><td>Oil Sensor</td><td>SN-441</td><td style="color: red;">Faulty</td></tr>
     </table>
 
     <div class="card" style="border-color: #39FF14;">
@@ -93,32 +58,12 @@
         <a href="https://www.google.com/maps/search/Dire+Dawa" class="btn btn-map">📍 Iddoo Hojii (Maps)</a>
     </div>
 
-    <div class="card">
-        <h2>🛒 Ajaja Meeshaa Crusher</h2>
-        <label>Maqaa kee:</label>
-        <input type="text" placeholder="Maqaa kee asitti barreessi...">
-        
-        <label>Gosa Maashinii:</label>
-        <select>
-            <option>Jaw Crusher (PE Series)</option>
-            <option>Cone Crusher (HP Series - 75 kW)</option>
-            <option>Vibrating Screen</option>
-            <option>Belt Conveyor</option>
-        </select>
-
-        <label>Rakkoo Mudate (Fault):</label>
-        <textarea placeholder="Wiring, Motor, ykn Mechanical..."></textarea>
-        
-        <button class="btn btn-call" onclick="alert('Galatoomaa! Ajajni keessan nu gaheera.')">Ajaja Ergi</button>
-    </div>
-
     <script>
         function checkMotor() {
             let size = prompt("Hamma Motorii (kW) galchi:");
-            if (size === null || size === "") return;
-            if (parseFloat(size) >= 75) {
+            if (size >= 75) {
                 alert("⚠️ AKEKKACHIISA: Motorri " + size + "kW sun wiring Star-Delta (6-wire) barbaada. Maaloo mirkaneessi!");
-            } else {
+            } else if (size != null) {
                 alert("✅ Motorri " + size + "kW sun rakkoo hin qabu. Hojii gaarii!");
             }
         }
