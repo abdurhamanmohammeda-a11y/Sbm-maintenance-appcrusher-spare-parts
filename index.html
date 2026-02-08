@@ -76,6 +76,25 @@
 </div>
 
 <script>
+    
+let ho-a_mootoraa = 85; // Variable (Bakka data kuufamu)
+
+if (ho-a_mootoraa > 80) {
+    console.log("DANGEROUS: Mootorri baay'ee ho'ee jira!"); // Alarm
+} else {
+    console.log("NORMAL: Maashiniin nagaatti hojjetaa jira.");
+}
+
+function checkMachineStatus() {
+    let temperature = prompt("Ho'a maashinii (Temperature) galchi:");
+    
+    if (temperature > 85) {
+        alert("⚠️ WARNING: Maashiniin keessan garmalee ho'ee jira! Suphuu qabdu.");
+    } else {
+        alert("✅ SAFE: Maashiniin keessan haala gaariin hojjetaa jira.");
+    }
+}
+
     function sendRequest(e) {
         e.preventDefault();
         let n = document.getElementById('name').value;
