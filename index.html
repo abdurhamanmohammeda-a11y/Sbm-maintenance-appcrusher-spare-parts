@@ -1,276 +1,110 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SBM Maintenance - Abdurhaman Mohammed</title>
+    <title>Abdurhaman Mechatronics Solutions</title>
     <style>
-        body { background-color: #0d1117; color: #c9d1d9; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 20px; line-height: 1.6; }
-        h1, h2, h3 { color: #39FF14; border-bottom: 1px solid #30363d; padding-bottom: 10px; }
-        .card { background-color: #161b22; padding: 20px; border: 1px solid #30363d; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
-        img { width: 100%; max-width: 600px; border-radius: 12px; border: 2px solid #39FF14; display: block; margin: 20px auto; }
+        body { background-color: #0d1117; color: #c9d1d9; font-family: 'Segoe UI', sans-serif; padding: 20px; line-height: 1.6; }
+        .card { background-color: #161b22; padding: 20px; border: 1px solid #30363d; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+        h1, h2, h3 { color: #39FF14; text-align: center; margin-top: 0; }
+        img { width: 100%; max-width: 550px; border-radius: 12px; border: 2px solid #39FF14; display: block; margin: 0 auto 20px; }
         
-        /* Services Section */
-        .service-list { list-style: none; padding: 0; }
-        .service-list li { background: #0d1117; margin: 5px 0; padding: 10px; border-left: 4px solid #39FF14; border-radius: 4px; }
-
-        /* Form Style */
+        /* Form Styling */
         input, select, textarea { width: 100%; padding: 12px; margin: 10px 0; border-radius: 8px; border: 1px solid #30363d; background: #0d1117; color: white; box-sizing: border-box; }
+        label { font-weight: bold; color: #8b949e; }
         
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th, td { border: 1px solid #30363d; padding: 12px; text-align: left; }
-        th { background-color: #21262d; color: #39FF14; }
-
-        .btn { display: block; width: 100%; padding: 15px; margin: 10px 0; border-radius: 8px; text-decoration: none; font-weight: bold; text-align: center; border: none; cursor: pointer; font-size: 16px; transition: 0.3s; }
-        .btn-check { background-color: #ff4d4d; color: white; }
-        .btn-call { background-color: #39FF14; color: black; }
+        /* Button Styling */
+        .btn { display: block; width: 100%; padding: 15px; border-radius: 8px; text-decoration: none; font-weight: bold; text-align: center; border: none; cursor: pointer; font-size: 16px; margin-top: 10px; transition: 0.3s; }
         .btn-wa { background-color: #25D366; color: white; }
-        .btn-submit { background-color: #39FF14; color: black; margin-top: 10px; }
-        .btn:hover { opacity: 0.8; transform: translateY(-2px); }
+        .btn-pdf { background-color: #4285F4; color: white; }
+        .btn-wa:hover { background-color: #128C7E; transform: scale(1.02); }
+        
+        /* Payment Section */
+        .payment-box { background: #1c2128; border-left: 5px solid #39FF14; padding: 15px; border-radius: 8px; margin-top: 15px; }
+        .bank-name { color: #39FF14; font-weight: bold; font-size: 1.1em; }
+        .acc-number { font-family: 'Courier New', Courier, monospace; font-size: 1.2em; letter-spacing: 1px; color: white; }
     </style>
 </head>
 <body>
 
-    <div id="google_translate_element"></div>
-    <script type="text/javascript">
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
-        } 
-<script>
-function generatePDF() {
-    let content = `
-    =========================================
-    SBM INDUSTRIAL MAINTENANCE & TROUBLESHOOTING
-    Technician: Abdurhaman Mohammed
-    =========================================
-
-    1. MECHANICAL MAINTENANCE:
-    - Inspect Jaw plates for wear every 200 hours.
-    - Lubricate main bearings of the Cone Crusher.
-
-    2. ELECTRICAL SYSTEMS:
-    - Motors > 75kW: Verify Star-Delta connection.
-    - Check for loose wiring in the control panel.
-
-    3. 🛠 TROUBLESHOOTING GUIDE (Rakkoo fi Furmaata):
-    
-    A. Problem: Crusher stops under load (Maashiniin yeroo dhagaa qabu dhaabachuu).
-       - Cause: V-belts are loose or motor is overloaded.
-       - Solution: Tighten V-belts and check motor current (Amps).
-
-    B. Problem: Excessive vibration (Maashiniin baay'ee rukkutuu/hoollachuu).
-       - Cause: Loose foundation bolts or unbalanced rotor.
-       - Solution: Tighten all bolts and inspect the internal plates.
-
-    C. Problem: High bearing temperature (Bearing ho'u).
-       - Cause: Lack of lubrication or contaminated grease.
-       - Solution: Clean old grease and apply high-quality SBM recommended lubricant.
-
-    D. Problem: Electrical Motor won't start (Motorri ka'uu dide).
-       - Cause: Tripped circuit breaker or phase failure.
-       - Solution: Reset the breaker and check 3-phase voltage stability.
-
-    4. DIGITAL MONITORING:
-    - Log every fault into the SBM Maintenance App.
-    - Follow-up on "Faulty" status items immediately.
-    `;
-    
-    let blob = new Blob([content], { type: "text/plain" }); // Salphaatti akka download ta'uuf
-    let link = document.createElement("a");
-    link.href = URL.createObjectURL(blob);
-    link.download = "SBM_Full_Troubleshooting_Guide.txt";
-    link.click();
-}
-</script>
-
-    </script>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
-    <header style="text-align: center;">
-        <h1>🛠 SBM Industrial Maintenance</h1>
-        <p>Expert Mechanical & Software Solutions | Dire Dawa, Ethiopia</p>
+    <header>
+        <div style="text-align: center; margin-bottom: 30px;">
+            <h1>🛠 Abdurhaman Mechatronics Solutions</h1>
+            <p>Expert in Instrumentation, Control & SBM Machine Maintenance</p>
+            <p><span style="border: 1px solid #39FF14; padding: 3px 8px; border-radius: 5px; font-size: 0.8em;">8+ YEARS EXPERIENCE</span></p>
+        </div>
     </header>
 
-    <img src="Maashinii.jpg" alt="SBM Mobile Crushing Station S1848CS75">
+    <img src="Maashinii.jpg" alt="SBM Industrial Machine">
 
     <div class="card">
-        <h2>🚀 Our Expert Services</h2>
-        <ul class="service-list">
-            <li>✅ <strong>Mechanical Repair:</strong> Jaw & Cone Crusher maintenance.</li>
-            <li>✅ <strong>Electrical Control:</strong> 75kW+ Motor Star-Delta wiring & troubleshooting.</li>
-            <li>✅ <strong>Software Diagnostics:</strong> Digital inventory & performance tracking.</li>
-        </ul>
-    </div>
-
-    <div class="card">
-        <h3>⚡ Safety System</h3>
-        <button class="btn btn-check" onclick="checkMotor()">Run 75kW Motor Safety Check</button>
-    </div>
-
-    <div class="card">
-        <h2>📋 Request Maintenance Service</h2>
-        <form onsubmit="sendOrder(event)">
-            <input type="text" id="clientName" placeholder="Your Name / Company Name" required>
-            <select id="machineType">
-                <option value="SBM Crusher">SBM Mobile Crusher</option>
-                <option value="Cone Crusher">Cone Crusher</option>
-                <option value="Conveyor System">Conveyor System</option>
+        <h2>👨‍🔧 Expert Online Consultation</h2>
+        <p>Rakkoo Instrumentation, PLC, ykn Mechanical maashinii keessanii online-naan hiikna. Odeeffannoo armaan gadii guutaa.</p>
+        
+        <form id="consultForm" onsubmit="sendExpertRequest(event)">
+            <label>Full Name / Maqaa:</label>
+            <input type="text" id="cName" placeholder="Maqaa keessan barreessaa" required>
+            
+            <label>Machine / System Type:</label>
+            <select id="mType">
+                <option value="SBM Crusher (Jaw/Cone)">SBM Crusher (Jaw/Cone)</option>
+                <option value="Instrumentation & Control">Instrumentation & PLC Control</option>
+                <option value="75kW Motor / Star-Delta">75kW Motor / Star-Delta</option>
+                <option value="Hydraulic System">Hydraulic System</option>
             </select>
-            <textarea id="issue" rows="3" placeholder="Describe the machine problem..."></textarea>
-            <button type="submit" class="btn btn-submit">Send Service Request</button>
+            
+            <label>Problem Description:</label>
+            <textarea id="issue" rows="4" placeholder="Maashiniin maal ta'e? Ibsa gabaabaa asitti barreessaa..." required></textarea>
+            
+            <p style="font-size: 13px; color: #8b949e;">*Suuraa rakkoo sanaa WhatsApp irratti naaf ergaa.</p>
+            <button type="submit" class="btn btn-wa">💬 Gorsa Argachuuf WhatsApp Ergi</button>
         </form>
     </div>
 
-    <h2>📊 Current Spare Parts Status</h2>
-    <div style="overflow-x:auto;">
-        <table>
-            <thead>
-                <tr><th>Component</th><th>Serial No.</th><th>Status</th></tr>
-            </thead>
-            <tbody>
-                <tr><td>Main Motor</td><td>SBM-8890</td><td style="color: yellow;">Inspecting</td></tr>
-                <tr><td>Conveyor Belt</td><td>CB-2024</td><td style="color: lime;">Operational</td></tr>
-                <tr><td>Hydraulic Pump</td><td>HP-112</td><td style="color: red;">Needs Repair</td></tr>
-            </tbody>
-        </table>
+    <div class="card">
+        <h2>💳 Service Payment / Kaffaltii</h2>
+        <p>Tajaajila gorsaa fi suphaa online kaffaltii raawwachuuf lakkoofsota herregaa armaan gadii fayyadamaa:</p>
+        
+        <div class="payment-box">
+            <span class="bank-name">Telebirr / CBE (Commercial Bank of Ethiopia)</span><br>
+            Account Name: <strong>Abdurhaman Mohammed Ahamed</strong><br>
+            Account Number: <span class="acc-number">0988535068</span>
+        </div>
+        <p style="font-size: 12px; margin-top: 10px; color: #8b949e;">*Erga kaffaltii raawwattanii booda "Screenshot" WhatsApp irratti naaf ergaa.</p>
     </div>
 
     <div class="card">
-        <h2>👤 Contact Professional</h2>
-        <p><strong>Technician:</strong> Abdurhaman Mohammed Ahamed</p>
-        <a href="tel:+251904267186" class="btn btn-call">📞 Call Now</a>
-        <a href="https://wa.me/251904267186" class="btn btn-wa">💬 Send Message via WhatsApp</a>
+        <h2>📚 Technical Resources</h2>
+        <p>Barnoota maashinii Crusher fi Troubleshooting Guide asirraa buufadhaa.</p>
+        <button class="btn btn-pdf" onclick="downloadGuide()">📄 Download Maintenance Guide (PDF)</button>
     </div>
 
-<div class="card" style="border: 2px solid #39FF14;">
-    <h2>👨‍🔧 Expert Online Consultation</h2>
-    <p>Muuxannoo waggaa 8 Mechatronics fi Instrumentation qabnuun rakkoo maashinii keessanii online irratti hiikna.</p>
-    
-    <form id="consultationForm" onsubmit="sendConsultation(event)">
-        <label>Maqaa Keessan:</label>
-        <input type="text" id="clientName" placeholder="Full Name" required>
-        
-        <label>Gosa Maashinii:</label>
-        <select id="machineModel">
-            <option value="SBM Jaw Crusher">SBM Jaw Crusher</option>
-            <option value="SBM Cone Crusher">SBM Cone Crusher</option>
-            <option value="Electrical Panel">Electrical/Control Panel</option>
-            <option value="Instrumentation/Sensors">Instrumentation/Sensors</option>
-        </select>
-
-        <label>Suuraa Rakkoo Maashinii (Upload Photo):</label>
-        <input type="file" id="machinePhoto" accept="image/*">
-
-        <label>Ibsa Rakkoo (Describe the issue):</label>
-        <textarea id="issueDetails" rows="4" placeholder="Maashiniin keessan maal godhaa jira?"></textarea>
-
-        <button type="submit" class="btn btn-wa">💬 Gorsa Argachuuf WhatsApp-iin Ergi</button>
-    </form>
-</div>
-
-<script>
-function sendConsultation(event) {
-    event.preventDefault();
-    
-    let name = document.getElementById('clientName').value;
-    let model = document.getElementById('machineModel').value;
-    let details = document.getElementById('issueDetails').value;
-    
-    // Ergaa WhatsApp qopheessuu
-    let message = "Hello Abdurhaman, I need expert advice.%0A%0A" + 
-                  "*Name:* " + name + "%0A" +
-                  "*Machine:* " + model + "%0A" +
-                  "*Issue:* " + details;
-    
-    let whatsappUrl = "https://wa.me/251904267186?text=" + message;
-    
-    // Gara WhatsApp tti qajeelchuun dura beeksisa kennu
-    alert("Gorsii keessan qopha'eera. Amma suuraa sana WhatsApp irratti naaf ergaa.");
-    window.open(whatsappUrl, '_blank');
-}
-</script>
+    <footer style="text-align: center; margin-top: 40px; font-size: 14px; color: #8b949e;">
+        <p>&copy; 2026 Abdurhaman Mohammed | Dire Dawa, Ethiopia</p>
+        <p>Mechatronics & Instrumentation Expert</p>
+    </footer>
 
     <script>
-        function checkMotor() {
-            let size = prompt("Enter Motor Power (kW):");
-            if (size >= 75) {
-                alert("⚠️ SAFETY ALERT: " + size + "kW motors require specialized Star-Delta protection. Please check the control panel.");
-            } else if (size) {
-                alert("✅ System Check: " + size + "kW motor is within standard safety limits.");
-            }
+        function sendExpertRequest(event) {
+            event.preventDefault();
+            let name = document.getElementById('cName').value;
+            let type = document.getElementById('mType').value;
+            let details = document.getElementById('issue').value;
+            
+            let msg = `Hello Abdurhaman, I need Expert Advice.%0A%0A*Name:* ${name}%0A*Machine:* ${type}%0A*Details:* ${details}%0A%0A(I will send the payment screenshot next)`;
+            window.open(`https://wa.me/251904267186?text=${msg}`, '_blank');
         }
 
-        function sendOrder(event) {
-            event.preventDefault();
-            let name = document.getElementById('clientName').value;
-            let type = document.getElementById('machineType').value;
-            alert("Thank you " + name + "! Your request for " + type + " has been logged. Abdurhaman will contact you soon.");
+        function downloadGuide() {
+            let content = "SBM MAINTENANCE GUIDE\n====================\n1. Mechanical: Inspect Jaw plates every 200 hours.\n2. Electrical: Ensure Star-Delta for 75kW motors.\n3. Troubleshooting: High vibration? Check foundation bolts.\n\nTechnician: Abdurhaman Mohammed (0988535068)";
+            let blob = new Blob([content], { type: "text/plain" });
+            let link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = "Abdurhaman_Technical_Guide.txt";
+            link.click();
         }
     </script>
-
-</body> 
-    
-<div class="card">
-    <h2>📍 Iddoo Hojii Keenya (Our Location)</h2>
-    <div style="width: 100%; overflow: hidden; border-radius: 12px; border: 2px solid #39FF14;">
-        <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15743.76632426365!2d41.839130!3d9.593120!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1634f19b0d2d634f%3A0x6b6d5113d092d634!2sDire%20Dawa%2C%20Ethiopia!5e0!3m2!1sen!2set!4v1700000000000!5m2!1sen!2set" 
-            width="100%" 
-            height="300" 
-            style="border:0;" 
-            allowfullscreen="" 
-            loading="lazy" 
-            referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
-    </div>
-    <p style="text-align: center; margin-top: 10px;">
-        <a href="https://goo.gl/maps/Q3zR6z9G5J6f5R6L8" target="_blank" style="color: #39FF14; text-decoration: none; font-weight: bold;">
-            🌍 View on Google Maps
-        </a>
-    </p>
-</div>
-
-<div class="card" style="text-align: center;">
-    <button class="btn btn-call" onclick="generatePDF()">📄 Download Full Technical Guide</button>
-</div>
-
-<script>
-function generatePDF() {
-    // Barreeffama PDF keessa ta'u
-    let docContent = `
-    =========================================
-    SBM INDUSTRIAL MAINTENANCE & TROUBLESHOOTING
-    Technician: Abdurhaman Mohammed
-    =========================================
-
-    1. MECHANICAL MAINTENANCE:
-    - Inspect Jaw plates for wear every 200 hours.
-    - Lubricate main bearings of the Cone Crusher.
-
-    2. ELECTRICAL SYSTEMS:
-    - Motors > 75kW: Verify Star-Delta connection.
-    - Check for loose wiring in the control panel.
-
-    3. 🛠 TROUBLESHOOTING GUIDE:
-    - Problem: Crusher stops under load.
-    - Solution: Tighten V-belts and check motor current.
-    
-    - Problem: Excessive vibration.
-    - Solution: Tighten foundation bolts.
-
-    4. DIGITAL MONITORING:
-    - Log every fault into the SBM Maintenance App.
-    `;
-    
-    // Fayila uumuu
-    let blob = new Blob([docContent], { type: "text/plain" });
-    let link = document.createElement("a");
-    link.href = URL.createObjectURL(blob);
-    link.download = "SBM_Technical_Guide_Abdurhaman.txt";
-    link.click();
-    
-    alert("Technical Guide-ni kee download ta'aa jira! Galatoomi.");
-}
-</script>
-
+</body>
