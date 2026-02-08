@@ -143,6 +143,54 @@ function generatePDF() {
         <a href="https://wa.me/251904267186" class="btn btn-wa">💬 Send Message via WhatsApp</a>
     </div>
 
+<div class="card" style="border: 2px solid #39FF14;">
+    <h2>👨‍🔧 Expert Online Consultation</h2>
+    <p>Muuxannoo waggaa 8 Mechatronics fi Instrumentation qabnuun rakkoo maashinii keessanii online irratti hiikna.</p>
+    
+    <form id="consultationForm" onsubmit="sendConsultation(event)">
+        <label>Maqaa Keessan:</label>
+        <input type="text" id="clientName" placeholder="Full Name" required>
+        
+        <label>Gosa Maashinii:</label>
+        <select id="machineModel">
+            <option value="SBM Jaw Crusher">SBM Jaw Crusher</option>
+            <option value="SBM Cone Crusher">SBM Cone Crusher</option>
+            <option value="Electrical Panel">Electrical/Control Panel</option>
+            <option value="Instrumentation/Sensors">Instrumentation/Sensors</option>
+        </select>
+
+        <label>Suuraa Rakkoo Maashinii (Upload Photo):</label>
+        <input type="file" id="machinePhoto" accept="image/*">
+
+        <label>Ibsa Rakkoo (Describe the issue):</label>
+        <textarea id="issueDetails" rows="4" placeholder="Maashiniin keessan maal godhaa jira?"></textarea>
+
+        <button type="submit" class="btn btn-wa">💬 Gorsa Argachuuf WhatsApp-iin Ergi</button>
+    </form>
+</div>
+
+<script>
+function sendConsultation(event) {
+    event.preventDefault();
+    
+    let name = document.getElementById('clientName').value;
+    let model = document.getElementById('machineModel').value;
+    let details = document.getElementById('issueDetails').value;
+    
+    // Ergaa WhatsApp qopheessuu
+    let message = "Hello Abdurhaman, I need expert advice.%0A%0A" + 
+                  "*Name:* " + name + "%0A" +
+                  "*Machine:* " + model + "%0A" +
+                  "*Issue:* " + details;
+    
+    let whatsappUrl = "https://wa.me/251904267186?text=" + message;
+    
+    // Gara WhatsApp tti qajeelchuun dura beeksisa kennu
+    alert("Gorsii keessan qopha'eera. Amma suuraa sana WhatsApp irratti naaf ergaa.");
+    window.open(whatsappUrl, '_blank');
+}
+</script>
+
     <script>
         function checkMotor() {
             let size = prompt("Enter Motor Power (kW):");
