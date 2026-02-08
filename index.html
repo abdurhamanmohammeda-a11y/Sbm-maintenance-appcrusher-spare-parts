@@ -65,7 +65,19 @@
             <input type="text" id="name" style="width:100%; padding:10px; margin:5px 0;" placeholder="Maqaa Keessan" required>
             <textarea id="msg" style="width:100%; padding:10px; margin:5px 0;" placeholder="Rakkoo Maashinii..."></textarea>
             <button type="submit" class="btn btn-wa">💬 WhatsApp Ergi</button>
-        </form>
+        </form>  
+function checkMachineStatus() {
+    let limit = 90; // Kun 'Set point' keenya (Variable)
+    let temperature = prompt("Ho'a maashinii (Temperature) galchi:");
+    
+    if (temperature > limit) {
+        alert("⚠️ WARNING: Ho'i digrii " + limit + " darbeera! Dhaabaa.");
+    } else {
+        alert("✅ SAFE: Maashiniin Set Point (" + limit + ") gadi jira.");
+    }
+}
+```
+
     </div>
 <div class="card" style="border: 2px solid yellow; text-align: center;">
     <h3>🛠 Machine Diagnostic Logic (JS)</h3>
