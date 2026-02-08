@@ -66,7 +66,7 @@
             <textarea id="msg" style="width:100%; padding:10px; margin:5px 0;" placeholder="Rakkoo Maashinii..."></textarea>
             <button type="submit" class="btn btn-wa">💬 WhatsApp Ergi</button>
         </form>  
-function checkMachineStatus() {
+         function checkMachineStatus() {
     let limit = 90; // Kun 'Set point' keenya (Variable)
     let temperature = prompt("Ho'a maashinii (Temperature) galchi:");
     
@@ -84,8 +84,21 @@ function checkMachineStatus() {
     <p>Ho'a maashinii keessan asitti yaalaa.</p>
     <button onclick="checkMachineStatus()" class="btn" style="background-color: orange; color: black;">
         Check Machine Health
+    </button> 
+<div class="card" style="border: 2px solid #39FF14; text-align: center;">
+    <h2>🛠 Digital Diagnostic Center</h2>
+    <p>Maashinii keessan asitti sakatta'aa (Check Status & Faults)</p>
+    
+    <button onclick="checkMachineStatus()" class="btn" style="background-color: orange; color: black; margin-bottom: 10px;">
+        1. Check Machine Health (Ho'a)
+    </button>
+    
+    <button onclick="interpretFault()" class="btn" style="background-color: #39FF14; color: black;">
+        2. Interpret Fault Code (E01-E04)
     </button>
 </div>
+
+
 
 
 
@@ -152,17 +165,6 @@ if (ho-a_mootoraa > 80) {
 } else {
     console.log("NORMAL: Maashiniin nagaatti hojjetaa jira.");
 }
-
-function checkMachineStatus() {
-    let temperature = prompt("Ho'a maashinii (Temperature) galchi:");
-    
-    if (temperature > 85) {
-        alert("⚠️ WARNING: Maashiniin keessan garmalee ho'ee jira! Suphuu qabdu.");
-    } else {
-        alert("✅ SAFE: Maashiniin keessan haala gaariin hojjetaa jira.");
-    }
-}
-
     function sendRequest(e) {
         e.preventDefault();
         let n = document.getElementById('name').value;
