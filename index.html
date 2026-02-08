@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,28 +8,24 @@
     <title>Abdurhaman Mechatronics Solutions</title>
     <style>
         :root { --primary: #39FF14; --bg: #0d1117; --card-bg: #161b22; --text: #c9d1d9; }
-        body { background-color: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; padding: 15px; line-height: 1.6; margin: 0; }
+        body { background-color: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; padding: 15px; margin: 0; }
         .container { max-width: 800px; margin: auto; }
-        .card { background-color: var(--card-bg); padding: 20px; border: 1px solid #30363d; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
-        h1, h2, h3 { color: var(--primary); text-align: center; }
-        img { width: 100%; max-width: 100%; border-radius: 12px; border: 2px solid var(--primary); margin-bottom: 20px; }
+        .card { background-color: var(--card-bg); padding: 20px; border: 1px solid #30363d; border-radius: 12px; margin-bottom: 20px; }
+        h1, h2 { color: var(--primary); text-align: center; }
         
+        /* Bakka suuraa kanaa sirriitti ilaali */
+        .main-img { width: 100%; border-radius: 12px; border: 2px solid var(--primary); margin-bottom: 20px; display: block; }
         
-        /* Table Styling */
-        table { width: 100%; border-collapse: collapse; margin-top: 15px; background: #0d1117; border-radius: 8px; overflow: hidden; }
-        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #30363d; font-size: 14px; }
-        th { background-color: #21262d; color: var(--primary); }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; background: #0d1117; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #30363d; }
+        th { color: var(--primary); }
 
-        /* Form & Buttons */
-        input, select, textarea { width: 100%; padding: 12px; margin: 10px 0; border-radius: 8px; border: 1px solid #30363d; background: #0d1117; color: white; box-sizing: border-box; }
-        .btn { display: block; width: 100%; padding: 15px; border-radius: 8px; text-decoration: none; font-weight: bold; text-align: center; border: none; cursor: pointer; font-size: 16px; margin-top: 10px; transition: 0.3s; }
+        .btn { display: block; width: 100%; padding: 15px; border-radius: 8px; text-decoration: none; font-weight: bold; text-align: center; margin-top: 10px; cursor: pointer; border: none; }
         .btn-wa { background-color: #25D366; color: white; }
         .btn-pdf { background-color: #4285F4; color: white; }
-        .btn-wa:hover { background-color: #128C7E; transform: scale(1.02); }
         
-        .payment-info { border: 2px dashed var(--primary); padding: 15px; border-radius: 10px; background: #1c2128; margin-top: 10px; }
-        .acc-no { font-size: 1.25em; font-weight: bold; color: white; letter-spacing: 1px; display: block; margin: 5px 0; }
-        .bank-label { color: var(--primary); font-weight: bold; font-size: 0.9em; }
+        .payment-box { border: 2px dashed var(--primary); padding: 15px; border-radius: 10px; text-align: center; }
+        .acc { font-size: 1.3em; font-weight: bold; color: white; display: block; margin: 5px 0; }
     </style>
 </head>
 <body>
@@ -36,76 +33,45 @@
 <div class="container">
     <header style="text-align: center; padding: 20px 0;">
         <h1>🛠 Abdurhaman Mechatronics</h1>
-        <p>Instrumentation, Control & SBM Expert</p>
-        <p style="background: var(--primary); color: black; display: inline-block; padding: 4px 12px; border-radius: 20px; font-weight: bold;">8+ YEARS EXPERIENCE</p>
+        <p>Instrumentation & SBM Machine Expert</p>
     </header>
 
-    <img src="Maashinii.jpg" alt="SBM Machine Structure">
+    <img src="Maashinii.jpg" alt="SBM Machine" class="main-img">
 
     <div class="card">
-        <h2>📊 Systems & Maintenance Details</h2>
+        <h2>📊 Expertise & Spare Parts</h2>
         <table>
             <thead>
-                <tr>
-                    <th>System Part</th>
-                    <th>Maintenance</th>
-                    <th>Expertise</th>
-                </tr>
+                <tr><th>Part</th><th>Maintenance</th><th>Level</th></tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Main Motor (75kW)</td>
-                    <td>Star-Delta / Wiring</td>
-                    <td>Expert</td>
-                </tr>
-                <tr>
-                    <td>Instrumentation</td>
-                    <td>Sensors & PLC</td>
-                    <td>Advanced</td>
-                </tr>
-                <tr>
-                    <td>Hydraulic System</td>
-                    <td>Pressure Control</td>
-                    <td>Specialist</td>
-                </tr>
+                <tr><td>Main Motor</td><td>Star-Delta Wiring</td><td>Expert</td></tr>
+                <tr><td>PLC/Sensors</td><td>Instrumentation</td><td>Advanced</td></tr>
             </tbody>
         </table>
     </div>
 
     <div class="card">
-        <h2>👨‍🔧 Expert Consultation Form</h2>
-        <form id="expertForm" onsubmit="sendRequest(event)">
-            <input type="text" id="name" placeholder="Maqaa Keessan" required>
-            <select id="service">
-                <option value="Instrumentation & Control">Instrumentation & Control</option>
-                <option value="Electrical/Star-Delta">Electrical (Star-Delta)</option>
-                <option value="Mechanical/SBM Crusher">Mechanical Maintenance</option>
-            </select>
-            <textarea id="msg" rows="4" placeholder="Rakkoo maashinii keessanii asitti ibsaa..." required></textarea>
-            <button type="submit" class="btn btn-wa">💬 Gorsa Argachuuf WhatsApp Ergi</button>
-        </form>
-    </div>
-
-    <div class="card" style="border: 1px solid var(--primary);">
-        <h2>💳 Kaffaltii / Payment</h2>
-        <p>Tajaajila gorsa online kaffaltii raawwachuuf:</p>
-        <div class="payment-info">
+        <h2>💳 Payment / Kaffaltii</h2>
+        <div class="payment-box">
             <p>Name: <strong>Abdurhaman Mohammed Ahamed</strong></p>
-            <hr style="border: 0.5px solid #30363d;">
-            <span class="bank-label">CBE (Commercial Bank of Ethiopia):</span>
-            <span class="acc-no">1000347503707</span>
-            <span class="bank-label">Telebirr:</span>
-            <span class="acc-no">0988535068</span>
+            <p>CBE: <span class="acc">1000347503707</span></p>
+            <p>Telebirr: <span class="acc">0988535068</span></p>
         </div>
-        <p style="font-size: 12px; text-align: center; color: #8b949e; margin-top: 10px;">*Erga kaffaltii raawwattanii Screenshot WhatsApp-iin naaf ergaa.</p>
     </div>
 
     <div class="card">
-        <button class="btn btn-pdf" onclick="getPDF()">📄 Download Technical Guide</button>
+        <form onsubmit="sendRequest(event)">
+            <input type="text" id="name" style="width:100%; padding:10px; margin:5px 0;" placeholder="Maqaa Keessan" required>
+            <textarea id="msg" style="width:100%; padding:10px; margin:5px 0;" placeholder="Rakkoo Maashinii..."></textarea>
+            <button type="submit" class="btn btn-wa">💬 WhatsApp Ergi</button>
+        </form>
     </div>
 
-    <footer style="text-align: center; padding: 20px; font-size: 14px; color: #8b949e;">
-        <p>&copy; 2026 Abdurhaman Mohammed | Dire Dawa, Ethiopia</p>
+    <button class="btn btn-pdf" onclick="getPDF()">📄 Technical Guide Download</button>
+
+    <footer style="text-align: center; padding: 20px; font-size: 12px;">
+        &copy; 2026 Abdurhaman Mohammed | Dire Dawa
     </footer>
 </div>
 
@@ -113,18 +79,14 @@
     function sendRequest(e) {
         e.preventDefault();
         let n = document.getElementById('name').value;
-        let s = document.getElementById('service').value;
         let m = document.getElementById('msg').value;
-        let text = `Hello Abdurhaman, I need Expert Advice.%0A*Name:* ${n}%0A*Service:* ${s}%0A*Issue:* ${m}`;
-        window.open(`https://wa.me/251904267186?text=${text}`, '_blank');
+        window.open(`https://wa.me/251904267186?text=Name: ${n}%0AIssue: ${m}`, '_blank');
     }
-
     function getPDF() {
-        let doc = "TECHNICAL GUIDE - ABDURHAMAN MECHATRONICS\n\n1. Check Motor Amps Monthly.\n2. Calibrate Sensors Weekly.\n3. Grease bearings every 8 hours.\n\nCBE: 1000347503707\nTelebirr: 0988535068";
-        let blob = new Blob([doc], {type: "text/plain"});
+        let blob = new Blob(["SBM Guide by Abdurhaman\nCBE: 1000347503707"], {type: "text/plain"});
         let a = document.createElement("a");
         a.href = URL.createObjectURL(blob);
-        a.download = "Abdurhaman_SBM_Guide.txt";
+        a.download = "Abdurhaman_Guide.txt";
         a.click();
     }
 </script>
