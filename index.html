@@ -66,17 +66,17 @@
             <textarea id="msg" style="width:100%; padding:10px; margin:5px 0;" placeholder="Rakkoo Maashinii..."></textarea>
             <button type="submit" class="btn btn-wa">💬 WhatsApp Ergi</button>
         </form>  
-         function checkMachineStatus() {
+        <script> function checkMachineStatus() {
     let limit = 90; // Kun 'Set point' keenya (Variable)
     let temperature = prompt("Ho'a maashinii (Temperature) galchi:");
-    
-    if (temperature > limit) {
+    </script>
+    <script>if (temperature > limit) {
         alert("⚠️ WARNING: Ho'i digrii " + limit + " darbeera! Dhaabaa.");
     } else {
         alert("✅ SAFE: Maashiniin Set Point (" + limit + ") gadi jira.");
     }
 }
-```
+```</script>
 
     </div>
 <div class="card" style="border: 2px solid yellow; text-align: center;">
@@ -109,7 +109,47 @@
     </footer>
 </div>
 
+</div>
 <script>
+    // 1. Variable ho'a maashinii hordofu
+    let ho_a_mootoraa = 85; 
+
+    // 2. Logic alaarmii
+    if (ho_a_mootoraa > 80) {
+        console.log("DANGEROUS: Mootorri baay'ee ho'ee jira!");
+    }
+
+    // 3. Function koodii dogoggoraa hiiku
+    function interpretFault() {
+        let faultCodes = {
+            "E01": "Phase Failure: Electrical supply keessan sakatta'aa.",
+            "E02": "High Temperature: Ho'i mootoraa baay'ee dabaleera.",
+            "E03": "Vibration Sensor: Maashiniin baay'ee raafamaa jira.",
+            "E04": "Oil Pressure Low: Zayita hidha (Hydraulic) sakatta'aa."
+        };
+
+        let code = prompt("Fault Code galchaa (E01-E04):");
+        if (code === null) return;
+        
+        let result = faultCodes[code.toUpperCase()];
+        if (result) {
+            alert("🔍 Result: " + result);
+        } else {
+            alert("❓ Koodiin '" + code + "' hin beekamu.");
+        }
+    }
+
+    // 4. Function ho'a maashinii check godhu
+    function checkMachineStatus() {
+        let temperature = prompt("Ho'a maashinii galchi:");
+        if (temperature > 90) {
+            alert("⚠️ WARNING: Ho'i dabaleera!");
+        } else {
+            alert("✅ SAFE: Haala gaariin hojjetaa jira.");
+        }
+    }
+</script>
+
     
 <script>
 // Logic 1: Ho'a Maashinii Check Gochuuf
@@ -157,7 +197,7 @@ function getPDF() {
     a.download = "Abdurhaman_SBM_Guide.txt";
     a.click();
 }
-</script>
+<script>
 let ho-a_mootoraa = 85; // Variable (Bakka data kuufamu)
 
 if (ho-a_mootoraa > 80) {
