@@ -183,3 +183,46 @@ function generatePDF() {
     </p>
 </div>
 
+<div class="card" style="text-align: center;">
+    <button class="btn btn-call" onclick="generatePDF()">📄 Download Full Technical Guide</button>
+</div>
+
+<script>
+function generatePDF() {
+    // Barreeffama PDF keessa ta'u
+    let docContent = `
+    =========================================
+    SBM INDUSTRIAL MAINTENANCE & TROUBLESHOOTING
+    Technician: Abdurhaman Mohammed
+    =========================================
+
+    1. MECHANICAL MAINTENANCE:
+    - Inspect Jaw plates for wear every 200 hours.
+    - Lubricate main bearings of the Cone Crusher.
+
+    2. ELECTRICAL SYSTEMS:
+    - Motors > 75kW: Verify Star-Delta connection.
+    - Check for loose wiring in the control panel.
+
+    3. 🛠 TROUBLESHOOTING GUIDE:
+    - Problem: Crusher stops under load.
+    - Solution: Tighten V-belts and check motor current.
+    
+    - Problem: Excessive vibration.
+    - Solution: Tighten foundation bolts.
+
+    4. DIGITAL MONITORING:
+    - Log every fault into the SBM Maintenance App.
+    `;
+    
+    // Fayila uumuu
+    let blob = new Blob([docContent], { type: "text/plain" });
+    let link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "SBM_Technical_Guide_Abdurhaman.txt";
+    link.click();
+    
+    alert("Technical Guide-ni kee download ta'aa jira! Galatoomi.");
+}
+</script>
+
