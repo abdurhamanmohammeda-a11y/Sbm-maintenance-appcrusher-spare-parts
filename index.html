@@ -5,27 +5,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abdurhaman Mechatronics Solutions</title>
+    <title>Abdurhaman Mechatronics | SBM Expert</title>
     <style>
         :root { --primary: #39FF14; --bg: #0d1117; --card-bg: #161b22; --text: #c9d1d9; }
-        body { background-color: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; padding: 15px; margin: 0; }
+        body { background-color: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; padding: 15px; margin: 0; line-height: 1.6; }
         .container { max-width: 800px; margin: auto; }
-        .card { background-color: var(--card-bg); padding: 20px; border: 1px solid #30363d; border-radius: 12px; margin-bottom: 20px; }
+        .card { background-color: var(--card-bg); padding: 20px; border: 1px solid #30363d; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
         h1, h2 { color: var(--primary); text-align: center; }
-        
-        /* Bakka suuraa kanaa sirriitti ilaali */
-        .main-img { width: 100%; border-radius: 12px; border: 2px solid var(--primary); margin-bottom: 20px; display: block; }
-        
-        table { width: 100%; border-collapse: collapse; margin-top: 15px; background: #0d1117; }
+        img { width: 100%; border-radius: 12px; border: 2px solid var(--primary); margin-bottom: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; background: #0d1117; font-size: 14px; }
         th, td { padding: 12px; text-align: left; border-bottom: 1px solid #30363d; }
         th { color: var(--primary); }
-
-        .btn { display: block; width: 100%; padding: 15px; border-radius: 8px; text-decoration: none; font-weight: bold; text-align: center; margin-top: 10px; cursor: pointer; border: none; }
+        .btn { display: block; width: 100%; padding: 15px; border-radius: 8px; text-decoration: none; font-weight: bold; text-align: center; margin-top: 10px; cursor: pointer; border: none; font-size: 16px; transition: 0.3s; }
         .btn-wa { background-color: #25D366; color: white; }
-        .btn-pdf { background-color: #4285F4; color: white; }
-        
-        .payment-box { border: 2px dashed var(--primary); padding: 15px; border-radius: 10px; text-align: center; }
-        .acc { font-size: 1.3em; font-weight: bold; color: white; display: block; margin: 5px 0; }
+        .btn-diag { background-color: var(--primary); color: black; }
+        .payment-box { border: 2px dashed var(--primary); padding: 15px; border-radius: 10px; text-align: center; background: #1c2128; }
+        .acc { font-size: 1.2em; font-weight: bold; color: white; display: block; margin: 5px 0; letter-spacing: 1px; }
     </style>
 </head>
 <body>
@@ -33,242 +28,88 @@
 <div class="container">
     <header style="text-align: center; padding: 20px 0;">
         <h1>🛠 Abdurhaman Mechatronics</h1>
-        <p>Instrumentation & SBM Machine Expert</p>
+        <p>Instrumentation, Control & SBM Machine Expert</p>
+        <p style="background: var(--primary); color: black; display: inline-block; padding: 4px 12px; border-radius: 20px; font-weight: bold;">8+ YEARS EXPERIENCE</p>
     </header>
 
-    <img src="Maashinii.jpg" alt="SBM Machine" class="main-img">
+    <img src="Maashinii.jpg" alt="SBM Industrial Machine">
 
     <div class="card">
         <h2>📊 Expertise & Spare Parts</h2>
         <table>
             <thead>
-                <tr><th>Part</th><th>Maintenance</th><th>Level</th></tr>
+                <tr><th>Component</th><th>Maintenance Task</th><th>Expertise</th></tr>
             </thead>
             <tbody>
-                <tr><td>Main Motor</td><td>Star-Delta Wiring</td><td>Expert</td></tr>
-                <tr><td>PLC/Sensors</td><td>Instrumentation</td><td>Advanced</td></tr>
+                <tr><td>Main Motor (75kW)</td><td>Star-Delta / Wiring</td><td>Expert</td></tr>
+                <tr><td>Instrumentation</td><td>Sensors & PLC</td><td>Advanced</td></tr>
+                <tr><td>Hydraulic System</td><td>Pressure Control</td><td>Specialist</td></tr>
             </tbody>
         </table>
     </div>
 
+    <div class="card" style="border: 2px solid var(--primary);">
+        <h2>🔍 Digital Diagnostic Center</h2>
+        <p style="text-align:center;">Test your machine health and interpret fault codes below.</p>
+        <button onclick="checkMachineStatus()" class="btn btn-diag">1. Check Machine Health</button>
+        <button onclick="interpretFault()" class="btn btn-diag" style="background-color: #ff9800;">2. Interpret Fault Code (E01-E04)</button>
+    </div>
+
     <div class="card">
-        <h2>💳 Payment / Kaffaltii</h2>
+        <h2>💳 Payment Information</h2>
         <div class="payment-box">
-            <p>Name: <strong>Abdurhaman Mohammed Ahamed</strong></p>
-            <p>CBE: <span class="acc">1000347503707</span></p>
+            <p>Beneficiary: <strong>Abdurhaman Mohammed Ahamed</strong></p>
+            <hr style="border: 0.1px solid #30363d;">
+            <p>CBE Account: <span class="acc">1000347503707</span></p>
             <p>Telebirr: <span class="acc">0988535068</span></p>
         </div>
     </div>
 
     <div class="card">
+        <h2>👨‍🔧 Request Expert Advice</h2>
         <form onsubmit="sendRequest(event)">
-            <input type="text" id="name" style="width:100%; padding:10px; margin:5px 0;" placeholder="Maqaa Keessan" required>
-            <textarea id="msg" style="width:100%; padding:10px; margin:5px 0;" placeholder="Rakkoo Maashinii..."></textarea>
-            <button type="submit" class="btn btn-wa">💬 WhatsApp Ergi</button>
-        </form>  
-        <script> function checkMachineStatus() {
-    let limit = 90; // Kun 'Set point' keenya (Variable)
-    let temperature = prompt("Ho'a maashinii (Temperature) galchi:");
-    </script>
-    <script>if (temperature > limit) {
-        alert("⚠️ WARNING: Ho'i digrii " + limit + " darbeera! Dhaabaa.");
-    } else {
-        alert("✅ SAFE: Maashiniin Set Point (" + limit + ") gadi jira.");
-    }
-}
-```</script>
-
+            <input type="text" id="name" style="width:100%; padding:12px; margin:8px 0; border-radius:8px; border:1px solid #30363d; background:#0d1117; color:white; box-sizing:border-box;" placeholder="Your Name" required>
+            <textarea id="msg" style="width:100%; padding:12px; margin:8px 0; border-radius:8px; border:1px solid #30363d; background:#0d1117; color:white; box-sizing:border-box;" rows="4" placeholder="Describe the machine issue..."></textarea>
+            <button type="submit" class="btn btn-wa">💬 Send WhatsApp Request</button>
+        </form>
     </div>
-<div class="card" style="border: 2px solid yellow; text-align: center;">
-    <h3>🛠 Machine Diagnostic Logic (JS)</h3>
-    <p>Ho'a maashinii keessan asitti yaalaa.</p>
-    <button onclick="checkMachineStatus()" class="btn" style="background-color: orange; color: black;">
-        Check Machine Health
-    </button> 
-<div class="card" style="border: 2px solid #39FF14; text-align: center;">
-    <h2>🛠 Digital Diagnostic Center</h2>
-    <p>Maashinii keessan asitti sakatta'aa (Check Status & Faults)</p>
-    
-    <button onclick="checkMachineStatus()" class="btn" style="background-color: orange; color: black; margin-bottom: 10px;">
-        1. Check Machine Health (Ho'a)
-    </button>
-    
-    <button onclick="interpretFault()" class="btn" style="background-color: #39FF14; color: black;">
-        2. Interpret Fault Code (E01-E04)
-    </button>
-</div>
 
-
-
-
-
-    <button class="btn btn-pdf" onclick="getPDF()">📄 Technical Guide Download</button>
-
-    <footer style="text-align: center; padding: 20px; font-size: 12px;">
-        &copy; 2026 Abdurhaman Mohammed | Dire Dawa
+    <footer style="text-align: center; padding: 20px; font-size: 14px; color: #8b949e;">
+        <p>&copy; 2026 Abdurhaman Mohammed | Dire Dawa, Ethiopia</p>
     </footer>
 </div>
 
-</div>
 <script>
-    // 1. Variable ho'a maashinii hordofu
-    let ho_a_mootoraa = 85; 
-
-    // 2. Logic alaarmii
-    if (ho_a_mootoraa > 80) {
-        console.log("DANGEROUS: Mootorri baay'ee ho'ee jira!");
-    }
-
-    // 3. Function koodii dogoggoraa hiiku
-    function interpretFault() {
-        let faultCodes = {
-            "E01": "Phase Failure: Electrical supply keessan sakatta'aa.",
-            "E02": "High Temperature: Ho'i mootoraa baay'ee dabaleera.",
-            "E03": "Vibration Sensor: Maashiniin baay'ee raafamaa jira.",
-            "E04": "Oil Pressure Low: Zayita hidha (Hydraulic) sakatta'aa."
-        };
-
-        let code = prompt("Fault Code galchaa (E01-E04):");
-        if (code === null) return;
-        
-        let result = faultCodes[code.toUpperCase()];
-        if (result) {
-            alert("🔍 Result: " + result);
-        } else {
-            alert("❓ Koodiin '" + code + "' hin beekamu.");
-        }
-    }
-
-    // 4. Function ho'a maashinii check godhu
     function checkMachineStatus() {
-        let temperature = prompt("Ho'a maashinii galchi:");
-        if (temperature > 90) {
-            alert("⚠️ WARNING: Ho'i dabaleera!");
+        let temp = prompt("Enter Machine Temperature (°C):");
+        if (temp === null) return;
+        if (temp > 90) {
+            alert("⚠️ DANGER: Temperature is too high (" + temp + "°C). Shut down immediately!");
         } else {
-            alert("✅ SAFE: Haala gaariin hojjetaa jira.");
+            alert("✅ NORMAL: Machine is operating within safe limits.");
         }
     }
-</script>
 
-    
-<script>
-// Logic 1: Ho'a Maashinii Check Gochuuf
-function checkMachineStatus() {
-    let limit = 90;
-    let temperature = prompt("Ho'a maashinii (Temperature) galchi:");
-    
-    if (temperature === null) return; // Yoo cancel jedhe dhaabuf
-    
-    if (temperature > limit) {
-        alert("⚠️ WARNING: Ho'i digrii " + limit + " darbeera! Dhaabaa.");
-    } else {
-        alert("✅ SAFE: Maashiniin Set Point (" + limit + ") gadi jira.");
+    function interpretFault() {
+        const faults = {
+            "E01": "Phase Failure: Check your electrical power supply.",
+            "E02": "High Temperature: Motor overheating detected.",
+            "E03": "Vibration Sensor: Excessive machine vibration detected.",
+            "E04": "Oil Pressure Low: Check hydraulic oil levels."
+        };
+        let code = prompt("Enter Fault Code (e.g., E01):");
+        if (code === null) return;
+        let result = faults[code.toUpperCase()];
+        alert(result ? "🔍 Analysis: " + result : "❓ Unknown Code. Contact Abdurhaman for support.");
     }
-}
 
-// Logic 2: Koodii Dogoggoraa Hiikuuf
-function interpretFault() {
-    let faultCodes = {
-        "E01": "Phase Failure: Electrical supply keessan sakatta'aa.",
-        "E02": "High Temperature: Ho'i mootoraa baay'ee dabaleera.",
-        "E03": "Vibration Sensor: Maashiniin baay'ee raafamaa jira.",
-        "E04": "Oil Pressure Low: Zayita hidha (Hydraulic) sakatta'aa."
-    };
-
-    let code = prompt("Fault Code galchaa (E01, E02, E03, E04):");
-    
-    if (code === null) return;
-    
-    let result = faultCodes[code.toUpperCase()]; // Qubee xixinnaas gurguddaas ni danda'a
-
-    if (result) {
-        alert("🔍 Result: " + result);
-    } else {
-        alert("❓ Koodiin '" + code + "' hin beekamu. Abdurhaman quunnamaa.");
-    }
-}
-
-// PDF Download
-function getPDF() {
-    let content = "TECHNICAL GUIDE - ABDURHAMAN MECHATRONICS\nCBE: 1000347503707\nTelebirr: 0988535068";
-    let blob = new Blob([content], {type: "text/plain"});
-    let a = document.createElement("a");
-    a.href = URL.createObjectURL(blob);
-    a.download = "Abdurhaman_SBM_Guide.txt";
-    a.click();
-}
-<script>
-let ho-a_mootoraa = 85; // Variable (Bakka data kuufamu)
-
-if (ho-a_mootoraa > 80) {
-    console.log("DANGEROUS: Mootorri baay'ee ho'ee jira!"); // Alarm
-} else {
-    console.log("NORMAL: Maashiniin nagaatti hojjetaa jira.");
-}
     function sendRequest(e) {
         e.preventDefault();
         let n = document.getElementById('name').value;
         let m = document.getElementById('msg').value;
-        window.open(`https://wa.me/251904267186?text=Name: ${n}%0AIssue: ${m}`, '_blank');
+        let text = `Hello Abdurhaman, I need Expert Advice.%0AName: ${n}%0AIssue: ${m}`;
+        window.open(`https://wa.me/251904267186?text=${text}`, '_blank');
     }
-    function getPDF() {
-        let blob = new Blob(["SBM Guide by Abdurhaman\nCBE: 1000347503707"], {type: "text/plain"});
-        let a = document.createElement("a");
-        a.href = URL.createObjectURL(blob);
-        a.download = "Abdurhaman_Guide.txt";
-        a.click();
-    }
-</script>
-
-<script>
-function getPDF() {
-    // Barreeffama guutuu PDF keessatti mul'atu
-    let content = `
-=====================================================
-ABDURHAMAN MECHATRONICS SOLUTIONS - TECHNICAL GUIDE
-=====================================================
-Technician: Abdurhaman Mohammed Ahamed
-Experience: 8+ Years (Instrumentation & Control)
-Location: Dire Dawa, Ethiopia
-Contact: +251 904 267 186
------------------------------------------------------
-
-1. MECHANICAL MAINTENANCE (SBM CRUSHERS)
-   - Inspect Jaw plates for wear every 200 hours.
-   - Lubricate main bearings of the Cone Crusher daily.
-   - Tighten foundation bolts to prevent excessive vibration.
-
-2. ELECTRICAL SYSTEMS & CONTROL
-   - Motors > 75kW: Always verify Star-Delta connection.
-   - Control Panel: Check for loose wiring & dust accumulation.
-   - Instrumentation: Calibrate sensors weekly for accuracy.
-
-3. TROUBLESHOOTING GUIDE
-   - Issue: Crusher stops under load.
-     Solution: Check V-belt tension and motor current.
-   - Issue: Excessive noise.
-     Solution: Inspect bearings and internal chamber.
-
-4. SERVICE & PAYMENT DETAILS
-   - For expert online consultation, send photos via WhatsApp.
-   - Service Fee Payments:
-     * CBE Account: 1000347503707
-     * Telebirr: 0988535068
-
------------------------------------------------------
-© 2026 Abdurhaman Mechatronics. All Rights Reserved.
-=====================================================
-    `;
-
-    // Fayila uumuu fi Download gochuu
-    let blob = new Blob([content], { type: "text/plain" });
-    let link = document.createElement("a");
-    link.href = URL.createObjectURL(blob);
-    link.download = "Abdurhaman_SBM_Technical_Guide.txt";
-    link.click();
-    
-    alert("Technical Guide-ni kee bifa Document-tiidhaan download ta'eera!");
-}
 </script>
 
 </body>
