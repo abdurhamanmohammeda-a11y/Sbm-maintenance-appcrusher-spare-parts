@@ -112,44 +112,45 @@
     }
 </script>
 
+
 <script>
-    // 1. Secure Machine Status Check
+    // 1. Machine Health Check
     function checkMachineStatus() {
         let input = prompt("Enter Machine Temperature (°C):");
         if (input === null) return;
-
-        let temp = parseFloat(input); // Qubee gara lakkoofsaatti jijjiira
-
-        if (isNaN(temp)) { // Yoo lakkoofsa hin taane (Check Security)
-            alert("❌ Invalid Input! Please enter a numeric value.");
+        let temp = parseFloat(input);
+        if (isNaN(temp)) {
+            alert("❌ Please enter a valid number!");
             return;
         }
-
         if (temp > 90) {
-            alert("⚠️ DANGER: Critical Overheating (" + temp + "°C). Shut down now!");
+            alert("⚠️ DANGER: Critical Overheating (" + temp + "°C)!");
         } else {
-            alert("✅ NORMAL: Machine is stable at " + temp + "°C.");
+            alert("✅ NORMAL: Stable at " + temp + "°C.");
         }
     }
 
     // 2. Fault Code Interpreter
     function interpretFault() {
         const faults = {
-            "E01": "Phase Failure: Verify electrical input supply.",
-            "E02": "High Temperature: Motor/Chamber overheating.",
-            "E03": "Vibration Alert: Inspect foundation and bearings.",
-            "E04": "Oil Pressure Low: Check hydraulic tank levels."
+            "E01": "Phase Failure: Check power supply.",
+            "E02": "High Temperature: Motor overheating.",
+            "E03": "Vibration Alert: Inspect bearings.",
+            "E04": "Oil Pressure Low: Check hydraulics."
         };
         let code = prompt("Enter Fault Code (E01-E04):");
         if (code === null) return;
-        
-        let formattedCode = code.trim().toUpperCase(); // Fageenya fi qubee sirreessa
-        let result = faults[formattedCode];
+        let result = faults[code.trim().toUpperCase()];
+        alert(result ? "🔍 Diagnosis: " + result : "❓ Unknown Code.");
+    }
 
-        if (result) {
-            alert("🔍 Diagnosis: " + result);
-        } else {
-            alert("❓ Unknown Code. Contact Abdurhaman for direct support.");
-        }
+    // 3. WhatsApp Message
+    function sendRequest(e) {
+        e.preventDefault();
+        let n = document.getElementById('name').value;
+        let m = document.getElementById('msg').value;
+        let text = `Hello Abdurhaman, I need Expert Advice.%0AName: ${n}%0AIssue: ${m}`;
+        window.open(`https://wa.me/251904267186?text=${text}`, '_blank');
     }
 </script>
+
