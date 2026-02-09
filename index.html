@@ -112,4 +112,45 @@
     }
 </script>
 
+<script>
+    // 1. Secure Machine Status Check
+    function checkMachineStatus() {
+        let input = prompt("Enter Machine Temperature (°C):");
+        if (input === null) return;
+
+        let temp = parseFloat(input); // Qubee gara lakkoofsaatti jijjiira
+
+        if (isNaN(temp)) { // Yoo lakkoofsa hin taane (Check Security)
+            alert("❌ Invalid Input! Please enter a numeric value.");
+            return;
+        }
+
+        if (temp > 90) {
+            alert("⚠️ DANGER: Critical Overheating (" + temp + "°C). Shut down now!");
+        } else {
+            alert("✅ NORMAL: Machine is stable at " + temp + "°C.");
+        }
+    }
+
+    // 2. Fault Code Interpreter
+    function interpretFault() {
+        const faults = {
+            "E01": "Phase Failure: Verify electrical input supply.",
+            "E02": "High Temperature: Motor/Chamber overheating.",
+            "E03": "Vibration Alert: Inspect foundation and bearings.",
+            "E04": "Oil Pressure Low: Check hydraulic tank levels."
+        };
+        let code = prompt("Enter Fault Code (E01-E04):");
+        if (code === null) return;
+        
+        let formattedCode = code.trim().toUpperCase(); // Fageenya fi qubee sirreessa
+        let result = faults[formattedCode];
+
+        if (result) {
+            alert("🔍 Diagnosis: " + result);
+        } else {
+            alert("❓ Unknown Code. Contact Abdurhaman for direct support.");
+        }
+    }
+</script>
 </body>
