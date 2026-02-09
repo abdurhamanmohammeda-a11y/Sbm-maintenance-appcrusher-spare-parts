@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -177,6 +176,42 @@ function checkMachineStatus() {
         window.open(`https://wa.me/251904267186?text=${text}`, '_blank');
     }
 </script>
+    <Script>
+async function submitToDatabase(event) {
+    event.preventDefault(); // Fuulli akka refresh hin taane
+    
+    // Data foomii irraa fuudhuu
+    let name = document.getElementById('name').value;
+    let msg = document.getElementById('msg').value;
+    
+    // Linkii ati naaf ergite sana (API URL)
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbyORulxCa8xW7yBl8VN0sRM3J6aCPT06VVNDsgySzXNokZ-r5UuxD0jMI7BahmI091YoQ/exec';
+
+    let data = { 
+        name: name, 
+        issue: msg, 
+        temperature: "Diagnostic Checked" 
+    };
+
+    try {
+        // Data gara Google Sheets erguu
+        await fetch(scriptURL, { 
+            method: 'POST', 
+            mode: 'no-cors', // Bilbilaan yoo ta'e kana dabalachuu qabna
+            body: JSON.stringify(data) 
+        });
+
+        alert("✅ Success! Your request is saved in Abdurhaman's Database.");
+        
+        // Gara WhatsApp kalleattiin erguu
+        window.open(`https://wa.me/251904267186?text=Hello Abdurhaman, I am ${name}. Issue: ${msg}`, '_blank');
+        
+    } catch (error) {
+        console.error("Error!", error.message);
+        alert("❌ Error saving to database. But you can still WhatsApp me.");
+    }
+}
+</Script>
 <script>
 async function submitToDatabase(event) {
     event.preventDefault();
