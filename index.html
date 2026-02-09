@@ -178,3 +178,17 @@ function checkMachineStatus() {
     }
 </script>
 
+<script>
+async function sendDataToBackend(data) {
+    const url = "URL_API_KEE_KANA_FAKKATA"; // Boru ijaarrama
+    try {
+        const response = await fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(data)
+        });
+        alert("✅ Data sent to Abdurhaman's Database!");
+    } catch (error) {
+        console.error("Error:", error);
+    }
+}
+</script>
