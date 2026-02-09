@@ -111,7 +111,31 @@
         window.open(`https://wa.me/251904267186?text=${text}`, '_blank');
     }
 </script>
+<script>
+// Function to save Diagnostic history
+function saveHistory(type, value) {
+    let history = JSON.parse(localStorage.getItem('crusherLogs')) || [];
+    let entry = {
+        date: new Date().toLocaleString(),
+        type: type,
+        value: value
+    };
+    history.push(entry);
+    localStorage.setItem('crusherLogs', JSON.stringify(history));
+    console.log("History Updated:", history);
+}
 
+// Update your temperature function to use saveHistory
+function checkMachineStatus() {
+    let input = prompt("Enter Machine Temperature (°C):");
+    if (input === null) return;
+    let temp = parseFloat(input);
+    
+    if (!isNaN(temp)) {
+        saveHistory("Temperature Check", temp + "°C"); // Data ni kuufama
+        alert(temp > 90 ? "⚠️ DANGER!" : "✅ NORMAL");
+    }
+}</script>
 
 <script>
     // 1. Machine Health Check
