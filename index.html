@@ -110,6 +110,42 @@
         window.open(`https://wa.me/251904267186?text=${text}`, '_blank');
     }
 </script>
+    
+<script>
+async function submitToDatabase(event) {
+    event.preventDefault(); // Fuulli akka refresh hin taane
+    
+    let name = document.getElementById('name').value;
+    let msg = document.getElementById('msg').value;
+    
+    // Linkii API kee
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbyORulxCa8xW7yBl8VN0sRM3J6aCPT06VVNDsgySzXNokZ-r5UuxD0jMI7BahmI091YoQ/exec';
+
+    let customerData = { 
+        name: name, 
+        issue: msg, 
+        temperature: "Diagnostic Checked" 
+    };
+
+    try {
+        // 1. Data gara Google Sheets erguu
+        await fetch(scriptURL, { 
+            method: 'POST', 
+            mode: 'no-cors', // Bilbilaan (Android) yoo ta'e murteessaadha
+            body: JSON.stringify(customerData) 
+        });
+
+        alert("✅ Success! Your request is saved in Abdurhaman's Database.");
+        
+        // 2. Gara WhatsApp tti erguu (Kiliyoontichi akka si dubbisuuf)
+        window.open(`https://wa.me/251904267186?text=Hello Abdurhaman, I am ${name}. Issue: ${msg}`, '_blank');
+        
+    } catch (error) {
+        alert("❌ Database error. But sending via WhatsApp...");
+        window.open(`https://wa.me/251904267186?text=Issue: ${msg}`, '_blank');
+    }
+}
+</script>
 <script>
 // Function to save Diagnostic history
 function saveHistory(type, value) {
