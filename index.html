@@ -177,7 +177,26 @@ function checkMachineStatus() {
         window.open(`https://wa.me/251904267186?text=${text}`, '_blank');
     }
 </script>
+<script>
+async function submitToDatabase(event) {
+    event.preventDefault();
+    
+    let name = document.getElementById('name').value;
+    let msg = document.getElementById('msg').value;
+    let scriptURL = 'WEB_APP_URL_KEE_KANA_BAKKA_BUUSI'; // URL kanaan dura copy goote
 
+    let data = { name: name, issue: msg, temperature: "Checked" };
+
+    try {
+        await fetch(scriptURL, { method: 'POST', body: JSON.stringify(data) });
+        alert("✅ Success! Your request is saved in Abdurhaman's Database.");
+        // Gara WhatsApp tti erga
+        window.open(`https://wa.me/251904267186?text=Hello Abdurhaman, I am ${name}. Issue: ${msg}`, '_blank');
+    } catch (error) {
+        alert("❌ Error saving to database.");
+    }
+}
+</script>
 <script>
 async function sendDataToBackend(data) {
     const url = "URL_API_KEE_KANA_FAKKATA"; // Boru ijaarrama
