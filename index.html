@@ -146,6 +146,41 @@ async function submitToDatabase(event) {
     }
 }
 </script>
+    <Script>
+async function submitToDatabase(event) {
+    event.preventDefault(); // Fuulli akka refresh hin taane
+    
+    // 1. Maqaa fi Rakkoo foomii irraa fudhu
+    let name = document.getElementById('name').value;
+    let msg = document.getElementById('msg').value;
+    
+    // 2. Linkii Web App URL ati naaf ergite sana as galchi
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbyORulxCa8xW7yBl8VN0sRM3J6aCPT06VVNDsgySzXNokZ-r5UuxD0jMI7BahmI091YoQ/exec';
+
+    let data = { 
+        name: name, 
+        issue: msg, 
+        temperature: "Checked" 
+    };
+
+    try {
+        // 3. Data gara Google Sheets erguu
+        await fetch(scriptURL, { 
+            method: 'POST', 
+            mode: 'no-cors', // Bilbilaaf murteessaadha
+            body: JSON.stringify(data) 
+        });
+
+        alert("✅ Galatoomi! Odeeffannoon kee Database Abdurhaman keessatti kuufameera.");
+        
+        // 4. Ergaa WhatsApp tti dabarsi
+        window.open(`https://wa.me/251904267186?text=Hello Abdurhaman, I am ${name}. Issue: ${msg}`, '_blank');
+        
+    } catch (error) {
+        alert("❌ Dogoggorri uumameera, garuu WhatsApp dhaan natti erguu dandeessa.");
+    }
+}
+    </script>
 <script>
 // Function to save Diagnostic history
 function saveHistory(type, value) {
