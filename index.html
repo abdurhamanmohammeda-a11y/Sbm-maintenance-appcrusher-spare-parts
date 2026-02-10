@@ -328,26 +328,42 @@ async function sendDataToBackend(data) {
         // Data foomii irraa fudhu
         let name = document.getElementById('name').value;
         let msg = document.getElementById('msg').value;
+        <script>
+const scriptURL = 'https://script.google.com/macros/s/AKfycbwGMElmpmkPy1no4eGEknf3dsBbaRTR0oAwp4OT_jk6O-xXglYfhTFpwxBU7721zaT6/exec';
+
+async function submitToDatabase(event) {
+    event.preventDefault();
+    
+    let name = document.getElementById('name').value;
+    let msg = document.getElementById('msg').value;
+
+    let customerData = { 
+        name: name, 
+        issue: msg, 
+        temperature: "Diagnostic Checked" 
+    };
+
+    try {
+        // Data gara Google Sheets erguu
+        await fetch(scriptURL, { 
+            method: 'POST', 
+            mode: 'no-cors', 
+            body: JSON.stringify(customerData) 
+        });
+
+        alert("✅ Injifannoo! Odeeffannoon kee Database keessatti galmeeffameera.");
         
-        // Linkii Web App URL kee (Isa Google Script irraa argatte)
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbyORulxCa8xW7yBl8VN0sRM3J6aCPT06VVNDsgySzXNokZ-r5UuxD0jMI7BahmI091YoQ/exec';
+        // Gara WhatsApp tti erguu
+        window.open(`https://wa.me/251904267186?text=Hello Abdurhaman, I am ${name}. Issue: ${msg}`, '_blank');
+        
+    } catch (error) {
+        alert("❌ Error: Database waliin walitti hidhamuu hin dandeenye.");
+    }
+}
+</script>
+    
 
-        let customerData = { 
-            name: name, 
-            issue: msg, 
-            temperature: "Diagnostic Checked" 
-        };
-
-        try {
-            // Data gara Google Sheets erguu
-            fetch(scriptURL, { 
-                method: 'POST', 
-                mode: 'no-cors', 
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(customerData) 
-            });
-
-            alert("✅ Galatoomi Abdurhaman! Odeeffannoon kee Database irratti kuufameera.");
+<script>            alert("✅ Galatoomi Abdurhaman! Odeeffannoon kee Database irratti kuufameera.");
             
             // Kalleattiin gara WhatsApp tti geessi
             let whatsappURL = `https://wa.me/251904267186?text=Hello Abdurhaman, I am ${name}. Issue: ${msg}`;
