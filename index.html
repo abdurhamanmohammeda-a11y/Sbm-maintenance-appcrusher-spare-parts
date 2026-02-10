@@ -319,3 +319,72 @@ async function sendDataToBackend(data) {
     }
 }
 </script>
+
+<script>
+    // 1. Data gara Google Sheets erguu fi WhatsApp banuu
+    async function submitToDatabase(event) {
+        event.preventDefault(); // Fuulli akka refresh hin taane
+        
+        // Data foomii irraa fudhu
+        let name = document.getElementById('name').value;
+        let msg = document.getElementById('msg').value;
+        
+        // Linkii Web App URL kee (Isa Google Script irraa argatte)
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbyORulxCa8xW7yBl8VN0sRM3J6aCPT06VVNDsgySzXNokZ-r5UuxD0jMI7BahmI091YoQ/exec';
+
+        let customerData = { 
+            name: name, 
+            issue: msg, 
+            temperature: "Diagnostic Checked" 
+        };
+
+        try {
+            // Data gara Google Sheets erguu
+            fetch(scriptURL, { 
+                method: 'POST', 
+                mode: 'no-cors', 
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(customerData) 
+            });
+
+            alert("✅ Galatoomi Abdurhaman! Odeeffannoon kee Database irratti kuufameera.");
+            
+            // Kalleattiin gara WhatsApp tti geessi
+            let whatsappURL = `https://wa.me/251904267186?text=Hello Abdurhaman, I am ${name}. Issue: ${msg}`;
+            window.open(whatsappURL, '_blank');
+            
+        } catch (error) {
+            alert("❌ Dogoggora: Database waliin walitti hidhamuu hin dandeenye.");
+        }
+    }
+
+    // 2. Machine Health Check (Diagnostic Tool)
+    function checkMachineStatus() {
+        let input = prompt("Enter Machine Temperature (°C):");
+        if (input === null) return;
+        let temp = parseFloat(input);
+        if (isNaN(temp)) {
+            alert("❌ Maaloo lakkoofsa sirrii galchi!");
+            return;
+        }
+        if (temp > 90) {
+            alert("⚠️ DANGER: Machine Overheating (" + temp + "°C)!");
+        } else {
+            alert("✅ NORMAL: Stable at " + temp + "°C.");
+        }
+    }
+
+    // 3. Fault Code Interpreter
+    function interpretFault() {
+        const faults = {
+            "E01": "Phase Failure: Check power supply.",
+            "E02": "High Temperature: Motor overheating.",
+            "E03": "Vibration Alert: Inspect bearings.",
+            "E04": "Oil Pressure Low: Check hydraulics."
+        };
+        let code = prompt("Enter Fault Code (E01-E04):");
+        if (code === null) return;
+        let result = faults[code.trim().toUpperCase()];
+        alert(result ? "🔍 Diagnosis: " + result : "❓ Unknown Code. Contact Abdurhaman.");
+    }
+</script>
