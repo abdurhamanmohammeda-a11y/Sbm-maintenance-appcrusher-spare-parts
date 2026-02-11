@@ -10,7 +10,6 @@
         .container { max-width: 800px; margin: auto; }
         .card { background-color: var(--card-bg); padding: 20px; border: 1px solid #30363d; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
         h1, h2 { color: var(--primary); text-align: center; }
-        /* Suuraa kee deebisneerra */
         img { width: 100%; border-radius: 12px; border: 2px solid var(--primary); margin-bottom: 20px; }
         table { width: 100%; border-collapse: collapse; margin-top: 15px; background: #0d1117; font-size: 14px; }
         th, td { padding: 12px; text-align: left; border-bottom: 1px solid #30363d; }
@@ -79,7 +78,7 @@
 </div>
 
 <script>
-    // 1. Database Integration (SheetDB)
+     1. Database Integration (SheetDB)
     const form = document.getElementById('sheetdb-form');
     form.addEventListener("submit", e => {
         e.preventDefault();
@@ -90,14 +89,14 @@
         submitBtn.innerText = "Saving Data... ⏳";
         submitBtn.disabled = true;
 
-        // SheetDB API URL kee
+         SheetDB API URL kee
         fetch('https://sheetdb.io/api/v1/49bhx2brvk9r3', {
             method : 'POST',
             body: new FormData(form),
         }).then(response => {
             if(response.ok) {
                 alert("✅ Galatoomi Abdurhaman! Odeeffannoon kee Excel irratti galmaa'eera.");
-                // Gara WhatsApp tti geessi
+                 Gara WhatsApp tti geessi
                 let whatsappURL = `https://wa.me/251904267186?text=Hello Abdurhaman, I am ${nameVal}. Issue: ${msgVal}`;
                 window.open(whatsappURL, '_blank');
                 form.reset();
@@ -110,7 +109,7 @@
         });
     });
 
-    // 2. Search Function
+     2. Search Function
     function searchParts() {
         let input = document.getElementById("partSearch").value.toUpperCase();
         let tr = document.getElementById("partsTable").getElementsByTagName("tr");
@@ -120,7 +119,7 @@
         }
     }
 
-    // 3. Diagnostics
+     3. Diagnostics
     function checkMachineHealth() {
         let temp = prompt("Enter Machine Temperature (°C):");
         if (temp === null) return;
