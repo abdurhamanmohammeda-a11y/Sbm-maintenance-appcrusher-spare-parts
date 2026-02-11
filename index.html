@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Abdurhaman Mechatronics | SBM Expert</title>
+    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-database-compat.js"></script>
+    
     <style>
         :root { --primary: #39FF14; --bg: #0d1117; --card-bg: #161b22; --text: #c9d1d9; }
         body { background-color: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; padding: 15px; margin: 0; line-height: 1.6; }
@@ -20,6 +23,7 @@
         .btn-diag { background-color: var(--primary); color: black; }
         .payment-box { border: 2px dashed var(--primary); padding: 15px; border-radius: 10px; text-align: center; background: #1c2128; }
         .acc { font-size: 1.2em; font-weight: bold; color: white; display: block; margin: 5px 0; letter-spacing: 1px; }
+        input, textarea { width:100%; padding:12px; margin:8px 0; border-radius:8px; border:1px solid #30363d; background:#0d1117; color:white; box-sizing:border-box; }
     </style>
 </head>
 <body>
@@ -31,437 +35,94 @@
         <p style="background: var(--primary); color: black; display: inline-block; padding: 4px 12px; border-radius: 20px; font-weight: bold;">8+ YEARS EXPERIENCE</p>
     </header>
 
-    <img src="Maashinii.jpg" alt="SBM Industrial Machine">
-
     <div class="card">
-        <h2>📊 Expertise & Spare Parts</h2>
-        <table>
+        <h2>🔍 Search Spare Parts</h2>
+        <input type="text" id="partSearch" onkeyup="searchParts()" placeholder="Type component name (e.g. Motor)...">
+        <table id="partsTable">
             <thead>
-                <tr><th>Component</th><th>Maintenance Task</th><th>Expertise</th></tr>
+                <tr><th>Component</th><th>Task</th><th>Expertise</th></tr>
             </thead>
             <tbody>
-                <tr><td>Main Motor (75kW)</td><td>Star-Delta / Wiring</td><td>Expert</td></tr>
+                <tr><td>Main Motor (75kW)</td><td>Star-Delta</td><td>Expert</td></tr>
                 <tr><td>Instrumentation</td><td>Sensors & PLC</td><td>Advanced</td></tr>
-                <tr><td>Hydraulic System</td><td>Pressure Control</td><td>Specialist</td></tr>
+                <tr><td>Hydraulic System</td><td>Pressure</td><td>Specialist</td></tr>
             </tbody>
         </table>
     </div>
 
     <div class="card" style="border: 2px solid var(--primary);">
         <h2>🔍 Digital Diagnostic Center</h2>
-        <p style="text-align:center;">Test your machine health and interpret fault codes below.</p>
         <button onclick="checkMachineStatus()" class="btn btn-diag">1. Check Machine Health</button>
         <button onclick="interpretFault()" class="btn btn-diag" style="background-color: #ff9800;">2. Interpret Fault Code (E01-E04)</button>
     </div>
 
     <div class="card">
-        <h2>💳 Payment Information</h2>
-        <div class="payment-box">
-            <p>Beneficiary: <strong>Abdurhaman Mohammed Ahamed</strong></p>
-            <hr style="border: 0.1px solid #30363d;">
-            <p>CBE Account: <span class="acc">1000347503707</span></p>
-            <p>Telebirr: <span class="acc">0988535068</span></p>
-        </div>
-    </div>
-
-    <div class="card">
         <h2>👨‍🔧 Request Expert Advice</h2>
-        <form onsubmit="sendRequest(event)">
-            <input type="text" id="name" style="width:100%; padding:12px; margin:8px 0; border-radius:8px; border:1px solid #30363d; background:#0d1117; color:white; box-sizing:border-box;" placeholder="Your Name" required>
-            <textarea id="msg" style="width:100%; padding:12px; margin:8px 0; border-radius:8px; border:1px solid #30363d; background:#0d1117; color:white; box-sizing:border-box;" rows="4" placeholder="Describe the machine issue..."></textarea>
-            <button type="submit" class="btn btn-wa">💬 Send WhatsApp Request</button>
+        <form id="requestForm">
+            <input type="text" id="userName" placeholder="Your Name" required>
+            <textarea id="userMsg" rows="4" placeholder="Describe the machine issue..." required></textarea>
+            <button type="submit" class="btn btn-wa">💬 Send to Database & WhatsApp</button>
         </form>
     </div>
-<script>
+
     <footer style="text-align: center; padding: 20px; font-size: 14px; color: #8b949e;">
         <p>&copy; 2026 Abdurhaman Mohammed | Dire Dawa, Ethiopia</p>
+        <p onclick="showAdmin()" style="cursor:pointer;">Admin Login</p>
     </footer>
-    <script>
-<section id="admin-dashboard" style="display:none; padding:80px 20px; background:#f0f2f5;">
-    <div class="container">
-        <h2 style="color:#1a1a1a;">SBM Admin Dashboard</h2>
-        
-        <div style="display:flex; gap:20px; margin-bottom:30px;">
-            <div style="background:#ff9900; color:#fff; padding:20px; border-radius:10px; flex:1;">
-                <h3>Total Bookings</h3>
-                <p id="total-count" style="font-size:2rem; font-weight:bold;">0</p>
-            </div>
-            <div style="background:#222; color:#fff; padding:20px; border-radius:10px; flex:1;">
-                <h3>Status</h3>
-                <p style="font-size:1.5rem;">System Active</p>
-            </div>
-        </div>
-
-        <div style="overflow-x:auto; background:#fff; padding:20px; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.1);">
-            <table style="width:100%; border-collapse: collapse; text-align:left;">
-                <thead style="background:#eee;">
-                    <tr>
-                        <th style="padding:12px;">Date</th>
-                        <th style="padding:12px;">Name</th>
-                        <th style="padding:12px;">Machine/Issue</th>
-                    </tr>
-                </thead>
-                <tbody id="admin-table-body">
-                    </tbody>
-            </table>
-        </div>
-        <button onclick="logoutAdmin()" style="margin-top:20px; background:red; color:white; border:none; padding:10px 20px; border-radius:5px; cursor:pointer;">Logout</button>
-    </div>
-</section>
-
-<div style="text-align:center; padding:20px;">
-    <p onclick="adminLogin()" style="color:#ccc; cursor:pointer; font-size:0.8rem;">Admin Login</p>
 </div>
-</script>
-        </script>
+
 <script>
-    function checkMachineStatus() {
-        let temp = prompt("Enter Machine Temperature (°C):");
-        if (temp === null) return;
-        if (temp > 90) {
-            alert("⚠️ DANGER: Temperature is too high (" + temp + "°C). Shut down immediately!");
-        } else {
-            alert("✅ NORMAL: Machine is operating within safe limits.");
-        }
-    }
+    // 1. Database Configuration (Firebase)
+    // Hubachiisa: Firebase Console irraa 'Config' kee asitti jijjiiri
+    const firebaseConfig = {
+        apiKey: "YOUR_API_KEY",
+        databaseURL: "https://your-project-id.firebaseio.com",
+        projectId: "your-project-id",
+    };
+    firebase.initializeApp(firebaseConfig);
+    const database = firebase.database();
 
-    function interpretFault() {
-        const faults = {
-            "E01": "Phase Failure: Check your electrical power supply.",
-            "E02": "High Temperature: Motor overheating detected.",
-            "E03": "Vibration Sensor: Excessive machine vibration detected.",
-            "E04": "Oil Pressure Low: Check hydraulic oil levels."
-        };
-        let code = prompt("Enter Fault Code (e.g., E01):");
-        if (code === null) return;
-        let result = faults[code.toUpperCase()];
-        alert(result ? "🔍 Analysis: " + result : "❓ Unknown Code. Contact Abdurhaman for support.");
-    }
-
-    function sendRequest(e) {
+    // 2. Form Submission (Database + WhatsApp)
+    document.getElementById('requestForm').addEventListener('submit', function(e) {
         e.preventDefault();
-        let n = document.getElementById('name').value;
-        let m = document.getElementById('msg').value;
-        let text = `Hello Abdurhaman, I need Expert Advice.%0AName: ${n}%0AIssue: ${m}`;
-        window.open(`https://wa.me/251904267186?text=${text}`, '_blank');
-    }
-</script>
-    
-<script>
-async function submitToDatabase(event) {
-    event.preventDefault(); // Fuulli akka refresh hin taane
-    
-    let name = document.getElementById('name').value;
-    let msg = document.getElementById('msg').value;
-    
-    Linkii API kee
-    const scriptURL = https:script.google.com/macros/s/AKfycbxtQEr5Dk58wFHXCAGM5KsdgUpo8FPSo--klIMCcymKfUztL-UidyJnCXHWmXLZswcB/exec
+        let name = document.getElementById('userName').value;
+        let msg = document.getElementById('userMsg').value;
 
-    let customerData = { 
-        name: name, 
-        issue: msg, 
-        temperature: "Diagnostic Checked" 
-    };
-
-    try {
-        1. Data gara Google Sheets erguu
-        await fetch(scriptURL, { 
-            method: 'POST', 
-            mode: 'no-cors', // Bilbilaan (Android) yoo ta'e murteessaadha
-            body: JSON.stringify(customerData) 
+        // Save to Firebase
+        database.ref('requests/').push({
+            name: name,
+            message: msg,
+            date: new Date().toLocaleString()
+        }).then(() => {
+            alert("✅ Data Saved to Database!");
+            window.open(`https://wa.me/251904267186?text=Hello Abdurhaman, I am ${name}. Issue: ${msg}`, '_blank');
         });
+    });
 
-        alert("✅ Success! Your request is saved in Abdurhaman's Database.");
-        
-         2. Gara WhatsApp tti erguu (Kiliyoontichi akka si dubbisuuf)
-        window.open(`https://wa.me/251904267186?text=Hello Abdurhaman, I am ${name}. Issue: ${msg}`, '_blank');
-        
-    } catch (error) {
-        alert("❌ Database error. But sending via WhatsApp...");
-        window.open(`https://wa.me/251904267186?text=Issue: ${msg}`, '_blank');
+    // 3. Search Function
+    function searchParts() {
+        let input = document.getElementById("partSearch").value.toUpperCase();
+        let tr = document.getElementById("partsTable").getElementsByTagName("tr");
+        for (let i = 1; i < tr.length; i++) {
+            let td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                tr[i].style.display = td.innerText.toUpperCase().indexOf(input) > -1 ? "" : "none";
+            }
+        }
     }
-}
-</script>
-    <Script>
-async function submitToDatabase(event) {
-    event.preventDefault(); Fuulli akka refresh hin taane
-    
 
-    let name = document.getElementById('name').value;
-    let msg = document.getElementById('msg').value;
-    
-
-    const scriptURL = https:script.google.com/macros/s/AKfycbyuBeTxVIg5gBJ0e5IRudXiqbwbNFKqcXtQMuGsiee_aFJzWBRvuKgem1kHRgWzHMtr/exec
-
-    let data = { 
-        name: name, 
-        issue: msg, 
-        temperature: "Checked" 
-    };
-
-    try {
-         3. Data gara Google Sheets erguu
-        await fetch(scriptURL, { 
-            method: 'POST', 
-            mode: 'no-cors', Bilbilaaf murteessaadha
-            body: JSON.stringify(data) 
-        });
-
-        alert("✅ Galatoomi! Odeeffannoon kee Database Abdurhaman keessatti kuufameera.");
-        
-        4. Ergaa WhatsApp tti dabarsi
-        window.open(`https://wa.me/251904267186?text=Hello Abdurhaman, I am ${name}. Issue: ${msg}`, '_blank');
-        
-    } catch (error) {
-        alert("❌ Dogoggorri uumameera, garuu WhatsApp dhaan natti erguu dandeessa.");
-    }
-}
-    </script>
-<script>
-    Function to save Diagnostic history
-function saveHistory(type, value) {
-    let history = JSON.parse(localStorage.getItem('crusherLogs')) || [];
-    let entry = {
-        date: new Date().toLocaleString(),
-        type: type,
-        value: value
-    };
-    history.push(entry);
-    localStorage.setItem('crusherLogs', JSON.stringify(history));
-    console.log("History Updated:", history);
-}
-
-Update your temperature function to use saveHistory
-function checkMachineStatus() {
-    let input = prompt("Enter Machine Temperature (°C):");
-    if (input === null) return;
-    let temp = parseFloat(input);
-    
-    if (!isNaN(temp)) {
-        saveHistory("Temperature Check", temp + "°C"); // Data ni kuufama
-        alert(temp > 90 ? "⚠️ DANGER!" : "✅ NORMAL");
-    }
-}</script>
-
-<script>
-     1. Machine Health Check
+    // 4. Diagnostics
     function checkMachineStatus() {
-        let input = prompt("Enter Machine Temperature (°C):");
-        if (input === null) return;
-        let temp = parseFloat(input);
-        if (isNaN(temp)) {
-            alert("❌ Please enter a valid number!");
-            return;
-        }
-        if (temp > 90) {
-            alert("⚠️ DANGER: Critical Overheating (" + temp + "°C)!");
-        } else {
-            alert("✅ NORMAL: Stable at " + temp + "°C.");
-        }
+        let temp = prompt("Enter Temperature (°C):");
+        if(temp > 90) alert("⚠️ DANGER: Overheating!");
+        else alert("✅ Normal Operating Temp.");
     }
 
-     2. Fault Code Interpreter
     function interpretFault() {
-        const faults = {
-            "E01": "Phase Failure: Check power supply.",
-            "E02": "High Temperature: Motor overheating.",
-            "E03": "Vibration Alert: Inspect bearings.",
-            "E04": "Oil Pressure Low: Check hydraulics."
-        };
-        let code = prompt("Enter Fault Code (E01-E04):");
-        if (code === null) return;
-        let result = faults[code.trim().toUpperCase()];
-        alert(result ? "🔍 Diagnosis: " + result : "❓ Unknown Code.");
-    }
-
-    3. WhatsApp Message
-    function sendRequest(e) {
-        e.preventDefault();
-        let n = document.getElementById('name').value;
-        let m = document.getElementById('msg').value;
-        let text = `Hello Abdurhaman, I need Expert Advice.%0AName: ${n}%0AIssue: ${m}`;
-        window.open(`https://wa.me/251904267186?text=${text}`, '_blank');
+        const faults = {"E01": "Phase Failure", "E02": "High Temp", "E03": "Vibration", "E04": "Low Oil"};
+        let code = prompt("Enter Code (E01-E04):").toUpperCase();
+        alert(faults[code] ? "Diagnosis: " + faults[code] : "Unknown Code");
     }
 </script>
-    <Script>
-<textarea id="msg" name="issue" placeholder="Rakkoo maashinii barreeffamaan naaf ibsi..." required></textarea>
-</script>
-    <Script>
-async function submitToDatabase(event) {
-    event.preventDefault(); Fuulli akka refresh hin taane
-    
- Data foomii irraa fuudhuu
-    let name = document.getElementById('name').value;
-    let msg = document.getElementById('msg').value;
-    
-    Linkii ati naaf ergite sana (API URL)
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbyORulxCa8xW7yBl8VN0sRM3J6aCPT06VVNDsgySzXNokZ-r5UuxD0jMI7BahmI091YoQ/exec';
-
-    let data = { 
-        name: name, 
-        issue: msg, 
-        temperature: "Diagnostic Checked" 
-    };
-
-    try {
-        Data gara Google Sheets erguu
-        await fetch(scriptURL, { 
-            method: 'POST', 
-            mode: 'no-cors',  Bilbilaan yoo ta'e kana dabalachuu qabna
-            body: JSON.stringify(data) 
-        });
-
-        alert("✅ Success! Your request is saved in Abdurhaman's Database.");
-        
-        Gara WhatsApp kalleattiin erguu
-        window.open(`https://wa.me/251904267186?text=Hello Abdurhaman, I am ${name}. Issue: ${msg}`, '_blank');
-        
-    } catch (error) {
-        console.error("Error!", error.message);
-        alert("❌ Error saving to database. But you can still WhatsApp me.");
-    }
-}
-</Script>
-<script>
-async function submitToDatabase(event) {
-    event.preventDefault();
-    
-    let name = document.getElementById('name').value;
-    let msg = document.getElementById('msg').value;
-    let scriptURL = 'WEB_APP_URL_KEE_KANA_BAKKA_BUUSI'; // URL kanaan dura copy goote
-
-    let data = { name: name, issue: msg, temperature: "Checked" };
-
-    try {
-        await fetch(scriptURL, { method: 'POST', body: JSON.stringify(data) });
-        alert("✅ Success! Your request is saved in Abdurhaman's Database.");
-    Gara WhatsApp tti erga
-        window.open(`https://wa.me/251904267186?text=Hello Abdurhaman, I am ${name}. Issue: ${msg}`, '_blank');
-    } catch (error) {
-        alert("❌ Error saving to database.");
-    }
-}
-</script>
-<script>
-async function sendDataToBackend(data) {
-    const url = "URL_API_KEE_KANA_FAKKATA"; // Boru ijaarrama
-    try {
-        const response = await fetch(url, {
-            method: 'POST',
-            body: JSON.stringify(data)
-        });
-        alert("✅ Data sent to Abdurhaman's Database!");
-    } catch (error) {
-        console.error("Error:", error);
-    }
-}
-</script>
-
-<script>
-    1. Data gara Google Sheets erguu fi WhatsApp banuu
-    async function submitToDatabase(event) {
-        event.preventDefault(); // Fuulli akka refresh hin taane
-        
-        Data foomii irraa fudhu
-        let name = document.getElementById('name').value;
-        let msg = document.getElementById('msg').value;
-        <script>
-const scriptURL = 'https://script.google.com/macros/s/AKfycbwGMElmpmkPy1no4eGEknf3dsBbaRTR0oAwp4OT_jk6O-xXglYfhTFpwxBU7721zaT6/exec';
-
-async function submitToDatabase(event) {
-    event.preventDefault();
-    
-    let name = document.getElementById('name').value;
-    let msg = document.getElementById('msg').value;
-
-    let customerData = { 
-        name: name, 
-        issue: msg, 
-        temperature: "Diagnostic Checked" 
-    };
-
-    try {
-         Data gara Google Sheets erguu
-        await fetch(scriptURL, { 
-            method: 'POST', 
-            mode: 'no-cors', 
-            body: JSON.stringify(customerData) 
-        });
-
-        alert("✅ Injifannoo! Odeeffannoon kee Database keessatti galmeeffameera.");
-        
-        Gara WhatsApp tti erguu
-        window.open(`https://wa.me/251904267186?text=Hello Abdurhaman, I am ${name}. Issue: ${msg}`, '_blank');
-        
-    } catch (error) {
-        alert("❌ Error: Database waliin walitti hidhamuu hin dandeenye.");
-    }
-}
-</script>
-    
-
-<script>            alert("✅ Galatoomi Abdurhaman! Odeeffannoon kee Database irratti kuufameera.");
-            
-            Kalleattiin gara WhatsApp tti geessi
-            let whatsappURL = `https://wa.me/251904267186?text=Hello Abdurhaman, I am ${name}. Issue: ${msg}`;
-            window.open(whatsappURL, '_blank');
-            
-        } catch (error) {
-            alert("❌ Dogoggora: Database waliin walitti hidhamuu hin dandeenye.");
-        }
-    }
-
-    2. Machine Health Check (Diagnostic Tool)
-    function checkMachineStatus() {
-        let input = prompt("Enter Machine Temperature (°C):");
-        if (input === null) return;
-        let temp = parseFloat(input);
-        if (isNaN(temp)) {
-            alert("❌ Maaloo lakkoofsa sirrii galchi!");
-            return;
-        }
-        if (temp > 90) {
-            alert("⚠️ DANGER: Machine Overheating (" + temp + "°C)!");
-        } else {
-            alert("✅ NORMAL: Stable at " + temp + "°C.");
-        }
-    }
-
-     3. Fault Code Interpreter
-    function interpretFault() {
-        const faults = {
-            "E01": "Phase Failure: Check power supply.",
-            "E02": "High Temperature: Motor overheating.",
-            "E03": "Vibration Alert: Inspect bearings.",
-            "E04": "Oil Pressure Low: Check hydraulics."
-        };
-        let code = prompt("Enter Fault Code (E01-E04):");
-        if (code === null) return;
-        let result = faults[code.trim().toUpperCase()];
-        alert(result ? "🔍 Diagnosis: " + result : "❓ Unknown Code. Contact Abdurhaman.");
-    }
-</script>
-<script>
-<section id="admin-panel" style="display:none; background:#eee; padding:50px 20px;">
-  <h2>Admin Dashboard (Abdurhaman Only)</h2>
-  <div id="stats">
-    <p>Total Bookings: <span id="count">0</span></p>
-  </div>
-  <table id="adminTable" border="1" style="width:100%; background:#fff; margin-top:20px; border-collapse: collapse;">
-    <thead style="background: #222; color: #fff;">
-      <tr>
-        <th>Date</th>
-        <th>Customer Name</th>
-        <th>Machine/Issue</th>
-      </tr>
-    </thead>
-    <tbody id="tableBody">
-      </tbody>
-  </table>
-  <button onclick="hideAdmin()" style="margin-top:20px; padding:10px; background:red; color:#fff; border:none; border-radius:5px;">Close Admin</button>
-</section>
-
-<div style="text-align:center; padding:20px;">
-  <button onclick="showAdmin()" style="background:none; border:none; color:#aaa; cursor:pointer;">Admin Login</button>
-</div>
-</script>
+</body>
+</html>
