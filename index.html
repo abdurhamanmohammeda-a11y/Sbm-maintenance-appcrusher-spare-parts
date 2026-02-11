@@ -404,3 +404,27 @@ async function submitToDatabase(event) {
         alert(result ? "🔍 Diagnosis: " + result : "❓ Unknown Code. Contact Abdurhaman.");
     }
 </script>
+<script>
+<section id="admin-panel" style="display:none; background:#eee; padding:50px 20px;">
+  <h2>Admin Dashboard (Abdurhaman Only)</h2>
+  <div id="stats">
+    <p>Total Bookings: <span id="count">0</span></p>
+  </div>
+  <table id="adminTable" border="1" style="width:100%; background:#fff; margin-top:20px; border-collapse: collapse;">
+    <thead style="background: #222; color: #fff;">
+      <tr>
+        <th>Date</th>
+        <th>Customer Name</th>
+        <th>Machine/Issue</th>
+      </tr>
+    </thead>
+    <tbody id="tableBody">
+      </tbody>
+  </table>
+  <button onclick="hideAdmin()" style="margin-top:20px; padding:10px; background:red; color:#fff; border:none; border-radius:5px;">Close Admin</button>
+</section>
+
+<div style="text-align:center; padding:20px;">
+  <button onclick="showAdmin()" style="background:none; border:none; color:#aaa; cursor:pointer;">Admin Login</button>
+</div>
+</script>
