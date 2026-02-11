@@ -117,7 +117,7 @@ async function submitToDatabase(event) {
     let name = document.getElementById('name').value;
     let msg = document.getElementById('msg').value;
     
-    // Linkii API kee
+    Linkii API kee
     const scriptURL = 'https://script.google.com/macros/s/AKfycbyORulxCa8xW7yBl8VN0sRM3J6aCPT06VVNDsgySzXNokZ-r5UuxD0jMI7BahmI091YoQ/exec';
 
     let customerData = { 
@@ -127,7 +127,7 @@ async function submitToDatabase(event) {
     };
 
     try {
-        // 1. Data gara Google Sheets erguu
+        1. Data gara Google Sheets erguu
         await fetch(scriptURL, { 
             method: 'POST', 
             mode: 'no-cors', // Bilbilaan (Android) yoo ta'e murteessaadha
@@ -136,7 +136,7 @@ async function submitToDatabase(event) {
 
         alert("✅ Success! Your request is saved in Abdurhaman's Database.");
         
-        // 2. Gara WhatsApp tti erguu (Kiliyoontichi akka si dubbisuuf)
+         2. Gara WhatsApp tti erguu (Kiliyoontichi akka si dubbisuuf)
         window.open(`https://wa.me/251904267186?text=Hello Abdurhaman, I am ${name}. Issue: ${msg}`, '_blank');
         
     } catch (error) {
@@ -149,12 +149,12 @@ async function submitToDatabase(event) {
 async function submitToDatabase(event) {
     event.preventDefault(); // Fuulli akka refresh hin taane
     
-    // 1. Maqaa fi Rakkoo foomii irraa fudhu
+
     let name = document.getElementById('name').value;
     let msg = document.getElementById('msg').value;
     
-    // 2. Linkii Web App URL ati naaf ergite sana as galchi
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbyORulxCa8xW7yBl8VN0sRM3J6aCPT06VVNDsgySzXNokZ-r5UuxD0jMI7BahmI091YoQ/exec';
+
+    const scriptURL = https://script.google.com/macros/s/AKfycbyuBeTxVIg5gBJ0e5IRudXiqbwbNFKqcXtQMuGsiee_aFJzWBRvuKgem1kHRgWzHMtr/exec
 
     let data = { 
         name: name, 
@@ -163,7 +163,7 @@ async function submitToDatabase(event) {
     };
 
     try {
-        // 3. Data gara Google Sheets erguu
+         3. Data gara Google Sheets erguu
         await fetch(scriptURL, { 
             method: 'POST', 
             mode: 'no-cors', // Bilbilaaf murteessaadha
@@ -172,7 +172,7 @@ async function submitToDatabase(event) {
 
         alert("✅ Galatoomi! Odeeffannoon kee Database Abdurhaman keessatti kuufameera.");
         
-        // 4. Ergaa WhatsApp tti dabarsi
+        4. Ergaa WhatsApp tti dabarsi
         window.open(`https://wa.me/251904267186?text=Hello Abdurhaman, I am ${name}. Issue: ${msg}`, '_blank');
         
     } catch (error) {
@@ -181,7 +181,7 @@ async function submitToDatabase(event) {
 }
     </script>
 <script>
-// Function to save Diagnostic history
+    Function to save Diagnostic history
 function saveHistory(type, value) {
     let history = JSON.parse(localStorage.getItem('crusherLogs')) || [];
     let entry = {
@@ -194,7 +194,7 @@ function saveHistory(type, value) {
     console.log("History Updated:", history);
 }
 
-// Update your temperature function to use saveHistory
+Update your temperature function to use saveHistory
 function checkMachineStatus() {
     let input = prompt("Enter Machine Temperature (°C):");
     if (input === null) return;
@@ -207,7 +207,7 @@ function checkMachineStatus() {
 }</script>
 
 <script>
-    // 1. Machine Health Check
+     1. Machine Health Check
     function checkMachineStatus() {
         let input = prompt("Enter Machine Temperature (°C):");
         if (input === null) return;
@@ -223,7 +223,7 @@ function checkMachineStatus() {
         }
     }
 
-    // 2. Fault Code Interpreter
+     2. Fault Code Interpreter
     function interpretFault() {
         const faults = {
             "E01": "Phase Failure: Check power supply.",
@@ -237,7 +237,7 @@ function checkMachineStatus() {
         alert(result ? "🔍 Diagnosis: " + result : "❓ Unknown Code.");
     }
 
-    // 3. WhatsApp Message
+    3. WhatsApp Message
     function sendRequest(e) {
         e.preventDefault();
         let n = document.getElementById('name').value;
@@ -253,11 +253,11 @@ function checkMachineStatus() {
 async function submitToDatabase(event) {
     event.preventDefault(); // Fuulli akka refresh hin taane
     
-    // Data foomii irraa fuudhuu
+ Data foomii irraa fuudhuu
     let name = document.getElementById('name').value;
     let msg = document.getElementById('msg').value;
     
-    // Linkii ati naaf ergite sana (API URL)
+    Linkii ati naaf ergite sana (API URL)
     const scriptURL = 'https://script.google.com/macros/s/AKfycbyORulxCa8xW7yBl8VN0sRM3J6aCPT06VVNDsgySzXNokZ-r5UuxD0jMI7BahmI091YoQ/exec';
 
     let data = { 
@@ -267,7 +267,7 @@ async function submitToDatabase(event) {
     };
 
     try {
-        // Data gara Google Sheets erguu
+        Data gara Google Sheets erguu
         await fetch(scriptURL, { 
             method: 'POST', 
             mode: 'no-cors', // Bilbilaan yoo ta'e kana dabalachuu qabna
@@ -276,7 +276,7 @@ async function submitToDatabase(event) {
 
         alert("✅ Success! Your request is saved in Abdurhaman's Database.");
         
-        // Gara WhatsApp kalleattiin erguu
+        Gara WhatsApp kalleattiin erguu
         window.open(`https://wa.me/251904267186?text=Hello Abdurhaman, I am ${name}. Issue: ${msg}`, '_blank');
         
     } catch (error) {
@@ -298,7 +298,7 @@ async function submitToDatabase(event) {
     try {
         await fetch(scriptURL, { method: 'POST', body: JSON.stringify(data) });
         alert("✅ Success! Your request is saved in Abdurhaman's Database.");
-        // Gara WhatsApp tti erga
+    Gara WhatsApp tti erga
         window.open(`https://wa.me/251904267186?text=Hello Abdurhaman, I am ${name}. Issue: ${msg}`, '_blank');
     } catch (error) {
         alert("❌ Error saving to database.");
@@ -321,11 +321,11 @@ async function sendDataToBackend(data) {
 </script>
 
 <script>
-    // 1. Data gara Google Sheets erguu fi WhatsApp banuu
+    1. Data gara Google Sheets erguu fi WhatsApp banuu
     async function submitToDatabase(event) {
         event.preventDefault(); // Fuulli akka refresh hin taane
         
-        // Data foomii irraa fudhu
+        Data foomii irraa fudhu
         let name = document.getElementById('name').value;
         let msg = document.getElementById('msg').value;
         <script>
@@ -344,7 +344,7 @@ async function submitToDatabase(event) {
     };
 
     try {
-        // Data gara Google Sheets erguu
+         Data gara Google Sheets erguu
         await fetch(scriptURL, { 
             method: 'POST', 
             mode: 'no-cors', 
@@ -353,7 +353,7 @@ async function submitToDatabase(event) {
 
         alert("✅ Injifannoo! Odeeffannoon kee Database keessatti galmeeffameera.");
         
-        // Gara WhatsApp tti erguu
+        Gara WhatsApp tti erguu
         window.open(`https://wa.me/251904267186?text=Hello Abdurhaman, I am ${name}. Issue: ${msg}`, '_blank');
         
     } catch (error) {
@@ -365,7 +365,7 @@ async function submitToDatabase(event) {
 
 <script>            alert("✅ Galatoomi Abdurhaman! Odeeffannoon kee Database irratti kuufameera.");
             
-            // Kalleattiin gara WhatsApp tti geessi
+            Kalleattiin gara WhatsApp tti geessi
             let whatsappURL = `https://wa.me/251904267186?text=Hello Abdurhaman, I am ${name}. Issue: ${msg}`;
             window.open(whatsappURL, '_blank');
             
@@ -374,7 +374,7 @@ async function submitToDatabase(event) {
         }
     }
 
-    // 2. Machine Health Check (Diagnostic Tool)
+    2. Machine Health Check (Diagnostic Tool)
     function checkMachineStatus() {
         let input = prompt("Enter Machine Temperature (°C):");
         if (input === null) return;
@@ -390,7 +390,7 @@ async function submitToDatabase(event) {
         }
     }
 
-    // 3. Fault Code Interpreter
+     3. Fault Code Interpreter
     function interpretFault() {
         const faults = {
             "E01": "Phase Failure: Check power supply.",
