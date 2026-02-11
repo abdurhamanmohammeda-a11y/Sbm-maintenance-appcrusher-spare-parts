@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,8 +10,9 @@
         body { background-color: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; padding: 15px; margin: 0; line-height: 1.6; }
         .container { max-width: 800px; margin: auto; }
         .card { background-color: var(--card-bg); padding: 20px; border: 1px solid #30363d; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
-        h1, h2 { color: var(--primary); text-align: center; }
-        img { width: 100%; border-radius: 12px; border: 2px solid var(--primary); margin-bottom: 20px; }
+        h1, h2 { color: var(--primary); text-align: center; margin-bottom: 10px; }
+        p { text-align: center; margin-top: 0; }
+        img { width: 100%; border-radius: 12px; border: 2px solid var(--primary); margin-bottom: 20px; object-fit: cover; }
         table { width: 100%; border-collapse: collapse; margin-top: 15px; background: #0d1117; font-size: 14px; }
         th, td { padding: 12px; text-align: left; border-bottom: 1px solid #30363d; }
         th { color: var(--primary); }
@@ -25,91 +27,94 @@
 <body>
 
 <div class="container">
-    <header style="text-align: center; padding: 20px 0;">
+    <header style="padding: 20px 0;">
         <h1>🛠 Abdurhaman Mechatronics</h1>
         <p>Instrumentation, Control & SBM Machine Expert</p>
-        <p style="background: var(--primary); color: black; display: inline-block; padding: 4px 12px; border-radius: 20px; font-weight: bold;">8+ YEARS EXPERIENCE</p>
+        <div style="text-align: center;">
+            <span style="background: var(--primary); color: black; padding: 4px 12px; border-radius: 20px; font-weight: bold; font-size: 12px;">8+ YEARS EXPERIENCE</span>
+        </div>
     </header>
 
-    <img src="Maashinii.jpg" alt="SBM Industrial Machine">
+    <img src="Maashinii.jpg" alt="SBM Industrial Machine" onerror="this.src='https://via.placeholder.com/800x400/161b22/39FF14?text=SBM+Machine+Expert'">
 
     <div class="card">
-        <h2>📊 Expertise & Spare Parts</h2>
-        <input type="text" id="partSearch" onkeyup="searchParts()" placeholder="Search component...">
+        <h2>🔍 Spare Parts Search</h2>
+        <input type="text" id="partSearch" onkeyup="searchParts()" placeholder="Search (e.g. Motor, Sensor, Jaw)...">
         <table id="partsTable">
             <thead>
-                <tr><th>Component</th><th>Maintenance Task</th><th>Expertise</th></tr>
+                <tr><th>Component</th><th>Task</th><th>Expertise</th></tr>
             </thead>
             <tbody>
-                <tr><td>Main Motor (75kW)</td><td>Star-Delta / Wiring</td><td>Expert</td></tr>
-                <tr><td>Instrumentation</td><td>Sensors & PLC</td><td>Advanced</td></tr>
-                <tr><td>Hydraulic System</td><td>Pressure Control</td><td>Specialist</td></tr>
+                <tr><td>Main Motor (75kW)</td><td>Star-Delta Wiring</td><td>Expert</td></tr>
+                <tr><td>Sensors & PLC</td><td>Instrumentation</td><td>Advanced</td></tr>
+                <tr><td>Hydraulic Pump</td><td>Pressure Control</td><td>Specialist</td></tr>
+                <tr><td>Jaw Crusher</td><td>Mechanical Fix</td><td>Expert</td></tr>
             </tbody>
         </table>
     </div>
 
-    <div class="card" style="border: 2px solid var(--primary);">
-        <h2>🔍 Digital Diagnostic Center</h2>
-        <button onclick="checkMachineHealth()" class="btn btn-diag">1. Check Machine Health</button>
-        <button onclick="interpretFault()" class="btn btn-diag" style="background-color: #ff9800;">2. Interpret Fault Code (E01-E04)</button>
+    <div class="card" style="border: 1px solid var(--primary);">
+        <h2>🩺 Digital Diagnostics</h2>
+        <button onclick="checkMachineHealth()" class="btn btn-diag">Check Temperature Health</button>
+        <button onclick="interpretFault()" class="btn btn-diag" style="background-color: #ff9800; margin-top: 10px;">Interpret Fault Code</button>
     </div>
 
     <div class="card">
-        <h2>💳 Payment Information</h2>
+        <h2>💳 Payment Details</h2>
         <div class="payment-box">
             <p>Beneficiary: <strong>Abdurhaman Mohammed Ahamed</strong></p>
-            <p>CBE Account: <span class="acc">1000347503707</span></p>
+            <p>CBE: <span class="acc">1000347503707</span></p>
             <p>Telebirr: <span class="acc">0988535068</span></p>
         </div>
     </div>
 
     <div class="card">
-        <h2>👨‍🔧 Request Expert Advice</h2>
+        <h2>👨‍🔧 Request Service</h2>
         <form id="sheetdb-form">
             <input type="text" name="name" id="name" placeholder="Your Name" required>
-            <textarea name="message" id="msg" rows="4" placeholder="Describe the machine issue..." required></textarea>
-            <button type="submit" id="submitBtn" class="btn btn-wa">💬 Send WhatsApp & Save Data</button>
+            <textarea name="message" id="message" rows="4" placeholder="Describe the machine problem..." required></textarea>
+            <button type="submit" id="submitBtn" class="btn btn-wa">💬 Send to Excel & WhatsApp</button>
         </form>
     </div>
 
-    <footer style="text-align: center; padding: 20px; font-size: 14px; color: #8b949e;">
+    <footer style="text-align: center; padding: 20px; font-size: 13px; color: #8b949e;">
         <p>&copy; 2026 Abdurhaman Mohammed | Dire Dawa, Ethiopia</p>
     </footer>
 </div>
 
 <script>
-     1. Database Integration (SheetDB)
+    // --- 1. SHEETDB & WHATSAPP LOGIC ---
     const form = document.getElementById('sheetdb-form');
     form.addEventListener("submit", e => {
         e.preventDefault();
-        const submitBtn = document.getElementById('submitBtn');
+        const btn = document.getElementById('submitBtn');
         const nameVal = document.getElementById('name').value;
-        const msgVal = document.getElementById('msg').value;
+        const msgVal = document.getElementById('message').value;
 
-        submitBtn.innerText = "Saving Data... ⏳";
-        submitBtn.disabled = true;
+        btn.innerText = "Processing... ⏳";
+        btn.disabled = true;
 
-         SheetDB API URL kee
         fetch('https://sheetdb.io/api/v1/49bhx2brvk9r3', {
             method : 'POST',
             body: new FormData(form),
-        }).then(response => {
-            if(response.ok) {
-                alert("✅ Galatoomi Abdurhaman! Odeeffannoon kee Excel irratti galmaa'eera.");
-                 Gara WhatsApp tti geessi
-                let whatsappURL = `https://wa.me/251904267186?text=Hello Abdurhaman, I am ${nameVal}. Issue: ${msgVal}`;
-                window.open(whatsappURL, '_blank');
+        })
+        .then(res => {
+            if(res.ok) {
+                alert("✅ Success! Data saved to Excel.");
+                window.open(`https://wa.me/251904267186?text=Hello Abdurhaman, I am ${nameVal}. Issue: ${msgVal}`, '_blank');
                 form.reset();
+            } else {
+                alert("❌ API Error. Check SheetDB settings.");
             }
-            submitBtn.innerText = "💬 Send WhatsApp & Save Data";
-            submitBtn.disabled = false;
-        }).catch(err => {
-            alert("❌ Database Error!");
-            submitBtn.disabled = false;
+        })
+        .catch(err => alert("❌ Network Error. Please check your connection."))
+        .finally(() => {
+            btn.innerText = "💬 Send to Excel & WhatsApp";
+            btn.disabled = false;
         });
     });
 
-     2. Search Function
+    // --- 2. SEARCH LOGIC ---
     function searchParts() {
         let input = document.getElementById("partSearch").value.toUpperCase();
         let tr = document.getElementById("partsTable").getElementsByTagName("tr");
@@ -119,20 +124,18 @@
         }
     }
 
-     3. Diagnostics
+    // --- 3. DIAGNOSTICS LOGIC ---
     function checkMachineHealth() {
-        let temp = prompt("Enter Machine Temperature (°C):");
-        if (temp === null) return;
-        if (parseFloat(temp) > 90) alert("⚠️ DANGER: Overheating! (" + temp + "°C)");
-        else alert("✅ NORMAL: Machine is stable.");
+        let temp = prompt("Enter Machine Temp (°C):");
+        if (temp === null || temp === "") return;
+        if (parseFloat(temp) > 90) alert("⚠️ DANGER: Overheating! Check cooling.");
+        else alert("✅ NORMAL: System is stable.");
     }
 
     function interpretFault() {
         const faults = {"E01": "Phase Failure", "E02": "High Temp", "E03": "Vibration Alert", "E04": "Oil Pressure Low"};
-        let code = prompt("Enter Fault Code (E01-E04):");
-        if (code === null) return;
-        let result = faults[code.trim().toUpperCase()];
-        alert(result ? "🔍 Diagnosis: " + result : "❓ Unknown Code.");
+        let code = prompt("Enter Code (E01, E02, E03, E04):").trim().toUpperCase();
+        alert(faults[code] ? "🔍 Diagnosis: " + faults[code] : "❓ Unknown Code.");
     }
 </script>
 </body>
