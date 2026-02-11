@@ -10,6 +10,7 @@
         .container { max-width: 800px; margin: auto; }
         .card { background-color: var(--card-bg); padding: 20px; border: 1px solid #30363d; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
         h1, h2 { color: var(--primary); text-align: center; }
+        /* Suuraa kee deebisneerra */
         img { width: 100%; border-radius: 12px; border: 2px solid var(--primary); margin-bottom: 20px; }
         table { width: 100%; border-collapse: collapse; margin-top: 15px; background: #0d1117; font-size: 14px; }
         th, td { padding: 12px; text-align: left; border-bottom: 1px solid #30363d; }
@@ -31,25 +32,25 @@
         <p style="background: var(--primary); color: black; display: inline-block; padding: 4px 12px; border-radius: 20px; font-weight: bold;">8+ YEARS EXPERIENCE</p>
     </header>
 
+    <img src="Maashinii.jpg" alt="SBM Industrial Machine">
+
     <div class="card">
-        <h2>🔍 Spare Parts & Expertise</h2>
-        <input type="text" id="partSearch" onkeyup="searchParts()" placeholder="Meeshaa barbaadi (fkn: Motor, Sensor)...">
+        <h2>📊 Expertise & Spare Parts</h2>
+        <input type="text" id="partSearch" onkeyup="searchParts()" placeholder="Search component...">
         <table id="partsTable">
             <thead>
-                <tr><th>Component</th><th>Task</th><th>Expertise</th></tr>
+                <tr><th>Component</th><th>Maintenance Task</th><th>Expertise</th></tr>
             </thead>
             <tbody>
-                <tr><td>Main Motor (75kW)</td><td>Star-Delta Wiring</td><td>Expert</td></tr>
-                <tr><td>Sensors & PLC</td><td>Instrumentation</td><td>Advanced</td></tr>
+                <tr><td>Main Motor (75kW)</td><td>Star-Delta / Wiring</td><td>Expert</td></tr>
+                <tr><td>Instrumentation</td><td>Sensors & PLC</td><td>Advanced</td></tr>
                 <tr><td>Hydraulic System</td><td>Pressure Control</td><td>Specialist</td></tr>
-                <tr><td>Jaw Crusher</td><td>Mechanical Maintenance</td><td>Expert</td></tr>
             </tbody>
         </table>
     </div>
 
     <div class="card" style="border: 2px solid var(--primary);">
         <h2>🔍 Digital Diagnostic Center</h2>
-        <p style="text-align:center;">Test machine health below.</p>
         <button onclick="checkMachineHealth()" class="btn btn-diag">1. Check Machine Health</button>
         <button onclick="interpretFault()" class="btn btn-diag" style="background-color: #ff9800;">2. Interpret Fault Code (E01-E04)</button>
     </div>
@@ -57,8 +58,8 @@
     <div class="card">
         <h2>💳 Payment Information</h2>
         <div class="payment-box">
-            <p>Beneficiary: <strong>Abdurhaman Mohammed</strong></p>
-            <p>CBE: <span class="acc">1000347503707</span></p>
+            <p>Beneficiary: <strong>Abdurhaman Mohammed Ahamed</strong></p>
+            <p>CBE Account: <span class="acc">1000347503707</span></p>
             <p>Telebirr: <span class="acc">0988535068</span></p>
         </div>
     </div>
@@ -66,9 +67,9 @@
     <div class="card">
         <h2>👨‍🔧 Request Expert Advice</h2>
         <form id="sheetdb-form">
-            <input type="text" name="name" id="userName" placeholder="Your Name" required>
-            <textarea name="message" id="userMsg" rows="4" placeholder="Describe the machine issue..." required></textarea>
-            <button type="submit" id="submitBtn" class="btn btn-wa">💬 Save to Database & WhatsApp</button>
+            <input type="text" name="name" id="name" placeholder="Your Name" required>
+            <textarea name="message" id="msg" rows="4" placeholder="Describe the machine issue..." required></textarea>
+            <button type="submit" id="submitBtn" class="btn btn-wa">💬 Send WhatsApp & Save Data</button>
         </form>
     </div>
 
@@ -78,34 +79,38 @@
 </div>
 
 <script>
-    // 1. DATABASE INTEGRATION (SheetDB)
+    // 1. Database Integration (SheetDB)
     const form = document.getElementById('sheetdb-form');
     form.addEventListener("submit", e => {
         e.preventDefault();
         const submitBtn = document.getElementById('submitBtn');
-        submitBtn.innerText = "Processing... ⏳";
+        const nameVal = document.getElementById('name').value;
+        const msgVal = document.getElementById('msg').value;
+
+        submitBtn.innerText = "Saving Data... ⏳";
         submitBtn.disabled = true;
 
+        // SheetDB API URL kee
         fetch('https://sheetdb.io/api/v1/49bhx2brvk9r3', {
             method : 'POST',
-            body: new FormData(document.getElementById("sheetdb-form")),
+            body: new FormData(form),
         }).then(response => {
             if(response.ok) {
                 alert("✅ Galatoomi Abdurhaman! Odeeffannoon kee Excel irratti galmaa'eera.");
-                let name = document.getElementById('userName').value;
-                let msg = document.getElementById('userMsg').value;
-                window.open(`https://wa.me/251904267186?text=Hello Abdurhaman, I am ${name}. Issue: ${msg}`, '_blank');
+                // Gara WhatsApp tti geessi
+                let whatsappURL = `https://wa.me/251904267186?text=Hello Abdurhaman, I am ${nameVal}. Issue: ${msgVal}`;
+                window.open(whatsappURL, '_blank');
                 form.reset();
             }
-            submitBtn.innerText = "💬 Save to Database & WhatsApp";
+            submitBtn.innerText = "💬 Send WhatsApp & Save Data";
             submitBtn.disabled = false;
         }).catch(err => {
-            alert("❌ Error connecting to database.");
+            alert("❌ Database Error!");
             submitBtn.disabled = false;
         });
     });
 
-    // 2. SEARCH FUNCTION
+    // 2. Search Function
     function searchParts() {
         let input = document.getElementById("partSearch").value.toUpperCase();
         let tr = document.getElementById("partsTable").getElementsByTagName("tr");
@@ -115,7 +120,7 @@
         }
     }
 
-    // 3. DIAGNOSTICS
+    // 3. Diagnostics
     function checkMachineHealth() {
         let temp = prompt("Enter Machine Temperature (°C):");
         if (temp === null) return;
