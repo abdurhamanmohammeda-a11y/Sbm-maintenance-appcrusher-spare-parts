@@ -151,7 +151,15 @@
         alert(faults[code] || "Contact Abdurhaman for Expert Help.");
     }
 </script>
-    
+    <script>
+function updateLink() {
+    const name = document.getElementById('dbName').value;
+    const msg = document.getElementById('dbIssue').value;
+    const waLink = document.getElementById('waLink');
+    const encodedText = encodeURIComponent("Hello Abdurhaman, I am " + name + ". Issue: " + msg);
+    waLink.href = "https://wa.me/251904267186?text=" + encodedText;
+}
+    </script>
 <section id="admin-panel" style="margin-top: 50px; border-top: 5px solid #FFA500; padding: 20px; background: #1a1a1a; color: white;">
     <h2>SBM Admin Dashboard</h2>
     <p>Odeeffannoo Google Sheets irraa kalleattiin ilaaluuf:</p>
