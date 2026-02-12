@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abdurhaman | SBM Expert</title>
+    <title>Abdurhaman | SBM & Crusher Expert</title>
     <style>
         :root { --primary: #39FF14; --bg: #0d1117; --card-bg: #161b22; --text: #c9d1d9; }
         body { background-color: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; padding: 15px; margin: 0; }
@@ -11,215 +11,117 @@
         .card { background-color: var(--card-bg); padding: 20px; border: 1px solid #30363d; border-radius: 12px; margin-bottom: 20px; }
         h1, h2 { color: var(--primary); text-align: center; }
         img { width: 100%; border-radius: 12px; border: 2px solid var(--primary); margin-bottom: 20px; }
-        input, textarea { width:100%; padding:12px; margin:8px 0; border-radius:8px; border:1px solid #30363d; background:#0d1117; color:white; box-sizing:border-box; }
-        .btn { display: block; width: 100%; padding: 15px; border-radius: 8px; font-weight: bold; text-align: center; text-decoration: none; font-size: 16px; margin-top: 10px; cursor: pointer; }
+        input, textarea, select { width:100%; padding:12px; margin:8px 0; border-radius:8px; border:1px solid #30363d; background:#0d1117; color:white; box-sizing:border-box; }
+        .btn { display: block; width: 100%; padding: 15px; border-radius: 8px; font-weight: bold; text-align: center; text-decoration: none; font-size: 16px; margin-top: 10px; cursor: pointer; border: none; }
         .btn-wa { background-color: #25D366; color: white; }
-        .btn-diag { background-color: var(--primary); color: black; border: none; }
+        .btn-diag { background-color: var(--primary); color: black; }
         .payment-box { border: 2px dashed var(--primary); padding: 15px; border-radius: 10px; text-align: center; }
         .acc { font-size: 1.1em; font-weight: bold; color: white; display: block; margin: 5px 0; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 14px; }
+        th, td { border: 1px solid #30363d; padding: 10px; text-align: left; }
+        th { background-color: #1c2128; color: var(--primary); }
     </style>
 </head>
 <body>
-<div class="card">
-    <h2>📦 Spare Parts Catalog (Adyuna Standard)</h2>
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-        <div class="payment-box" style="text-align: left; font-size: 13px;">
-            <p><strong>• Jaw Plates:</strong> High Manganese Steel</p>
-            <p><strong>• Bearings:</strong> SKF/NSK Standard</p>
-            <p><strong>• Toggle:</strong> Cast Iron Safety</p>
-        </div>
-            <div class="card">
-        <h2>🛠 Expert Service Packages</h2>
-        <ul style="text-align: left; padding: 0 20px;">
-            <li>✅ <strong>Basic:</strong> Phone Support & Fault Codes (Free)</li>
-            <li>✅ <strong>Premium:</strong> Site Visit & Diagnostics (500-1000 ETB)</li>
-            <li>✅ <strong>Expert:</strong> Machine Overhaul & Parts Supply (Custom)</li>
-        </ul>
-        <p style="text-align: center; color: var(--primary);">Contact Abdurhaman for detailed quotation.</p>
-    </div>
-
-        <div class="payment-box" style="text-align: left; font-size: 13px;">
-            <p><strong>• Lubrication:</strong> EP2 Grease</p>
-            <p><strong>• V-Belts:</strong> C-Section Heavy</p>
-            <p><strong>• Motor:</strong> 75kW - 110kW</p>
-        </div>
-    </div>
-    <p style="font-size: 12px; color: var(--primary); text-align: center;">* All parts compatible with SBM & Adyuna series.</p>
-</div>
 
 <div class="container">
     <header>
         <h1>🛠 Abdurhaman Mechatronics</h1>
-        <p style="text-align:center;">SBM & Instrumentation Expert</p>
+        <p style="text-align:center;">SBM & Crusher Software Specialist</p>
     </header>
 
-    <img src="Maashinii.jpg" alt="SBM Machine" onerror="this.src='https://via.placeholder.com/800x400/161b22/39FF14?text=Check+Image+Name';">
-<script>    // Software Function 1: Production Logic
-    function calculateTPH() {
-        let feed = document.getElementById('feedRate').value;
-        let density = document.getElementById('density').value || 2.6;
-        if (feed) {
-            let tph = feed * density;
-            document.getElementById('tphResult').innerText = "Output: " + tph.toFixed(1) + " Tons/Hour";
-        } else {
-            alert("Please enter feed rate.");
-        }
-    }
+    <img src="Maashiniii.jpg" alt="SBM Machine" onerror="this.src='https://via.placeholder.com/800x400/161b22/39FF14?text=Crusher+Database+Active';">
 
-     Software Function 2: Maintenance Logic (Predictive)
-    function checkMaintenance() {
-        let hours = document.getElementById('workHours').value;
-        let result = document.getElementById('maintResult');
+    <div class="card">
+        <h2>📊 Diagnostic Database</h2>
+        <p style="font-size: 12px; color: #8b949e; text-align:center;">Data is saved directly to Abdurhaman's Google Sheet</p>
         
-        if (hours >= 200) {
-            result.style.color = "red";
-            result.innerText = "⚠️ IMMEDIATE: Replace Main Bearings & Check Belt Tension!";
-        } else if (hours >= 50) {
-            result.style.color = "orange";
-            result.innerText = "⚡ CAUTION: Add Grease (EP2) to Eccentric Shaft.";
-        } else {
-            result.style.color = "var(--primary)";
-            result.innerText = "✅ System OK. Keep monitoring.";
-        }
-    }
+        <script>var submitted=false;</script>
+        <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted){alert('✅ Success: Data saved to Abdurhaman\'s Database!');}"></iframe>
 
-     Diagnostics Bal'ifame (E01-E10)
-    function interpretFault() {
-        const faults = {
-            "E01": "Phase Failure: Power supply issue.",
-            "E02": "Overheating: Check lubrication or cooling fan.",
-            "E05": "Jamming: Uncrushable material detected in chamber.",
-            "E08": "Low Oil: Hydraulic pressure critical.",
-            "E10": "Toggle Fracture: Safety toggle plate broken."
-        };
-        let code = prompt("Enter Code (E01, E02, E05, E08, E10):").toUpperCase();
-        alert(faults[code] || "Consult Abdurhaman for manual diagnosis.");
-    }
-</script>
-    <div class="card">
-        <h2>🩺 Diagnostics</h2>
-        <button onclick="checkMachineHealth()" class="btn btn-diag" style="width:100%;">Check Temperature Status</button>
-    </div>
+        <form action="https://docs.google.com/forms/d/e/1FAIpQLSd9eI-O0qO9S0Xw7YfFAnG8XGfG9v5u5Z9v9Z9v9Z9v9Z9v9Z/formResponse" 
+              method="POST" target="hidden_iframe" onsubmit="submitted=true;">
+            
+            <input type="text" name="entry.1743519808" id="dbName" placeholder="Your Name" required oninput="updateLink()">
+            
+            <select name="entry.444299974" required>
+                <option value="" disabled selected>Select Machine Type</option>
+                <option value="Jaw Crusher">Jaw Crusher</option>
+                <option value="Cone Crusher">Cone Crusher</option>
+                <option value="SBM Screen">SBM Screen</option>
+                <option value="VSI Crusher">VSI Crusher</option>
+            </select>
 
-    <div class="card">
-        <h2>💳 Payment</h2>
-        <div class="payment-box">
-            <p>CBE: <span class="acc">1000347503707</span></p>
-            <p>Telebirr: <span class="acc">0988535068</span></p>
-        </div>
-    </div>
-
-    <div class="card">
-        <h2>👨‍🔧 Contact via WhatsApp</h2>
-        <div id="contactForm">
-            <input type="text" id="userName" placeholder="Your Name" oninput="updateLink()">
-            <textarea id="userMsg" rows="4" placeholder="Describe the problem..." oninput="updateLink()"></textarea>
+            <textarea name="entry.2062602714" id="dbIssue" rows="3" placeholder="Describe the fault..." required oninput="updateLink()"></textarea>
+            
+            <button type="submit" class="btn btn-diag">📥 Save to Database</button>
+            
+            <p style="text-align:center; font-size:12px; margin-top:15px; color:#8b949e;">After saving, contact via WhatsApp:</p>
             
             <a id="waLink" href="https://wa.me/251904267186" target="_blank" class="btn btn-wa">
                 💬 Send Message via WhatsApp
             </a>
+        </form>
+    </div>
+
+    <div class="card">
+        <h2>⚖️ Production Calculator</h2>
+        <input type="number" id="feedRate" placeholder="Feed Rate (m³/hr)">
+        <button onclick="calculateTPH()" class="btn btn-diag" style="background:#00bcd4; color:white;">Calculate TPH</button>
+        <p id="tphResult" style="color: var(--primary); text-align: center; font-weight: bold; margin-top: 10px;"></p>
+    </div>
+
+    <div class="card">
+        <h2>🩺 Smart Fault Finder</h2>
+        <button onclick="interpretFault()" class="btn btn-diag" style="background-color: #ff9800;">Check Error Code (E01-E15)</button>
+    </div>
+
+    <div class="card">
+        <h2>💳 Payment & Service</h2>
+        <div class="payment-box">
+            <p>CBE: <span class="acc">1000347503707</span></p>
+            <p>Telebirr: <span class="acc">0988535068</span></p>
         </div>
-        <div class="card">
-    <h2>📊 Production Calculator</h2>
-    <p>Estimate tons per hour (TPH):</p>
-    <input type="number" id="feedRate" placeholder="Feed Rate (m³/hr)">
-    <input type="number" id="density" placeholder="Rock Density (Standard 2.6)">
-    <button onclick="calculateTPH()" class="btn btn-diag">Calculate TPH</button>
-    <p id="tphResult" style="color: var(--primary); font-weight: bold; text-align: center;"></p>
-</div>
+        <table>
+            <tr><th>Spare Part</th><th>Material</th></tr>
+            <tr><td>Jaw Plates</td><td>Mn18Cr2</td></tr>
+            <tr><td>Bearings</td><td>SKF/NSK</td></tr>
+        </table>
+    </div>
 
-<div class="card">
-    <h2>📅 Maintenance Tracker</h2>
-    <p>Hours since last greasing:</p>
-    <input type="number" id="workHours" placeholder="Total hours worked">
-    <button onclick="checkMaintenance()" class="btn btn-diag" style="background-color: #ff9800;">Check Maintenance Needs</button>
-    <p id="maintResult" style="text-align: center; font-weight: bold;"></p>
-</div>
-
-    <footer style="text-align: center; color: #8b949e; font-size: 12px; padding: 20px;">
-        &copy; 2026 Abdurhaman Mohammed
+    <footer style="text-align: center; color: #8b949e; font-size: 11px; padding: 20px;">
+        &copy; 2026 Abdurhaman Mohammed | Dire Dawa, Ethiopia
     </footer>
 </div>
+
 <script>
-    // 1. WhatsApp Logic - Namni "Send" yoo jedhe kallaattiin deema
     function updateLink() {
-        const name = document.getElementById('userName').value;
-        const msg = document.getElementById('userMsg').value;
+        const name = document.getElementById('dbName').value;
+        const msg = document.getElementById('dbIssue').value;
         const waLink = document.getElementById('waLink');
-        
-        const encodedText = encodeURIComponent("Hello Abdurhaman, I am " + name + ". Issue: " + msg);
+        const encodedText = encodeURIComponent("Hello Abdurhaman, I am " + name + ". Machine Issue: " + msg);
         waLink.href = "https://wa.me/251904267186?text=" + encodedText;
     }
 
-    // 2. Production Calculator - Tons Per Hour herreguuf
     function calculateTPH() {
         const feed = document.getElementById('feedRate').value;
-        const density = document.getElementById('density').value || 2.6;
-        const result = document.getElementById('tphResult');
-
         if (feed) {
-            const tph = feed * density;
-            result.innerText = "Calculated Output: " + tph.toFixed(1) + " Tons/Hour";
-        } else {
-            alert("Please enter feed rate (m³/hr)");
+            const tph = feed * 2.6;
+            document.getElementById('tphResult').innerText = "Result: " + tph.toFixed(1) + " Tons/Hour";
         }
     }
 
-    // 3. Maintenance Logic - Sa'aatii hojiin sakatta'uuf
-    function checkMaintenance() {
-        const hours = document.getElementById('workHours').value;
-        const result = document.getElementById('maintResult');
-        
-        if (!hours) {
-            alert("Please enter working hours.");
-            return;
-        }
-
-        if (hours >= 200) {
-            result.style.color = "#ff4444";
-            result.innerText = "⚠️ IMMEDIATE: Replace Bearings & Check Belt Tension!";
-        } else if (hours >= 50) {
-            result.style.color = "#ffbb33";
-            result.innerText = "⚡ CAUTION: Add Grease (EP2) to Eccentric Shaft.";
-        } else {
-            result.style.color = "#39FF14";
-            result.innerText = "✅ System OK. Keep monitoring.";
-        }
-    }
-
-    // 4. Fault Diagnostics Logic - E15 dabalatee kanneen biroo
     function interpretFault() {
         const faults = {
-            "E01": "Phase Failure: Check electrical panel connections.",
-            "E02": "High Temp: Grease is dry or bearing damage.",
-            "E03": "Vibration Alert: Foundation bolts are loose.",
-            "E04": "Oil Pressure Low: Check hydraulic oil level.",
-            "E05": "Jamming: Metal/Iron detected in crusher chamber.",
-            "E08": "Low Oil: Hydraulic pump or oil level issue.",
-            "E10": "Toggle Fracture: Safety toggle plate is broken.",
-            "E15": "Bearing Noise: Lubrication needed or bearing life ending."
+            "E01": "Phase Failure: Check power panel.",
+            "E02": "High Temp: Grease bearings.",
+            "E05": "Jamming: Metal in chamber.",
+            "E10": "Toggle Fracture: Safety plate broken.",
+            "E15": "Bearing Noise: Lubrication needed."
         };
-
-        const code = prompt("Enter Error Code (e.g., E01, E05, E10, E15):");
-        
-        if (code === null || code.trim() === "") return;
-
-        const upperCode = code.trim().toUpperCase();
-        
-        if (faults[upperCode]) {
-            alert("🔍 Result: " + faults[upperCode]);
-        } else {
-            alert("❓ Code '" + upperCode + "' Unknown. Contact Abdurhaman for manual help.");
-        }
-    }
-
-    // 5. Temperature Sakatta'uuf
-    function checkMachineHealth() {
-        const temp = prompt("Enter Machine Temp (°C):");
-        if (temp === null || temp === "") return;
-        const t = parseFloat(temp);
-        if (t > 90) alert("⚠️ DANGER: Overheating! Stop the motor.");
-        else if (t > 70) alert("⚡ CAUTION: High temperature.");
-        else alert("✅ NORMAL: System stable.");
+        const code = prompt("Enter Code:").toUpperCase();
+        alert(faults[code] || "Contact Abdurhaman for Expert Help.");
     }
 </script>
+</body>
+</html>
