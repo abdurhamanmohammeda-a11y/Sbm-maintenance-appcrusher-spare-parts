@@ -23,7 +23,30 @@
     </style>
 </head>
 <body>
+<div class="card">
+    <h2>📊 Diagnostic Database</h2>
+    <script>var submitted=false;</script>
+    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted){alert('✅ Data Saved!');}"></iframe>
 
+    <form action="https://docs.google.com/forms/d/e/1FAIpQLSfBD6dhFgvDR6M9wp8Tf5_zay2kM-8PC4Aj0_MtPFX7R8PL_g/formResponse" 
+          method="POST" target="hidden_iframe" onsubmit="submitted=true;">
+        
+        <input type="text" name="entry.1743519808" id="dbName" placeholder="Your Name" required oninput="updateLink()">
+        <select name="entry.444299974" required>
+            <option value="" disabled selected>Select Machine Type</option>
+            <option value="Jaw Crusher">Jaw Crusher</option>
+            <option value="Cone Crusher">Cone Crusher</option>
+            <option value="SBM Screen">SBM Screen</option>
+        </select>
+        <textarea name="entry.2062602714" id="dbIssue" rows="3" placeholder="Describe the fault..." required oninput="updateLink()"></textarea>
+        
+        <button type="submit" class="btn btn-diag">📥 Save to Database</button>
+        
+        <a id="waLink" href="https://wa.me/251904267186" target="_blank" class="btn btn-wa">
+            💬 Send Message via WhatsApp
+        </a>
+    </form>
+</div>
 <div class="container">
     <header>
         <h1>🛠 Abdurhaman Mechatronics</h1>
