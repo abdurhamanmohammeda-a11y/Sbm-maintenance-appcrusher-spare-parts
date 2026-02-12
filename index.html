@@ -91,10 +91,7 @@
             <textarea name="data[message]" id="userMsg" rows="4" placeholder="Describe the machine problem..." required></textarea>
             
             <button type="submit" id="submitBtn" class="btn btn-wa">💬 Send to Excel & WhatsApp</button>
-        </form>
-    </div>
-
-<script>
+        <script>
     const form = document.getElementById('sheetdb-form');
     
     form.addEventListener("submit", e => {
@@ -104,26 +101,37 @@
         const nameVal = document.getElementById('userName').value;
         const msgVal = document.getElementById('userMsg').value;
 
-         Mallattoo processing agarsiisuu
+         Button "Processing" gochuu
         btn.innerText = "Processing... ⏳";
         btn.disabled = true;
 
-         Gara SheetDB erguu
+        Data qopheessuu (Format SheetDB jaallatu)
+        const postData = {
+            "data": [
+                {
+                    "name": nameVal,
+                    "message": msgVal,
+                    "date": new Date().toLocaleString()
+                }
+            ]
+        };
+
+        Gara SheetDB erguu
         fetch('https://sheetdb.io/api/v1/49bhx2brvk9r3', {
             method : 'POST',
-            body: new FormData(form),
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(postData)
         })
         .then(res => {
             if(res.ok) {
                 alert("✅ Galatoomi! Odeeffannoon kee Excel irratti galmaa'eera.");
-                
-                 WhatsApp banuu (Kun sirriitti hojjeta)
-                let whatsappURL = `https://wa.me/251904267186?text=Hello Abdurhaman, I am ${nameVal}. Issue: ${msgVal}`;
-                window.open(whatsappURL, '_blank');
-                
+                WhatsApp banuu
+                window.open(`https://wa.me/251904267186?text=Hello Abdurhaman, I am ${nameVal}. Issue: ${msgVal}`, '_blank');
                 form.reset();
             } else {
-                alert("❌ Database Error: API Link kee ilaali.");
+                alert("❌ App error: Check SheetDB Row 1 (name, message)");
             }
         })
         .catch(err => {
@@ -136,7 +144,7 @@
         });
     });
 
-     Search fi Diagnostics (Akkuma duraatti itti fufa) ---
+     Search Function (Haquu hin barbaachisu, dhiisuu dandeessa) ---
     function searchParts() {
         let input = document.getElementById("partSearch").value.toUpperCase();
         let tr = document.getElementById("partsTable").getElementsByTagName("tr");
@@ -147,7 +155,7 @@
     }
 </script>
 
-    // --- 2. SEARCH LOGIC ---
+     2. SEARCH LOGIC
     function searchParts() {
         let input = document.getElementById("partSearch").value.toUpperCase();
         let tr = document.getElementById("partsTable").getElementsByTagName("tr");
@@ -157,7 +165,7 @@
         }
     }
 
-    // --- 3. DIAGNOSTICS LOGIC ---
+     3. DIAGNOSTICS LOGIC ---
     function checkMachineHealth() {
         let temp = prompt("Enter Machine Temp (°C):");
         if (temp === null || temp === "") return;
