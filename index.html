@@ -83,36 +83,69 @@
 </div>
 
 <script>
-    // --- 1. SHEETDB & WHATSAPP LOGIC ---
+        <div class="card">
+        <h2>👨‍🔧 Request Service</h2>
+        <form id="sheetdb-form">
+            <input type="text" name="data[name]" id="userName" placeholder="Your Name" required>
+            
+            <textarea name="data[message]" id="userMsg" rows="4" placeholder="Describe the machine problem..." required></textarea>
+            
+            <button type="submit" id="submitBtn" class="btn btn-wa">💬 Send to Excel & WhatsApp</button>
+        </form>
+    </div>
+
+<script>
     const form = document.getElementById('sheetdb-form');
+    
     form.addEventListener("submit", e => {
         e.preventDefault();
+        
         const btn = document.getElementById('submitBtn');
-        const nameVal = document.getElementById('name').value;
-        const msgVal = document.getElementById('message').value;
+        const nameVal = document.getElementById('userName').value;
+        const msgVal = document.getElementById('userMsg').value;
 
+         Mallattoo processing agarsiisuu
         btn.innerText = "Processing... ⏳";
         btn.disabled = true;
 
+         Gara SheetDB erguu
         fetch('https://sheetdb.io/api/v1/49bhx2brvk9r3', {
             method : 'POST',
             body: new FormData(form),
         })
         .then(res => {
             if(res.ok) {
-                alert("✅ Success! Data saved to Excel.");
-                window.open(`https://wa.me/251904267186?text=Hello Abdurhaman, I am ${nameVal}. Issue: ${msgVal}`, '_blank');
+                alert("✅ Galatoomi! Odeeffannoon kee Excel irratti galmaa'eera.");
+                
+                 WhatsApp banuu (Kun sirriitti hojjeta)
+                let whatsappURL = `https://wa.me/251904267186?text=Hello Abdurhaman, I am ${nameVal}. Issue: ${msgVal}`;
+                window.open(whatsappURL, '_blank');
+                
                 form.reset();
             } else {
-                alert("❌ API Error. Check SheetDB settings.");
+                alert("❌ Database Error: API Link kee ilaali.");
             }
         })
-        .catch(err => alert("❌ Network Error. Please check your connection."))
+        .catch(err => {
+            alert("❌ Network Error: Internet kee ilaali.");
+        })
         .finally(() => {
+            Button deebisanii hojjechiisuu
             btn.innerText = "💬 Send to Excel & WhatsApp";
             btn.disabled = false;
         });
     });
+
+     Search fi Diagnostics (Akkuma duraatti itti fufa) ---
+    function searchParts() {
+        let input = document.getElementById("partSearch").value.toUpperCase();
+        let tr = document.getElementById("partsTable").getElementsByTagName("tr");
+        for (let i = 1; i < tr.length; i++) {
+            let td = tr[i].getElementsByTagName("td")[0];
+            if (td) tr[i].style.display = td.innerText.toUpperCase().indexOf(input) > -1 ? "" : "none";
+        }
+    }
+</script>
 
     // --- 2. SEARCH LOGIC ---
     function searchParts() {
