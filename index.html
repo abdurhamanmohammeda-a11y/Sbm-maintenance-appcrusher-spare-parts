@@ -3,123 +3,230 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abdurhaman | SBM & Crusher Expert</title>
+    <title>Abdurhaman | SBM Crusher Expert</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        :root { --primary: #39FF14; --bg: #0d1117; --card-bg: #161b22; --text: #c9d1d9; }
-        body { background-color: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; padding: 15px; margin: 0; }
-        .container { max-width: 800px; margin: auto; }
-        .card { background-color: var(--card-bg); padding: 20px; border: 1px solid #30363d; border-radius: 12px; margin-bottom: 20px; }
-        h1, h2 { color: var(--primary); text-align: center; }
-        img { width: 100%; border-radius: 12px; border: 2px solid var(--primary); margin-bottom: 20px; }
-        input, textarea, select { width:100%; padding:12px; margin:8px 0; border-radius:8px; border:1px solid #30363d; background:#0d1117; color:white; box-sizing:border-box; }
-        .btn { display: block; width: 100%; padding: 15px; border-radius: 8px; font-weight: bold; text-align: center; text-decoration: none; font-size: 16px; margin-top: 10px; cursor: pointer; border: none; }
-        .btn-wa { background-color: #25D366; color: white; }
-        .btn-diag { background-color: var(--primary); color: black; }
-        .payment-box { border: 2px dashed var(--primary); padding: 15px; border-radius: 10px; text-align: center; }
-        .acc { font-size: 1.1em; font-weight: bold; color: white; display: block; margin: 5px 0; }
-        table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 14px; }
-        th, td { border: 1px solid #30363d; padding: 10px; text-align: left; }
-        th { background-color: #1c2128; color: var(--primary); }
+        :root {
+            --primary: #39FF14; /* Neon Green */
+            --secondary: #00d4ff; /* Cyan */
+            --bg: #0b0e14;
+            --card-bg: #1a1f29;
+            --text: #e0e6ed;
+            --wa-green: #25D366;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 0;
+            background: linear-gradient(180deg, #161b22 0%, var(--bg) 100%);
+            border-bottom: 2px solid var(--primary);
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--primary);
+            margin: 0;
+            letter-spacing: 2px;
+            font-size: 24px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            border: 1px solid #30363d;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        h2 {
+            font-size: 18px;
+            color: var(--secondary);
+            border-left: 4px solid var(--primary);
+            padding-left: 10px;
+            margin-top: 0;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 1px solid #30363d;
+            background: #0d1117;
+            color: white;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            border-radius: 10px;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: 0.3s;
+            font-size: 16px;
+        }
+
+        .btn-save { background: var(--primary); color: #000; }
+        .btn-save:hover { background: #32cd32; transform: scale(1.02); }
+
+        .btn-wa { 
+            background: var(--wa-green); 
+            color: white; 
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-tool { background: var(--secondary); color: #000; margin-top: 10px; }
+
+        .payment-info {
+            background: rgba(57, 255, 20, 0.05);
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px dashed var(--primary);
+            text-align: center;
+        }
+
+        .acc-no {
+            display: block;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 18px;
+            color: #fff;
+            margin: 5px 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            font-size: 12px;
+            color: #8b949e;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            border: 1px solid #30363d;
+            padding: 10px;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        th { background: #21262d; color: var(--primary); }
+
+        #successMsg {
+            display: none;
+            color: var(--primary);
+            text-align: center;
+            font-weight: bold;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
-<div class="card">
-    <h2>📊 Diagnostic Database</h2>
-    <script>var submitted=false;</script>
-    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted){alert('✅ Data Saved!');}"></iframe>
 
-    <form action="https://docs.google.com/forms/d/e/1FAIpQLSfBD6dhFgvDR6M9wp8Tf5_zay2kM-8PC4Aj0_MtPFX7R8PL_g/formResponse" 
-          method="POST" target="hidden_iframe" onsubmit="submitted=true;">
-        
-        <input type="text" name="entry.1743519808" id="dbName" placeholder="Your Name" required oninput="updateLink()">
-        <select name="entry.444299974" required>
-            <option value="" disabled selected>Select Machine Type</option>
-            <option value="Jaw Crusher">Jaw Crusher</option>
-            <option value="Cone Crusher">Cone Crusher</option>
-            <option value="SBM Screen">SBM Screen</option>
-        </select>
-        <textarea name="entry.2062602714" id="dbIssue" rows="3" placeholder="Describe the fault..." required oninput="updateLink()"></textarea>
-        
-        <button type="submit" class="btn btn-diag">📥 Save to Database</button>
-      
-        <a id="waLink" href="https://wa.me/251904267186" target="_blank" class="btn btn-wa">
-            💬 Send Message via WhatsApp
-        </a>
-    </form>
-</div>
 <div class="container">
     <header>
-        <h1>🛠 Abdurhaman Mechatronics</h1>
-        <p style="text-align:center;">SBM & Crusher Software Specialist</p>
+        <h1>ABDURHAMAN MECHATRONICS</h1>
+        <p style="color: #8b949e; margin-top: 10px;">SBM Crusher & Automation Expert</p>
     </header>
 
-    <img src="Maashinii.jpg" alt="SBM Machine" onerror="this.src='https://via.placeholder.com/800x400/161b22/39FF14?text=Crusher+Database+Active';">
-
     <div class="card">
-        <h2>📊 Diagnostic Database</h2>
-        <p style="font-size: 12px; color: #8b949e; text-align:center;">Data is saved directly to Abdurhaman's Google Sheet</p>
+        <h2>👨‍🔧 Diagnostic Database</h2>
+        <p style="font-size: 13px; color: #8b949e;">Fill the form to save your machine status in our cloud.</p>
         
         <script>var submitted=false;</script>
-        <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted){alert('✅ Success: Data saved to Abdurhaman\'s Database!');}"></iframe>
+        <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted){showSuccess();}"></iframe>
 
-        <form action="https://docs.google.com/forms/d/e/1FAIpQLSd9eI-O0qO9S0Xw7YfFAnG8XGfG9v5u5Z9v9Z9v9Z9v9Z9v9Z/formResponse" 
+        <form action="https://docs.google.com/forms/d/e/1FAIpQLSfBD6dhFgvDR6M9wp8Tf5_zay2kM-8PC4Aj0_MtPFX7R8PL_g/formResponse" 
               method="POST" target="hidden_iframe" onsubmit="submitted=true;">
             
-            <input type="text" name="entry.1743519808" id="dbName" placeholder="Your Name" required oninput="updateLink()">
+            <input type="text" name="entry.1743519808" id="dbName" placeholder="Customer Name" required oninput="updateLink()">
             
             <select name="entry.444299974" required>
                 <option value="" disabled selected>Select Machine Type</option>
                 <option value="Jaw Crusher">Jaw Crusher</option>
                 <option value="Cone Crusher">Cone Crusher</option>
-                <option value="SBM Screen">SBM Screen</option>
                 <option value="VSI Crusher">VSI Crusher</option>
+                <option value="SBM Screen">SBM Screen</option>
             </select>
 
-            <textarea name="entry.2062602714" id="dbIssue" rows="3" placeholder="Describe the fault..." required oninput="updateLink()"></textarea>
+            <textarea name="entry.2062602714" id="dbIssue" rows="3" placeholder="Describe the fault (e.g., Bearing noise, E15 error)..." required oninput="updateLink()"></textarea>
             
-            <button type="submit" class="btn btn-diag">📥 Save to Database</button>
+            <button type="submit" class="btn btn-save">📥 SAVE TO DATABASE</button>
             
-            <p style="text-align:center; font-size:12px; margin-top:15px; color:#8b949e;">After saving, contact via WhatsApp:</p>
-            
+            <div id="successMsg">✅ Data saved! Now click WhatsApp below.</div>
+
             <a id="waLink" href="https://wa.me/251904267186" target="_blank" class="btn btn-wa">
-                💬 Send Message via WhatsApp
+                <span>Contact via WhatsApp</span>
             </a>
         </form>
     </div>
 
     <div class="card">
-        <h2>⚖️ Production Calculator</h2>
-        <input type="number" id="feedRate" placeholder="Feed Rate (m³/hr)">
-        <button onclick="calculateTPH()" class="btn btn-diag" style="background:#00bcd4; color:white;">Calculate TPH</button>
-        <p id="tphResult" style="color: var(--primary); text-align: center; font-weight: bold; margin-top: 10px;"></p>
-    </div>
-
-    <div class="card">
-        <h2>🩺 Smart Fault Finder</h2>
-        <button onclick="interpretFault()" class="btn btn-diag" style="background-color: #ff9800;">Check Error Code (E01-E15)</button>
-    </div>
-
-    <div class="card">
-        <h2>💳 Payment & Service</h2>
-        <div class="payment-box">
-            <p>CBE: <span class="acc">1000347503707</span></p>
-            <p>Telebirr: <span class="acc">0988535068</span></p>
+        <h2>⚙️ Crusher Software Tools</h2>
+        <div style="margin-bottom: 20px;">
+            <label style="font-size: 14px;">Production Calculator (TPH)</label>
+            <input type="number" id="feedRate" placeholder="Enter Feed Rate (m³/hr)">
+            <button onclick="calculateTPH()" class="btn btn-tool">Calculate Tons/Hour</button>
+            <p id="tphResult" style="text-align: center; color: var(--primary); font-weight: bold;"></p>
         </div>
+        
+        <button onclick="interpretFault()" class="btn btn-tool" style="background: #ff9800;">Check Error Codes (E01-E15)</button>
+    </div>
+
+    <div class="card">
+        <h2>🏗 Essential Spare Parts</h2>
         <table>
-            <tr><th>Spare Part</th><th>Material</th></tr>
-            <tr><td>Jaw Plates</td><td>Mn18Cr2</td></tr>
-            <tr><td>Bearings</td><td>SKF/NSK</td></tr>
+            <tr><th>Part Name</th><th>Specifications</th></tr>
+            <tr><td>Jaw Plates</td><td>Mn18Cr2 / Mn22Cr2</td></tr>
+            <tr><td>Mantle/Concave</td><td>High Manganese Steel</td></tr>
+            <tr><td>Bearings</td><td>SKF / NSK Explorer</td></tr>
         </table>
     </div>
 
-    <footer style="text-align: center; color: #8b949e; font-size: 11px; padding: 20px;">
-        &copy; 2026 Abdurhaman Mohammed | Dire Dawa, Ethiopia
+    <div class="card">
+        <h2>💳 Service Payment</h2>
+        <div class="payment-info">
+            <p style="margin: 0; font-size: 14px; color: #8b949e;">Commercial Bank of Ethiopia (CBE)</p>
+            <span class="acc-no">1000347503707</span>
+            <p style="margin: 10px 0 0; font-size: 14px; color: #8b949e;">Telebirr</p>
+            <span class="acc-no">0988535068</span>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Abdurhaman Mohammed | All Rights Reserved.</p>
+        <p>Dire Dawa, Ethiopia</p>
     </footer>
-<footer style="padding: 20px; text-align: center; background: #1a1a1a;">
-    <a href="LINKII_GOOGLE_SHEETS_KEE" target="_blank" style="color: #FFA500; text-decoration: none; font-size: 0.8rem;">
-        🔑 Admin Access (Database)
-    </a>
-</footer>
 </div>
 
 <script>
@@ -131,42 +238,33 @@
         waLink.href = "https://wa.me/251904267186?text=" + encodedText;
     }
 
+    function showSuccess() {
+        document.getElementById('successMsg').style.display = 'block';
+        setTimeout(() => {
+            document.getElementById('successMsg').style.display = 'none';
+        }, 5000);
+    }
+
     function calculateTPH() {
         const feed = document.getElementById('feedRate').value;
         if (feed) {
             const tph = feed * 2.6;
-            document.getElementById('tphResult').innerText = "Result: " + tph.toFixed(1) + " Tons/Hour";
+            document.getElementById('tphResult').innerText = "Estimated: " + tph.toFixed(1) + " Tons/Hr";
         }
     }
 
     function interpretFault() {
         const faults = {
-            "E01": "Phase Failure: Check power panel.",
-            "E02": "High Temp: Grease bearings.",
-            "E05": "Jamming: Metal in chamber.",
-            "E10": "Toggle Fracture: Safety plate broken.",
-            "E15": "Bearing Noise: Lubrication needed."
+            "E01": "Phase Failure: Check electrical supply.",
+            "E02": "High Temperature: Check bearing lubrication.",
+            "E05": "Chamber Jam: Remove oversized rocks.",
+            "E10": "Toggle Plate Broken: Safety mechanism triggered.",
+            "E15": "Vibration Sensor: High vibration detected."
         };
-        const code = prompt("Enter Code:").toUpperCase();
-        alert(faults[code] || "Contact Abdurhaman for Expert Help.");
+        const code = prompt("Enter Error Code (e.g., E15):").toUpperCase();
+        alert(faults[code] || "Code not recognized. Please contact Abdurhaman.");
     }
 </script>
-    <script>
-function updateLink() {
-    const name = document.getElementById('dbName').value;
-    const msg = document.getElementById('dbIssue').value;
-    const waLink = document.getElementById('waLink');
-    const encodedText = encodeURIComponent("Hello Abdurhaman, I am " + name + ". Issue: " + msg);
-    waLink.href = "https://wa.me/251904267186?text=" + encodedText;
-}
-    </script>
-<section id="admin-panel" style="margin-top: 50px; border-top: 5px solid #FFA500; padding: 20px; background: #1a1a1a; color: white;">
-    <h2>SBM Admin Dashboard</h2>
-    <p>Odeeffannoo Google Sheets irraa kalleattiin ilaaluuf:</p>
-    <a href="LINKII_GOOGLE_SHEETS_KEE_AS_GALCHI" target="_blank" 
-       style="background: #FFA500; color: black; padding: 10px 20px; text-decoration: none; font-weight: bold; border-radius: 5px;">
-       Open Google Sheets (Database)
-    </a>
-</section>
 </body>
+</html>
 
