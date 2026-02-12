@@ -93,5 +93,25 @@
         else alert("✅ NORMAL: System stable.");
     }
 </script>
+    <script>
+        function interpretFault() {
+        const faults = {
+            "E01": "Phase Failure: Check electrical panel for loose wires.",
+            "E02": "High Temp: Cooling system failure or grease is dry.",
+            "E03": "Vibration Alert: Foundation bolts are loose or bearing damage.",
+            "E04": "Oil Pressure Low: Check hydraulic oil level and pump.",
+            "E05": "Motor Overload: Material inside is too hard or too much.",
+            "E06": "Belt Slip: V-belts are loose, need tensioning.",
+            "E10": "Toggle Plate Broken: Check for uncrushable material (iron).",
+            "E15": "Bearing Noise: Lubrication needed or bearing life ending."
+        };
+        let code = prompt("Enter Error Code (E01-E15):").trim().toUpperCase();
+        if (faults[code]) {
+            alert("🔍 Diagnosis: " + faults[code]);
+        } else {
+            alert("❓ Code not found. Please contact Abdurhaman for manual support.");
+        }
+    }
+   </script>
 </body>
 </html>
