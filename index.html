@@ -54,7 +54,7 @@
     </header>
 
     <img src="Maashinii.jpg" alt="SBM Machine" onerror="this.src='https://via.placeholder.com/800x400/161b22/39FF14?text=Check+Image+Name';">
-    // Software Function 1: Production Logic
+<script>    // Software Function 1: Production Logic
     function calculateTPH() {
         let feed = document.getElementById('feedRate').value;
         let density = document.getElementById('density').value || 2.6;
@@ -66,7 +66,7 @@
         }
     }
 
-    // Software Function 2: Maintenance Logic (Predictive)
+     Software Function 2: Maintenance Logic (Predictive)
     function checkMaintenance() {
         let hours = document.getElementById('workHours').value;
         let result = document.getElementById('maintResult');
@@ -83,7 +83,7 @@
         }
     }
 
-    // Diagnostics Bal'ifame (E01-E10)
+     Diagnostics Bal'ifame (E01-E10)
     function interpretFault() {
         const faults = {
             "E01": "Phase Failure: Power supply issue.",
@@ -95,7 +95,7 @@
         let code = prompt("Enter Code (E01, E02, E05, E08, E10):").toUpperCase();
         alert(faults[code] || "Consult Abdurhaman for manual diagnosis.");
     }
-
+</script>
     <div class="card">
         <h2>🩺 Diagnostics</h2>
         <button onclick="checkMachineHealth()" class="btn btn-diag" style="width:100%;">Check Temperature Status</button>
