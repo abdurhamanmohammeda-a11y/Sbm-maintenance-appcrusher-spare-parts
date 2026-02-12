@@ -78,7 +78,22 @@
                 💬 Send Message via WhatsApp
             </a>
         </div>
-    </div>
+        <div class="card">
+    <h2>📊 Production Calculator</h2>
+    <p>Estimate tons per hour (TPH):</p>
+    <input type="number" id="feedRate" placeholder="Feed Rate (m³/hr)">
+    <input type="number" id="density" placeholder="Rock Density (Standard 2.6)">
+    <button onclick="calculateTPH()" class="btn btn-diag">Calculate TPH</button>
+    <p id="tphResult" style="color: var(--primary); font-weight: bold; text-align: center;"></p>
+</div>
+
+<div class="card">
+    <h2>📅 Maintenance Tracker</h2>
+    <p>Hours since last greasing:</p>
+    <input type="number" id="workHours" placeholder="Total hours worked">
+    <button onclick="checkMaintenance()" class="btn btn-diag" style="background-color: #ff9800;">Check Maintenance Needs</button>
+    <p id="maintResult" style="text-align: center; font-weight: bold;"></p>
+</div>
 
     <footer style="text-align: center; color: #8b949e; font-size: 12px; padding: 20px;">
         &copy; 2026 Abdurhaman Mohammed
