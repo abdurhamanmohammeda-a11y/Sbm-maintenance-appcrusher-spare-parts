@@ -140,9 +140,8 @@
         &copy; 2026 Abdurhaman Mohammed
     </footer>
 </div>
-
 <script>
-     Linkii WhatsApp kallaattiin update gochuuf
+    1. WhatsApp Logic (Direct link update)
     function updateLink() {
         const name = document.getElementById('userName').value;
         const msg = document.getElementById('userMsg').value;
@@ -152,32 +151,70 @@
         waLink.href = "https://wa.me/251904267186?text=" + encodedText;
     }
 
+     2. Production Calculator Logic
+    function calculateTPH() {
+        const feed = document.getElementById('feedRate').value;
+        const density = document.getElementById('density').value || 2.6;
+        const result = document.getElementById('tphResult');
+
+        if (feed) {
+            const tph = feed * density;
+            result.innerText = "Output: " + tph.toFixed(1) + " Tons/Hour";
+        } else {
+            alert("Please enter feed rate (m³/hr)");
+        }
+    }
+
+     3. Maintenance Logic
+    function checkMaintenance() {
+        const hours = document.getElementById('workHours').value;
+        const result = document.getElementById('maintResult');
+        
+        if (!hours) {
+            alert("Please enter working hours.");
+            return;
+        }
+
+        if (hours >= 200) {
+            result.style.color = "#ff4444";
+            result.innerText = "⚠️ IMMEDIATE: Replace Bearings & Check Belt Tension!";
+        } else if (hours >= 50) {
+            result.style.color = "#ffbb33";
+            result.innerText = "⚡ CAUTION: Add Grease (EP2) to Eccentric Shaft.";
+        } else {
+            result.style.color = "#39FF14";
+            result.innerText = "✅ System OK. Keep monitoring.";
+        }
+    }
+
+     4. Fault Diagnostics Logic (Button Diagnostics)
+    function interpretFault() {
+        const faults = {
+            "E01": "Phase Failure: Check electrical panel connections.",
+            "E02": "High Temp: Grease is dry or bearing damage.",
+            "E05": "Jamming: Uncrushable material (iron) in chamber.",
+            "E08": "Low Oil: Hydraulic pump or oil level issue.",
+            "E10": "Toggle Fracture: Safety toggle plate broken."
+        };
+        const code = prompt("Enter Error Code (e.g., E01, E02, E05, E10):").toUpperCase();
+        
+        if (faults[code]) {
+            alert("🔍 Result: " + faults[code]);
+        } else if (code === "") {
+            return;
+        } else {
+            alert("❓ Unknown code. Contact Abdurhaman for manual diagnosis.");
+        }
+    }
+
+     5. Basic Temp Check
     function checkMachineHealth() {
-        let temp = prompt("Enter Machine Temp (°C):");
+        const temp = prompt("Enter Machine Temp (°C):");
         if (temp === null || temp === "") return;
-        if (parseFloat(temp) > 90) alert("⚠️ DANGER: Overheating!");
+        const t = parseFloat(temp);
+        if (t > 90) alert("⚠️ DANGER: Overheating! Stop the motor.");
+        else if (t > 70) alert("⚡ CAUTION: High temperature.");
         else alert("✅ NORMAL: System stable.");
     }
 </script>
-    <script>
-        function interpretFault() {
-        const faults = {
-            "E01": "Phase Failure: Check electrical panel for loose wires.",
-            "E02": "High Temp: Cooling system failure or grease is dry.",
-            "E03": "Vibration Alert: Foundation bolts are loose or bearing damage.",
-            "E04": "Oil Pressure Low: Check hydraulic oil level and pump.",
-            "E05": "Motor Overload: Material inside is too hard or too much.",
-            "E06": "Belt Slip: V-belts are loose, need tensioning.",
-            "E10": "Toggle Plate Broken: Check for uncrushable material (iron).",
-            "E15": "Bearing Noise: Lubrication needed or bearing life ending."
-        };
-        let code = prompt("Enter Error Code (E01-E15):").trim().toUpperCase();
-        if (faults[code]) {
-            alert("🔍 Diagnosis: " + faults[code]);
-        } else {
-            alert("❓ Code not found. Please contact Abdurhaman for manual support.");
-        }
-    }
-   </script>
-</body>
-</html>
+
