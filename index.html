@@ -141,7 +141,7 @@
     </footer>
 </div>
 <script>
-    1. WhatsApp Logic (Direct link update)
+    // 1. WhatsApp Logic - Namni "Send" yoo jedhe kallaattiin deema
     function updateLink() {
         const name = document.getElementById('userName').value;
         const msg = document.getElementById('userMsg').value;
@@ -151,7 +151,7 @@
         waLink.href = "https://wa.me/251904267186?text=" + encodedText;
     }
 
-     2. Production Calculator Logic
+    // 2. Production Calculator - Tons Per Hour herreguuf
     function calculateTPH() {
         const feed = document.getElementById('feedRate').value;
         const density = document.getElementById('density').value || 2.6;
@@ -159,13 +159,13 @@
 
         if (feed) {
             const tph = feed * density;
-            result.innerText = "Output: " + tph.toFixed(1) + " Tons/Hour";
+            result.innerText = "Calculated Output: " + tph.toFixed(1) + " Tons/Hour";
         } else {
             alert("Please enter feed rate (m³/hr)");
         }
     }
 
-     3. Maintenance Logic
+    // 3. Maintenance Logic - Sa'aatii hojiin sakatta'uuf
     function checkMaintenance() {
         const hours = document.getElementById('workHours').value;
         const result = document.getElementById('maintResult');
@@ -187,27 +187,33 @@
         }
     }
 
-     4. Fault Diagnostics Logic (Button Diagnostics)
+    // 4. Fault Diagnostics Logic - E15 dabalatee kanneen biroo
     function interpretFault() {
         const faults = {
             "E01": "Phase Failure: Check electrical panel connections.",
             "E02": "High Temp: Grease is dry or bearing damage.",
-            "E05": "Jamming: Uncrushable material (iron) in chamber.",
+            "E03": "Vibration Alert: Foundation bolts are loose.",
+            "E04": "Oil Pressure Low: Check hydraulic oil level.",
+            "E05": "Jamming: Metal/Iron detected in crusher chamber.",
             "E08": "Low Oil: Hydraulic pump or oil level issue.",
-            "E10": "Toggle Fracture: Safety toggle plate broken."
+            "E10": "Toggle Fracture: Safety toggle plate is broken.",
+            "E15": "Bearing Noise: Lubrication needed or bearing life ending."
         };
-        const code = prompt("Enter Error Code (e.g., E01, E02, E05, E10):").toUpperCase();
+
+        const code = prompt("Enter Error Code (e.g., E01, E05, E10, E15):");
         
-        if (faults[code]) {
-            alert("🔍 Result: " + faults[code]);
-        } else if (code === "") {
-            return;
+        if (code === null || code.trim() === "") return;
+
+        const upperCode = code.trim().toUpperCase();
+        
+        if (faults[upperCode]) {
+            alert("🔍 Result: " + faults[upperCode]);
         } else {
-            alert("❓ Unknown code. Contact Abdurhaman for manual diagnosis.");
+            alert("❓ Code '" + upperCode + "' Unknown. Contact Abdurhaman for manual help.");
         }
     }
 
-     5. Basic Temp Check
+    // 5. Temperature Sakatta'uuf
     function checkMachineHealth() {
         const temp = prompt("Enter Machine Temp (°C):");
         if (temp === null || temp === "") return;
@@ -217,4 +223,3 @@
         else alert("✅ NORMAL: System stable.");
     }
 </script>
-
