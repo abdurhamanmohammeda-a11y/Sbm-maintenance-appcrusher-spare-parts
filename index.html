@@ -54,6 +54,47 @@
     </header>
 
     <img src="Maashinii.jpg" alt="SBM Machine" onerror="this.src='https://via.placeholder.com/800x400/161b22/39FF14?text=Check+Image+Name';">
+    // Software Function 1: Production Logic
+    function calculateTPH() {
+        let feed = document.getElementById('feedRate').value;
+        let density = document.getElementById('density').value || 2.6;
+        if (feed) {
+            let tph = feed * density;
+            document.getElementById('tphResult').innerText = "Output: " + tph.toFixed(1) + " Tons/Hour";
+        } else {
+            alert("Please enter feed rate.");
+        }
+    }
+
+    // Software Function 2: Maintenance Logic (Predictive)
+    function checkMaintenance() {
+        let hours = document.getElementById('workHours').value;
+        let result = document.getElementById('maintResult');
+        
+        if (hours >= 200) {
+            result.style.color = "red";
+            result.innerText = "⚠️ IMMEDIATE: Replace Main Bearings & Check Belt Tension!";
+        } else if (hours >= 50) {
+            result.style.color = "orange";
+            result.innerText = "⚡ CAUTION: Add Grease (EP2) to Eccentric Shaft.";
+        } else {
+            result.style.color = "var(--primary)";
+            result.innerText = "✅ System OK. Keep monitoring.";
+        }
+    }
+
+    // Diagnostics Bal'ifame (E01-E10)
+    function interpretFault() {
+        const faults = {
+            "E01": "Phase Failure: Power supply issue.",
+            "E02": "Overheating: Check lubrication or cooling fan.",
+            "E05": "Jamming: Uncrushable material detected in chamber.",
+            "E08": "Low Oil: Hydraulic pressure critical.",
+            "E10": "Toggle Fracture: Safety toggle plate broken."
+        };
+        let code = prompt("Enter Code (E01, E02, E05, E08, E10):").toUpperCase();
+        alert(faults[code] || "Consult Abdurhaman for manual diagnosis.");
+    }
 
     <div class="card">
         <h2>🩺 Diagnostics</h2>
