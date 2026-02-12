@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abdurhaman | SBM & Mechatronics Expert</title>
+    <title>Abdurhaman | SBM Expert</title>
     <style>
         :root { --primary: #39FF14; --bg: #0d1117; --card-bg: #161b22; --text: #c9d1d9; }
         body { background-color: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; padding: 15px; margin: 0; }
         .container { max-width: 800px; margin: auto; }
-        .card { background-color: var(--card-bg); padding: 20px; border: 1px solid #30363d; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+        .card { background-color: var(--card-bg); padding: 20px; border: 1px solid #30363d; border-radius: 12px; margin-bottom: 20px; }
         h1, h2 { color: var(--primary); text-align: center; }
-        img { width: 100%; border-radius: 12px; border: 2px solid var(--primary); margin-bottom: 20px; object-fit: cover; }
+        img { width: 100%; border-radius: 12px; border: 2px solid var(--primary); margin-bottom: 20px; }
         input, textarea { width:100%; padding:12px; margin:8px 0; border-radius:8px; border:1px solid #30363d; background:#0d1117; color:white; box-sizing:border-box; }
-        .btn { display: block; width: 100%; padding: 15px; border-radius: 8px; font-weight: bold; text-align: center; cursor: pointer; border: none; font-size: 16px; margin-top: 10px; }
+        .btn { display: block; width: 100%; padding: 15px; border-radius: 8px; font-weight: bold; text-align: center; text-decoration: none; font-size: 16px; margin-top: 10px; cursor: pointer; }
         .btn-wa { background-color: #25D366; color: white; }
-        .btn-diag { background-color: var(--primary); color: black; }
-        .payment-box { border: 2px dashed var(--primary); padding: 15px; border-radius: 10px; text-align: center; background: #1c2128; }
+        .btn-diag { background-color: var(--primary); color: black; border: none; }
+        .payment-box { border: 2px dashed var(--primary); padding: 15px; border-radius: 10px; text-align: center; }
         .acc { font-size: 1.1em; font-weight: bold; color: white; display: block; margin: 5px 0; }
     </style>
 </head>
@@ -24,71 +24,58 @@
 <div class="container">
     <header>
         <h1>🛠 Abdurhaman Mechatronics</h1>
-        <p style="text-align:center;">8+ Years Experience in SBM & Instrumentation</p>
+        <p style="text-align:center;">SBM & Instrumentation Expert</p>
     </header>
 
-    <img src="Maashiniii.jpg" alt="SBM Machine" onerror="this.src='https://via.placeholder.com/800x400/161b22/39FF14?text=SBM+Machine+Expert'">
+    <img src="Maashiniii.jpg" alt="SBM Machine" onerror="this.src='https://via.placeholder.com/800x400/161b22/39FF14?text=Check+Image+Name';">
 
     <div class="card">
-        <h2>🩺 Professional Tools</h2>
-        <button onclick="checkMachineHealth()" class="btn btn-diag">Check Temperature Status</button>
-        <button onclick="interpretFault()" class="btn btn-diag" style="background-color: #ff9800; margin-top: 10px;">Interpret Fault Code</button>
+        <h2>🩺 Diagnostics</h2>
+        <button onclick="checkMachineHealth()" class="btn btn-diag" style="width:100%;">Check Temperature Status</button>
     </div>
 
     <div class="card">
-        <h2>💳 Service Payment</h2>
+        <h2>💳 Payment</h2>
         <div class="payment-box">
-            <p>Beneficiary: <strong>Abdurhaman Mohammed</strong></p>
             <p>CBE: <span class="acc">1000347503707</span></p>
             <p>Telebirr: <span class="acc">0988535068</span></p>
         </div>
     </div>
 
     <div class="card">
-        <h2>👨‍🔧 Contact Expert</h2>
-        <form id="contactForm">
-            <input type="text" id="userName" placeholder="Your Name" required>
-            <textarea id="userMsg" rows="4" placeholder="Describe your machine issue..." required></textarea>
-            <button type="submit" class="btn btn-wa">💬 Send Message via WhatsApp</button>
-        </form>
+        <h2>👨‍🔧 Contact via WhatsApp</h2>
+        <div id="contactForm">
+            <input type="text" id="userName" placeholder="Your Name" oninput="updateLink()">
+            <textarea id="userMsg" rows="4" placeholder="Describe the problem..." oninput="updateLink()"></textarea>
+            
+            <a id="waLink" href="https://wa.me/251904267186" target="_blank" class="btn btn-wa">
+                💬 Send Message via WhatsApp
+            </a>
+        </div>
     </div>
 
     <footer style="text-align: center; color: #8b949e; font-size: 12px; padding: 20px;">
-        &copy; 2026 Abdurhaman Mohammed | Dire Dawa, Ethiopia
+        &copy; 2026 Abdurhaman Mohammed
     </footer>
 </div>
 
 <script>
-     WhatsApp Direct Redirect (Stable for Chrome & Mobile)
-    document.getElementById('contactForm').addEventListener("submit", e => {
-        e.preventDefault();
+     Linkii WhatsApp kallaattiin update gochuuf
+    function updateLink() {
         const name = document.getElementById('userName').value;
         const msg = document.getElementById('userMsg').value;
+        const waLink = document.getElementById('waLink');
         
-     Barreeffama akka Browser-riin hubatutti qopheessuuf
         const encodedText = encodeURIComponent("Hello Abdurhaman, I am " + name + ". Issue: " + msg);
-        const whatsappURL = "https://wa.me/251904267186?text=" + encodedText;
-        
-        window.open mannaa kanaan browser-riin akka hin block goone itti himna
-        window.location.href = whatsappURL;
-    });
+        waLink.href = "https://wa.me/251904267186?text=" + encodedText;
+    }
 
     function checkMachineHealth() {
         let temp = prompt("Enter Machine Temp (°C):");
         if (temp === null || temp === "") return;
-        let t = parseFloat(temp);
-        if (t > 90) alert("⚠️ DANGER: Overheating! Stop the motor.");
-        else if (t > 70) alert("⚡ CAUTION: Temperature rising.");
+        if (parseFloat(temp) > 90) alert("⚠️ DANGER: Overheating!");
         else alert("✅ NORMAL: System stable.");
     }
-
-    function interpretFault() {
-        const faults = {"E01": "Phase Failure", "E02": "High Temp", "E03": "Vibration Alert", "E04": "Oil Pressure Low"};
-        let code = prompt("Enter Error Code (E01-E04):");
-        if (code) {
-            let result = faults[code.trim().toUpperCase()];
-            alert(result ? "🔍 Diagnosis: " + result : "❓ Code Unknown.");
-        }
-    }
 </script>
-
+</body>
+</html>
