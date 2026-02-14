@@ -3,193 +3,144 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SBM Machine Maintenance | Abdurhaman Mechatronics</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-
+<title>SBM Industrial Maintenance System</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
-:root{
-  --primary:#FFA500;
-  --bg:#0b0e14;
-  --card:#1a1f29;
-  --text:#e0e6ed;
-  --accent:#39FF14;
-}
-
-body{
-  margin:0;
-  background:var(--bg);
-  color:var(--text);
-  font-family:'Roboto',sans-serif;
-}
-
-.container{
-  max-width:650px;
-  margin:auto;
-  padding:15px;
-}
-
-header{
-  text-align:center;
-  padding:25px;
-  background:linear-gradient(180deg,#FFA500,#111);
-  border-radius:0 0 25px 25px;
-}
-
-header h1{
-  font-family:'Orbitron',sans-serif;
-  margin:0;
-  font-size:20px;
-}
-
-.card{
-  background:var(--card);
-  padding:18px;
-  border-radius:12px;
-  margin:18px 0;
-  border:1px solid #30363d;
-}
-
-h2{
-  color:var(--primary);
-  font-size:17px;
-  margin-top:0;
-}
-
-input,select,textarea,button{
-  width:100%;
-  padding:12px;
-  margin:8px 0;
-  border-radius:8px;
-  border:none;
-  font-size:15px;
-  box-sizing:border-box;
-}
-
-button{
-  background:var(--primary);
-  font-weight:bold;
-  cursor:pointer;
-}
-
-button:hover{opacity:.8;}
-
-.whatsapp-float{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  z-index:1000;
-}
-
-.whatsapp-float img{
-  width:55px;
-}
-
-footer{
-  text-align:center;
-  font-size:11px;
-  padding:15px;
-  color:#888;
-}
+:root{ --primary:#39FF14; --bg:#0f1117; --card:#1c1f26; --text:#e6edf3; --accent:#FFA500; --danger:#ff4444; }
+body{ margin:0; background:var(--bg); color:var(--text); font-family:'Roboto',sans-serif; }
+header{ text-align:center; padding:20px; background:linear-gradient(180deg, var(--primary), #111); border-radius:0 0 20px 20px; }
+header h1{ margin:0; font-family:'Orbitron',sans-serif; font-size:18px; color:#000; }
+.container{ max-width:700px; margin:auto; padding:15px; }
+.card { background:var(--card); padding:15px; border-radius:12px; margin:15px 0; border:1px solid #30363d; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
+h2{ color:var(--primary); font-size:16px; margin-top:0; border-bottom: 1px solid #333; padding-bottom:5px; }
+input,select,textarea,button{ width:100%; padding:12px; margin:8px 0; border-radius:8px; border:none; font-size:14px; box-sizing:border-box; }
+input, select, textarea { background: #0d1117; color: white; border: 1px solid #444; }
+button{ background:var(--primary); font-weight:bold; cursor:pointer; color: #000; }
+.btn-delete { background: var(--danger); color: white; padding: 5px 10px; width: auto; font-size: 11px; margin-left: 10px; }
+.dashboard-item{ border-bottom:1px solid #333; padding:10px 0; font-size:13px; display: flex; justify-content: space-between; align-items: center; }
+.whatsapp{ position:fixed; bottom:20px; right:20px; z-index: 1000;}
+footer{ text-align:center; font-size:11px; color:#888; padding:15px; }
 </style>
 </head>
-
 <body>
 
 <header>
-<h1>ABDU RHAMAN MECHATRONICS</h1>
-<p>Crusher Maintenance & Industrial Support</p>
+    <h1>ABDURHAMAN MECHATRONICS SOLUTIONS</h1>
+    <p>Crusher Maintenance Cloud System</p>
 </header>
 
 <div class="container">
+    <div class="card">
+        <h2>📊 Machine Report</h2>
+        <input type="text" id="customer" placeholder="Customer Name">
+        <select id="machine">
+            <option value="">Select Machine</option>
+            <option>Jaw Crusher</option>
+            <option>Cone Crusher</option>
+            <option>SBM Screen</option>
+        </select>
+        <textarea id="issue" placeholder="Describe Issue"></textarea>
+        <button onclick="saveReport()">Save to Cloud</button>
+    </div>
 
-<!-- SIGN IN -->
-<div class="card">
-<h2>👤 Sign In</h2>
-<input type="email" id="email" placeholder="Email">
-<input type="password" id="password" placeholder="Password">
-<button onclick="signIn()">Sign In</button>
-<p id="message"></p>
+    <div class="card">
+        <h2>📦 Spare Parts Inventory</h2>
+        <input type="text" id="partName" placeholder="Part Name">
+        <input type="number" id="partQty" placeholder="Quantity">
+        <button onclick="addPart()" style="background:var(--accent)">Add Part</button>
+        <div id="partsList"></div>
+    </div>
+
+    <div class="card">
+        <h2>📈 Live Dashboard</h2>
+        <p>Total Reports: <span id="totalReports" style="color:var(--primary)">0</span></p>
+        <div id="reportList"></div>
+    </div>
 </div>
 
-<!-- MACHINE REPORT -->
-<div class="card">
-<h2>📊 Machine Report</h2>
-<input type="text" id="customerName" placeholder="Customer Name">
-<select id="machineType">
-<option value="">Select Machine</option>
-<option>Jaw Crusher</option>
-<option>Cone Crusher</option>
-<option>SBM Screen</option>
-</select>
-<textarea id="issueDesc" placeholder="Describe problem"></textarea>
-<button onclick="sendWhatsApp()">Send via WhatsApp</button>
-</div>
+<footer>© 2026 Abdurhaman Mohammed | Cloud Powered</footer>
 
-<!-- TPH CALCULATOR -->
-<div class="card">
-<h2>⚙️ TPH Calculator</h2>
-<input type="number" id="feedRate" placeholder="Feed Rate (m³/hr)">
-<button onclick="calcTPH()">Calculate</button>
-<p id="tphResult"></p>
-</div>
-
-<!-- PAYMENTS -->
-<div class="card">
-<h2>💳 Payment Info</h2>
-<p>CBE: 1000347503707</p>
-<p>Telebirr: 0988535068</p>
-</div>
-
-</div>
-
-<a href="https://wa.me/251904267186" class="whatsapp-float" target="_blank">
-<img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
+<a href="https://wa.me/251904267186" class="whatsapp" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="50">
 </a>
 
-<footer>
-© 2026 Abdurhaman Mohammed | Dire Dawa
-</footer>
-
-<!-- Firebase -->
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
 <script>
-const firebaseConfig={
-  apiKey:"YOUR_API_KEY",
-  authDomain:"YOUR_PROJECT.firebaseapp.com",
-  projectId:"YOUR_PROJECT"
+const firebaseConfig = {
+  apiKey: "AIzaSyC1_0Ptpna4V-2cfyJHNwIvWvbA2eGLv18",
+  authDomain: "sbm-app-ecf59.firebaseapp.com",
+  projectId: "sbm-app-ecf59",
+  storageBucket: "sbm-app-ecf59.firebasestorage.app",
+  messagingSenderId: "666387083873",
+  appId: "1:666387083873:web:bfd6d5e064ecaad6c73020",
+  measurementId: "G-W6VPWH2J3R"
 };
-firebase.initializeApp(firebaseConfig);
-const auth=firebase.auth();
 
-function signIn(){
-  const email=email.value;
-  const pass=password.value;
-  auth.signInWithEmailAndPassword(email,pass)
-  .then(()=>message.innerText="✅ Logged in")
-  .catch(e=>message.innerText=e.message);
+// Initialize Firebase with check to prevent "App already exists" error
+if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+}
+const db = firebase.firestore();
+
+function saveReport(){
+    const customerVal = document.getElementById("customer").value;
+    const machineVal = document.getElementById("machine").value;
+    const issueVal = document.getElementById("issue").value;
+    if(!customerVal || !machineVal || !issueVal){ alert("Fill all fields"); return; }
+
+    db.collection("reports").add({
+        customer: customerVal,
+        machine: machineVal,
+        issue: issueVal,
+        time: firebase.firestore.FieldValue.serverTimestamp()
+    }).then(() => alert("Saved to Firebase ✅"));
 }
 
-function sendWhatsApp(){
-  const name=customerName.value;
-  const machine=machineType.value;
-  const issue=issueDesc.value;
-  const text=encodeURIComponent(
-  `Hello Abdurhaman,\nCustomer: ${name}\nMachine: ${machine}\nIssue: ${issue}`);
-  window.open("https://wa.me/251904267186?text="+text,"_blank");
+function addPart(){
+    const name = document.getElementById("partName").value;
+    const qty = document.getElementById("partQty").value;
+    if(!name || !qty){ alert("Fill all fields"); return; }
+
+    db.collection("inventory").add({
+        name: name,
+        quantity: parseInt(qty)
+    });
 }
 
-function calcTPH(){
-  const feed=feedRate.value;
-  if(feed>0){
-    tphResult.innerText="Output: "+(feed*2.6).toFixed(1)+" TPH";
-  }else{
-    alert("Enter valid number");
-  }
+function deleteData(collection, id){
+    if(confirm("Delete this?")){ db.collection(collection).doc(id).delete(); }
 }
+
+// Real-time Dashboard
+db.collection("reports").orderBy("time", "desc").onSnapshot(snapshot=>{
+    document.getElementById("totalReports").innerText = snapshot.size;
+    const reportList = document.getElementById("reportList");
+    reportList.innerHTML="";
+    snapshot.forEach(doc=>{
+        const data=doc.data();
+        reportList.innerHTML+=`
+        <div class="dashboard-item">
+            <div><strong>${data.customer}</strong> - ${data.machine}</div>
+            <button class="btn-delete" onclick="deleteData('reports', '${doc.id}')">X</button>
+        </div>`;
+    });
+});
+
+// Real-time Inventory
+db.collection("inventory").onSnapshot(snapshot=>{
+    const partsList = document.getElementById("partsList");
+    partsList.innerHTML="";
+    snapshot.forEach(doc=>{
+        const data=doc.data();
+        partsList.innerHTML+=`
+        <div class="dashboard-item">
+            <span>${data.name}: ${data.quantity}</span>
+            <button class="btn-delete" onclick="deleteData('inventory', '${doc.id}')">X</button>
+        </div>`;
+    });
+});
 </script>
-
 </body>
 </html>
