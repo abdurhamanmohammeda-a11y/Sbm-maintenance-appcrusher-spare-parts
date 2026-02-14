@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SBM Machine Maintenance | Abdurhaman Mechatronics</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --primary:#FFA500;
+  --bg:#0b0e14;
+  --card:#1a1f29;
+  --text:#e0e6ed;
+  --accent:#39FF14;
+}
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Roboto',sans-serif;
+}
+
+.container{
+  max-width:650px;
+  margin:auto;
+  padding:15px;
+}
+
+header{
+  text-align:center;
+  padding:25px;
+  background:linear-gradient(180deg,#FFA500,#111);
+  border-radius:0 0 25px 25px;
+}
+
+header h1{
+  font-family:'Orbitron',sans-serif;
+  margin:0;
+  font-size:20px;
+}
+
+.card{
+  background:var(--card);
+  padding:18px;
+  border-radius:12px;
+  margin:18px 0;
+  border:1px solid #30363d;
+}
+
+h2{
+  color:var(--primary);
+  font-size:17px;
+  margin-top:0;
+}
+
+input,select,textarea,button{
+  width:100%;
+  padding:12px;
+  margin:8px 0;
+  border-radius:8px;
+  border:none;
+  font-size:15px;
+  box-sizing:border-box;
+}
+
+button{
+  background:var(--primary);
+  font-weight:bold;
+  cursor:pointer;
+}
+
+button:hover{opacity:.8;}
+
+.whatsapp-float{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  z-index:1000;
+}
+
+.whatsapp-float img{
+  width:55px;
+}
+
+footer{
+  text-align:center;
+  font-size:11px;
+  padding:15px;
+  color:#888;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>ABDU RHAMAN MECHATRONICS</h1>
+<p>Crusher Maintenance & Industrial Support</p>
+</header>
+
+<div class="container">
+
+<!-- SIGN IN -->
+<div class="card">
+<h2>👤 Sign In</h2>
+<input type="email" id="email" placeholder="Email">
+<input type="password" id="password" placeholder="Password">
+<button onclick="signIn()">Sign In</button>
+<p id="message"></p>
+</div>
+
+<!-- MACHINE REPORT -->
+<div class="card">
+<h2>📊 Machine Report</h2>
+<input type="text" id="customerName" placeholder="Customer Name">
+<select id="machineType">
+<option value="">Select Machine</option>
+<option>Jaw Crusher</option>
+<option>Cone Crusher</option>
+<option>SBM Screen</option>
+</select>
+<textarea id="issueDesc" placeholder="Describe problem"></textarea>
+<button onclick="sendWhatsApp()">Send via WhatsApp</button>
+</div>
+
+<!-- TPH CALCULATOR -->
+<div class="card">
+<h2>⚙️ TPH Calculator</h2>
+<input type="number" id="feedRate" placeholder="Feed Rate (m³/hr)">
+<button onclick="calcTPH()">Calculate</button>
+<p id="tphResult"></p>
+</div>
+
+<!-- PAYMENTS -->
+<div class="card">
+<h2>💳 Payment Info</h2>
+<p>CBE: 1000347503707</p>
+<p>Telebirr: 0988535068</p>
+</div>
+
+</div>
+
+<a href="https://wa.me/251904267186" class="whatsapp-float" target="_blank">
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
+</a>
+
+<footer>
+© 2026 Abdurhaman Mohammed | Dire Dawa
+</footer>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+
+<script>
+const firebaseConfig={
+  apiKey:"YOUR_API_KEY",
+  authDomain:"YOUR_PROJECT.firebaseapp.com",
+  projectId:"YOUR_PROJECT"
+};
+firebase.initializeApp(firebaseConfig);
+const auth=firebase.auth();
+
+function signIn(){
+  const email=email.value;
+  const pass=password.value;
+  auth.signInWithEmailAndPassword(email,pass)
+  .then(()=>message.innerText="✅ Logged in")
+  .catch(e=>message.innerText=e.message);
+}
+
+function sendWhatsApp(){
+  const name=customerName.value;
+  const machine=machineType.value;
+  const issue=issueDesc.value;
+  const text=encodeURIComponent(
+  `Hello Abdurhaman,\nCustomer: ${name}\nMachine: ${machine}\nIssue: ${issue}`);
+  window.open("https://wa.me/251904267186?text="+text,"_blank");
+}
+
+function calcTPH(){
+  const feed=feedRate.value;
+  if(feed>0){
+    tphResult.innerText="Output: "+(feed*2.6).toFixed(1)+" TPH";
+  }else{
+    alert("Enter valid number");
+  }
+}
+</script>
+
+</body>
+</html>
