@@ -3,110 +3,160 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SBM Maintenance App</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>SBM Maintenance Cloud System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
     <style>
-        :root{ --primary:#39FF14; --bg:#0f1117; --card:#1c1f26; --text:#e6edf3; --accent:#FFA500; }
-        body{ margin:0; background:var(--bg); color:var(--text); font-family:'Roboto',sans-serif; }
-        header{ text-align:center; padding:20px; background:linear-gradient(180deg, var(--primary), #111); border-radius:0 0 20px 20px; color:#000; }
-        .container{ max-width:600px; margin:auto; padding:15px; }
-        .card{ background:var(--card); padding:15px; border-radius:12px; margin:15px 0; border:1px solid #30363d; }
-        h2{ color:var(--primary); font-size:16px; margin-top:0; border-bottom:1px solid #333; padding-bottom:5px; }
-        input,select,textarea,button{ width:100%; padding:12px; margin:8px 0; border-radius:8px; border:none; box-sizing:border-box; }
-        input, select, textarea { background:#0d1117; color:white; border:1px solid #444; }
-        button{ background:var(--primary); font-weight:bold; cursor:pointer; color:#000; }
-        .dashboard-item{ border-bottom:1px solid #333; padding:10px 0; display:flex; justify-content:space-between; align-items:center; }
-        .btn-delete { background:#ff4444; color:white; width:auto; padding:5px 10px; font-size:12px; }
-        .whatsapp{ position:fixed; bottom:20px; right:20px; }
+        :root{ --primary:#39FF14; --bg:#0b0e14; --card:#1a1f29; --text:#e0e6ed; --accent:#FFA500; --danger:#ff4444; }
+        body{ background:var(--bg); color:var(--text); font-family:'Roboto', sans-serif; margin:0; padding:10px; }
+        header{ text-align:center; padding:25px; background:linear-gradient(180deg, var(--primary), #111); border-radius:0 0 25px 25px; color:#000; margin-bottom:20px; }
+        h1{ font-family:'Orbitron'; font-size:18px; margin:0; }
+        .container{ max-width:650px; margin:auto; }
+        .card{ background:var(--card); padding:18px; border-radius:15px; margin-bottom:20px; border:1px solid #30363d; box-shadow: 0 5px 15px rgba(0,0,0,0.5); }
+        h2{ color:var(--primary); font-size:16px; margin-top:0; border-bottom:1px solid #333; padding-bottom:8px; display:flex; align-items:center; gap:10px; }
+        input, select, textarea, button { width:100%; padding:12px; margin:8px 0; border-radius:8px; border:none; box-sizing:border-box; background:#0d1117; color:white; border:1px solid #444; }
+        button{ background:var(--primary); color:#000; font-weight:bold; cursor:pointer; font-size:15px; transition: 0.3s; }
+        button:active { transform: scale(0.98); }
+        .item{ border-bottom:1px solid #333; padding:12px 0; display:flex; justify-content:space-between; align-items:center; animation: slideIn 0.3s ease; }
+        .btn-del{ background:var(--danger); color:white; width:auto; padding:5px 12px; font-size:11px; border:none; }
+        .whatsapp{ position:fixed; bottom:20px; right:20px; z-index:1000; }
+        @keyframes slideIn { from{ opacity:0; transform:translateX(-10px); } to{ opacity:1; transform:translateX(0); } }
     </style>
 </head>
 <body>
 
 <header>
-    <h1 style="font-family:'Orbitron'; font-size:18px; margin:0;">ABDURHAMAN MECHATRONICS</h1>
-    <p style="margin:5px 0 0; font-size:12px;">SBM Specialist | Cloud Integrated</p>
+    <h1>ABDURHAMAN MECHATRONICS</h1>
+    <p style="font-size:12px; font-weight:bold;">SBM Crusher Specialist - Cloud Base</p>
 </header>
 
 <div class="container">
-    <div class="card" style="padding:0; overflow:hidden;">
+    <div class="card" style="padding:0; overflow:hidden; border:2px solid var(--primary);">
         <img src="https://www.sbmchina.com/d/pic/products/crusher/pe-jaw-crusher.jpg" style="width:100%; display:block;">
     </div>
 
     <div class="card">
-        <h2>📊 New Maintenance Report</h2>
-        <input type="text" id="customer" placeholder="Customer Name">
-        <select id="machine">
-            <option value="">Select Machine</option>
-            <option>Jaw Crusher</option>
-            <option>Cone Crusher</option>
-            <option>SBM Screen</option>
+        <h2>🛠️ New Machine Report</h2>
+        <input type="text" id="custName" placeholder="Customer Name">
+        <select id="machType">
+            <option value="">Select Machine Type</option>
+            <option>Jaw Crusher (PE/PEW)</option>
+            <option>Cone Crusher (HP/HST)</option>
+            <option>VSI Crusher (VSI6X)</option>
+            <option>SBM Vibrating Screen</option>
         </select>
-        <textarea id="issue" placeholder="Fault Description"></textarea>
-        <button onclick="saveReport()">SEND TO CLOUD</button>
+        <textarea id="faultDesc" rows="3" placeholder="Describe the problem or service done..."></textarea>
+        <button onclick="saveReport()">📥 SAVE TO CLOUD</button>
     </div>
 
     <div class="card">
-        <h2>📈 Live Dashboard (Real-time)</h2>
+        <h2>📦 Inventory Management</h2>
+        <input type="text" id="pName" placeholder="Part Name (e.g. Jaw Plate)">
+        <input type="number" id="pQty" placeholder="Quantity In Stock">
+        <button onclick="savePart()" style="background:var(--accent)">➕ ADD TO STOCK</button>
+        <div id="inventoryList"></div>
+    </div>
+
+    <div class="card">
+        <h2>📈 Live Service Dashboard</h2>
+        <p style="font-size:12px; color:#888;">Recent reports from the field:</p>
         <div id="reportList"></div>
     </div>
 </div>
 
 <a href="https://wa.me/251904267186" class="whatsapp" target="_blank">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="50">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="55">
 </a>
 
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-
 <script>
-    const firebaseConfig = {
-        apiKey: "AIzaSyC1_0Ptpna4V-2cfyJHNwIvWvbA2eGLv18",
-        authDomain: "sbm-app-ecf59.firebaseapp.com",
-        projectId: "sbm-app-ecf59",
-        storageBucket: "sbm-app-ecf59.firebasestorage.app",
-        messagingSenderId: "666387083873",
-        appId: "1:666387083873:web:bfd6d5e064ecaad6c73020"
-    };
+// Firebase Config - Your verified credentials
+const firebaseConfig = {
+    apiKey: "AIzaSyC1_0Ptpna4V-2cfyJHNwIvWvbA2eGLv18",
+    authDomain: "sbm-app-ecf59.firebaseapp.com",
+    projectId: "sbm-app-ecf59",
+    storageBucket: "sbm-app-ecf59.firebasestorage.app",
+    messagingSenderId: "666387083873",
+    appId: "1:666387083873:web:bfd6d5e064ecaad6c73020"
+};
 
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
+// Initialize
+if (!firebase.apps.length) { firebase.initializeApp(firebaseConfig); }
+const db = firebase.firestore();
 
-    function saveReport(){
-        const customer = document.getElementById("customer").value;
-        const machine = document.getElementById("machine").value;
-        const issue = document.getElementById("issue").value;
-        if(!customer || !machine || !issue) { alert("Fill all fields"); return; }
+// 1. Save Maintenance Report
+function saveReport() {
+    const name = document.getElementById("custName").value;
+    const machine = document.getElementById("machType").value;
+    const fault = document.getElementById("faultDesc").value;
 
-        db.collection("reports").add({
-            customer: customer,
-            machine: machine,
-            issue: issue,
-            time: firebase.firestore.FieldValue.serverTimestamp()
-        }).then(() => {
-            alert("Success ✅");
-            document.getElementById("customer").value = "";
-            document.getElementById("issue").value = "";
-        });
-    }
+    if(!name || !machine || !fault) { alert("Please fill all fields!"); return; }
 
-    // Real-time listener for dashboard
-    db.collection("reports").orderBy("time", "desc").onSnapshot(snapshot => {
-        const list = document.getElementById("reportList");
-        list.innerHTML = "";
-        snapshot.forEach(doc => {
-            const data = doc.data();
-            list.innerHTML += `
-                <div class="dashboard-item">
-                    <div><strong>${data.customer}</strong><br><small>${data.machine}</small></div>
-                    <button class="btn-delete" onclick="deleteDoc('${doc.id}')">Delete</button>
-                </div>`;
-        });
+    db.collection("maintenance_reports").add({
+        customer: name,
+        machine: machine,
+        issue: fault,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    }).then(() => {
+        alert("Report Saved Successfully! ✅");
+        document.getElementById("custName").value = "";
+        document.getElementById("faultDesc").value = "";
+    }).catch(err => alert("Error: " + err.message));
+}
+
+// 2. Save Inventory Part
+function savePart() {
+    const part = document.getElementById("pName").value;
+    const qty = document.getElementById("pQty").value;
+
+    if(!part || !qty) return;
+
+    db.collection("inventory").add({
+        name: part,
+        quantity: parseInt(qty)
+    }).then(() => {
+        document.getElementById("pName").value = "";
+        document.getElementById("pQty").value = "";
     });
+}
 
-    function deleteDoc(id){
-        if(confirm("Delete report?")) { db.collection("reports").doc(id).delete(); }
-    }
+// 3. Real-time Report Listener
+db.collection("maintenance_reports").orderBy("timestamp", "desc").onSnapshot(snapshot => {
+    const list = document.getElementById("reportList");
+    list.innerHTML = "";
+    snapshot.forEach(doc => {
+        const d = doc.data();
+        list.innerHTML += `
+            <div class="item">
+                <div>
+                    <strong>${d.customer}</strong><br>
+                    <small style="color:var(--primary)">${d.machine}</small><br>
+                    <span style="font-size:12px; color:#aaa;">${d.issue}</span>
+                </div>
+                <button class="btn-del" onclick="deleteDoc('maintenance_reports', '${doc.id}')">Delete</button>
+            </div>`;
+    });
+});
+
+// 4. Real-time Inventory Listener
+db.collection("inventory").onSnapshot(snapshot => {
+    const list = document.getElementById("inventoryList");
+    list.innerHTML = "";
+    snapshot.forEach(doc => {
+        const d = doc.data();
+        list.innerHTML += `
+            <div class="item">
+                <span>${d.name} - <b>Qty: ${d.quantity}</b></span>
+                <button class="btn-delete" style="background:#444; color:white; width:auto; padding:2px 8px; font-size:10px;" onclick="deleteDoc('inventory', '${doc.id}')">Remove</button>
+            </div>`;
+    });
+});
+
+function deleteDoc(col, id) {
+    if(confirm("Are you sure?")) { db.collection(col).doc(id).delete(); }
+}
 </script>
 </body>
 </html>
-
