@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SBM Smart Maintenance System</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+<style>
+:root{ --primary:#FFA500; --bg:#0f1117; --card:#1c1f26; --text:#e6edf3; --accent:#39FF14; --danger:#ff4444; }
+body{ margin:0; background:var(--bg); color:var(--text); font-family:'Roboto',sans-serif; }
+header{ text-align:center; padding:20px; background:linear-gradient(180deg,#FFA500,#111); border-radius:0 0 20px 20px; }
+header h1{ margin:0; font-family:'Orbitron',sans-serif; font-size:18px; color: #000; }
+.container{ max-width:700px; margin:auto; padding:15px; }
+.card{ background:var(--card); padding:15px; border-radius:12px; margin:15px 0; border:1px solid #30363d; }
+h2{ color:var(--primary); font-size:16px; margin-top:0; border-bottom:1px solid #333; padding-bottom:5px;}
+input,select,textarea,button{ width:100%; padding:12px; margin:8px 0; border-radius:8px; border:none; font-size:14px; box-sizing:border-box; }
+input, select, textarea { background: #0d1117; color: white; border: 1px solid #444; }
+button{ background:var(--primary); font-weight:bold; cursor:pointer; color: #000; }
+.btn-secondary { background: #444; color: white; margin-top: 5px; }
+.dashboard-item{ border-bottom:1px solid #333; padding:12px 0; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.status-badge { padding: 4px 8px; border-radius: 4px; font-size: 10px; font-weight: bold; text-transform: uppercase; }
+.status-pending { background: #555; color: white; }
+.status-done { background: var(--accent); color: black; }
+.btn-action { width: auto; padding: 6px 12px; font-size: 11px; margin: 0 2px; }
+.whatsapp{ position:fixed; bottom:20px; right:20px; z-index: 1000; }
+#mainApp { display: none; } /* Login gochuu dura ni dhokata */
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>ABDURHAMAN MECHATRONICS</h1>
+    <p>Secure Cloud Maintenance System</p>
+</header>
+
+<div class="container">
+    
+    <div id="loginSection" class="card">
+        <h2>👤 Admin Access</h2>
+        <p style="font-size: 12px; color: #888;">Enter email and password to manage system.</p>
+        <input type="email" id="email" placeholder="Email (example@gmail.com)">
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="login()">SIGN IN</button>
+        <button onclick="signUp()" class="btn-secondary">CREATE NEW ACCOUNT (SIGN UP)</button>
+        <p id="authMsg" style="font-size: 12px; text-align: center; margin-top: 10px;"></p>
+    </div>
+
+    <div id="mainApp">
+        <button onclick="logout()" style="background: #333; color: white; width: auto; font-size: 12px; float: right;">LOGOUT</button>
+        <div style="clear: both;"></div>
+
+        <div class="card">
+            <h2>🛠️ New Service Report</h2>
+            <input type="text" id="customer" placeholder="Customer Name">
+            <select id="machine">
+                <option value="">Select Machine</option>
+                <option>Jaw Crusher (PE/PEW)</option>
+                <option>Cone Crusher (HP/HST)</option>
+                <option>SBM Vibrating Screen</option>
+                <option>VSI Crusher</option>
+            </select>
+            <textarea id="issue" placeholder="Describe fault & parts used..."></textarea>
+            <button onclick="saveReport()">SAVE TO CLOUD</button>
+        </div>
+
+        <div class="card">
+            <h2>📦 Spare Parts Inventory</h2>
+            <input type="text" id="partName" placeholder="Part Name">
+            <input type="number" id="partQty" placeholder="Quantity">
+            <button onclick="addPart()" style="background:var(--accent)">Add Part</button>
+            <div id="partsList"></div>
+        </div>
+
+        <div class="card">
+            <h2>📈 Live Dashboard</h2>
+            <input type="text" id="searchInput" onkeyup="searchData()" placeholder="🔍 Search customer or machine...">
+            <p style="font-size: 12px; color: var(--primary);">Total Reports: <span id="totalCount">0</span></p>
+            <div id="reportList"></div>
+        </div>
+    </div>
+</div>
+
+<a href="https://wa.me/251904267186" class="whatsapp" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="50">
+</a>
+
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+<script>
+// Firebase Configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyC1_0Ptpna4V-2cfyJHNwIvWvbA2eGLv18",
+  authDomain: "sbm-app-ecf59.firebaseapp.com",
+  projectId: "sbm-app-ecf59",
+  storageBucket: "sbm-app-ecf59.firebasestorage.app",
+  messagingSenderId: "666387083873",
+  appId: "1:666387083873:web:bfd6d5e064ecaad6c73020"
+};
+
+// Initialize Firebase
+if (!firebase.apps.length) { firebase.initializeApp(firebaseConfig); }
+const auth = firebase.auth();
+const db = firebase.firestore();
+
+// --- AUTHENTICATION FUNCTIONS ---
+function login() {
+    const e = document.getElementById("email").value;
+    const p = document.getElementById("password").value;
+    auth.signInWithEmailAndPassword(e, p)
+    .catch(err => document.getElementById("authMsg").innerText = "❌ " + err.message);
+}
+
+function signUp() {
+    const e = document.getElementById("email").value;
+    const p = document.getElementById("password").value;
+    auth.createUserWithEmailAndPassword(e, p)
+    .then(() => alert("Account Created! You can now Login."))
+    .catch(err => document.getElementById("authMsg").innerText = "❌ " + err.message);
+}
+
+function logout() {
+    auth.signOut();
+}
+
+// Manage User State
+auth.onAuthStateChanged(user => {
+    if (user) {
+        document.getElementById("loginSection").style.display = "none";
+        document.getElementById("mainApp").style.display = "block";
+    } else {
+        document.getElementById("loginSection").style.display = "block";
+        document.getElementById("mainApp").style.display = "none";
+    }
+});
+
+// --- DATABASE FUNCTIONS ---
+function saveReport(){
+    const c = document.getElementById("customer").value;
+    const m = document.getElementById("machine").value;
+    const i = document.getElementById("issue").value;
+    if(!c || !m || !i) return alert("Fill all fields");
+
+    db.collection("reports").add({
+        customer: c, machine: m, issue: i, status: "pending",
+        time: firebase.firestore.FieldValue.serverTimestamp()
+    }).then(() => {
+        document.getElementById("customer").value = "";
+        document.getElementById("issue").value = "";
+    });
+}
+
+function addPart(){
+    const name = document.getElementById("partName").value;
+    const qty = document.getElementById("partQty").value;
+    if(!name || !qty) return;
+    db.collection("inventory").add({ name: name, quantity: qty });
+}
+
+// Real-time Listeners
+db.collection("reports").orderBy("time", "desc").onSnapshot(snapshot => {
+    document.getElementById("totalCount").innerText = snapshot.size;
+    const list = document.getElementById("reportList");
+    list.innerHTML = "";
+    snapshot.forEach(doc => {
+        const d = doc.data();
+        const date = d.time ? d.time.toDate().toLocaleDateString() : "...";
+        const statusClass = d.status === 'done' ? 'status-done' : 'status-pending';
+        list.innerHTML += `
+        <div class="dashboard-item">
+            <div>
+                <strong>${d.customer}</strong> <span class="status-badge ${statusClass}">${d.status}</span><br>
+                <small>${d.machine} | ${date}</small><br>
+                <span style="font-size:12px;">${d.issue}</span>
+            </div>
+            <div>
+                <button class="btn-action" style="background:var(--accent)" onclick="db.collection('reports').doc('${doc.id}').update({status:'done'})">✔</button>
+                <button class="btn-action" style="background:var(--danger); color:white" onclick="if(confirm('Delete?')) db.collection('reports').doc('${doc.id}').delete()">X</button>
+            </div>
+        </div>`;
+    });
+});
+
+db.collection("inventory").onSnapshot(snapshot => {
+    const list = document.getElementById("partsList");
+    list.innerHTML = "";
+    snapshot.forEach(doc => {
+        const d = doc.data();
+        list.innerHTML += `
+        <div class="dashboard-item">
+            <span>${d.name}: ${d.quantity}</span>
+            <button class="btn-action" style="background:#444; color:white" onclick="db.collection('inventory').doc('${doc.id}').delete()">X</button>
+        </div>`;
+    });
+});
+
+function searchData() {
+    let input = document.getElementById('searchInput').value.toLowerCase();
+    let items = document.getElementsByClassName('dashboard-item');
+    for (let i = 0; i < items.length; i++) {
+        items[i].style.display = items[i].innerText.toLowerCase().includes(input) ? "" : "none";
+    }
+}
+</script>
+</body>
+</html>
