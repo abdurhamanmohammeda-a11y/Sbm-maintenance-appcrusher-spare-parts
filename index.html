@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,17 +7,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         :root { --primary: #FFA500; --bg: #0f1117; --card: #1c1f26; --text: #e6edf3; --accent: #39FF14; }
-        body { margin: 0; background: var(--bg); color: var(--text); font-family: 'Roboto', sans-serif; }
-        header { text-align: center; padding: 25px; background: linear-gradient(180deg, #FFA500, #111); border-radius: 0 0 20px 20px; }
+        body { margin: 0; background: var(--bg); color: var(--text); font-family: 'Roboto', sans-serif; overflow-x: hidden; }
+        header { text-align: center; padding: 25px; background: linear-gradient(180deg, #FFA500, #111); border-radius: 0 0 20px 20px; position: relative; z-index: 10; }
         header h1 { margin: 0; font-family: 'Orbitron', sans-serif; font-size: 20px; color: #000; }
-        .container { max-width: 700px; margin: auto; padding: 15px; }
-        .card { background: var(--card); padding: 20px; border-radius: 15px; margin: 15px 0; border: 1px solid #30363d; }
+        .container { max-width: 700px; margin: auto; padding: 15px; position: relative; }
+        
+        /* Layout Fix: Boxes should not overlap */
+        .card { background: var(--card); padding: 20px; border-radius: 15px; margin-bottom: 20px; border: 1px solid #30363d; display: block; position: relative; }
+        
         h2 { color: var(--primary); font-size: 16px; margin-top: 0; border-bottom: 1px solid #333; padding-bottom: 8px; }
         input, textarea, button { width: 100%; padding: 12px; margin: 8px 0; border-radius: 8px; border: 1px solid #444; background: #0d1117; color: white; box-sizing: border-box; }
         button { background: var(--primary); color: #000; font-weight: bold; cursor: pointer; border: none; }
-        .payment-info { background: #252a33; padding: 15px; border-radius: 10px; border-left: 4px solid var(--primary); font-size: 13px; line-height: 1.6; }
-        .whatsapp-link { color: #25D366; font-weight: bold; text-decoration: none; display: block; margin-top: 10px; }
+        
+        /* Payment style inside main app */
+        .payment-box { background: #111; padding: 15px; border-radius: 10px; border: 1px dashed var(--primary); margin-top: 20px; }
+        .whatsapp-btn { background: #25D366; color: white; padding: 10px; text-decoration: none; display: block; text-align: center; border-radius: 8px; margin-top: 10px; }
+        
         #mainApp { display: none; }
+        #reportList { max-height: 300px; overflow-y: auto; }
     </style>
 </head>
 <body>
@@ -30,36 +36,36 @@
 
 <div class="container">
     <div id="loginSection" class="card">
-        <h2>🔐 Admin Login</h2>
+        <h2>🔐 Admin Access</h2>
         <input type="email" id="email" placeholder="Email (admin@example.com)">
         <input type="password" id="password" placeholder="Password">
         <button onclick="login()">SIGN IN</button>
         <p id="authMsg" style="color:red; font-size:12px; text-align:center;"></p>
-        
-        <hr style="border: 0.5px solid #333; margin: 20px 0;">
-        
-        <div class="payment-info">
-            <h3 style="margin-top:0; color:var(--primary); font-size:14px;">💳 Subscription & Payment</h3>
-            <p><strong>Telebirr / e-birr / CBE-birr:</strong> 0988535068</p>
-            <p><strong>Commercial Bank of Ethiopia:</strong> 1000347503707</p>
-            <a href="https://wa.me/251904267186" class="whatsapp-link" target="_blank">🟢 Contact via WhatsApp: 0904267186</a>
-        </div>
     </div>
 
     <div id="mainApp">
         <div class="card">
-            <button onclick="logout()" style="width:auto; float:right; background:#444; color:white; padding:5px 10px;">LOGOUT</button>
+            <button onclick="logout()" style="width:auto; float:right; background:#444; color:white; padding:5px 10px; font-size:10px;">LOGOUT</button>
             <div style="clear:both;"></div>
             <h2>📸 AI Machine Scanner</h2>
             <input type="file" id="imgFile" accept="image/*">
             <button onclick="runVisionAI()" style="background:var(--accent);">RUN AI ANALYSIS</button>
-            <textarea id="issue" rows="4" placeholder="AI analysis result..."></textarea>
+            <textarea id="issue" rows="5" placeholder="AI analysis result..."></textarea>
             <button onclick="saveReport()">SAVE TO CLOUD</button>
         </div>
         
         <div class="card">
-            <h2>📈 Service Dashboard</h2>
+            <h2>📈 Service History</h2>
             <div id="reportList"></div>
+        </div>
+
+        <div class="card">
+            <h2>💳 Subscription & Support</h2>
+            <div class="payment-box">
+                <p><strong>Telebirr / e-birr / CBE-birr:</strong> 0988535068</p>
+                <p><strong>CBE Account:</strong> 1000347503707</p>
+                <a href="https://wa.me/251904267186" class="whatsapp-btn" target="_blank">🟢 WhatsApp: 0904267186</a>
+            </div>
         </div>
     </div>
 </div>
@@ -69,19 +75,18 @@
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
 <script type="module">
-    // Simulation Mode or Real API based on your vision-ai.js file
     import { analyzeImage } from './api/vision-ai.js';
     window.runVisionAI = async () => {
         const file = document.getElementById("imgFile").files[0];
-        if(!file) return alert("Select an image!");
+        if(!file) return alert("Select image!");
+        document.getElementById("issue").value = "🔄 Scanning... Please wait.";
         const reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = async () => {
-            document.getElementById("issue").value = "🔄 AI is scanning...";
             try {
                 const data = await analyzeImage(reader.result);
                 document.getElementById("issue").value = data.choices[0].message.content;
-            } catch (err) { alert("Error: Make sure api/vision-ai.js is present."); }
+            } catch (err) { alert("Check vision-ai.js file."); }
         };
     };
 </script>
@@ -105,14 +110,20 @@
         auth.signInWithEmailAndPassword(e, p).catch(err => document.getElementById("authMsg").innerText = err.message);
     }
     function logout() { auth.signOut(); }
+    
     auth.onAuthStateChanged(user => {
-        document.getElementById("loginSection").style.display = user ? "none" : "block";
-        document.getElementById("mainApp").style.display = user ? "block" : "none";
+        if(user) {
+            document.getElementById("loginSection").style.display = "none";
+            document.getElementById("mainApp").style.display = "block";
+        } else {
+            document.getElementById("loginSection").style.display = "block";
+            document.getElementById("mainApp").style.display = "none";
+        }
     });
 
     function saveReport(){
         const i = document.getElementById("issue").value;
-        if(!i) return alert("Report is empty!");
+        if(!i) return;
         db.collection("reports").add({ issue: i, time: firebase.firestore.FieldValue.serverTimestamp() });
         alert("Report Saved!");
     }
@@ -121,9 +132,10 @@
         const list = document.getElementById("reportList");
         list.innerHTML = "";
         snap.forEach(doc => {
-            list.innerHTML += `<div style="border-bottom:1px solid #333; padding:10px; font-size:13px;">${doc.data().issue}</div>`;
+            list.innerHTML += `<div style="border-bottom:1px solid #333; padding:10px; font-size:12px;">${doc.data().issue}</div>`;
         });
     });
 </script>
 </body>
 </html>
+
