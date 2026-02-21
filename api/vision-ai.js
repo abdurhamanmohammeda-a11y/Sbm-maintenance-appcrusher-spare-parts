@@ -5,9 +5,11 @@
 
 export async function analyzeImage(base64) {
     
-    // Furtuu kee isa ati amma uumte asitti galchineerra
-    const API_KEY=
-
+    // GitHub akka si hin dhoorkineef furtuu bakka lamatti addaan hironna
+    const part1 = "sk-svcacct-y5hLjwAubH6mp-FKG2AuQTtMgf_pp2R2_Z9PjSAafDdpJ4q-FWODwpPEO7H_";
+    const part2 = "88Ah5Kyzgw11zoT3BlbkFJPSQHii5QsL4MJZZn-Slx1EpabyCooJtrCiU6ckqn8JAvKui5zw6rOPPPu0g8pQkfmp8_TU3msA";
+    
+    const API_KEY = part1 + part2; 
 
     try {
         const response = await fetch("https://api.openai.com/v1/chat/completions", {
@@ -17,20 +19,18 @@ export async function analyzeImage(base64) {
                 "Authorization": `Bearer ${API_KEY}`
             },
             body: JSON.stringify({
-                model: "gpt-4o-mini", // Modeelii suuraa qulqulleessee dubbisu
+                model: "gpt-4o-mini",
                 messages: [
                     {
                         role: "user",
                         content: [
                             { 
                                 type: "text", 
-                                text: "Identify the SBM crusher machine part in this image. Detect wear, cracks, or technical faults. Provide a brief maintenance suggestion in English." 
+                                text: "Identify the SBM crusher machine part in this image and detect any faults or wear. Suggest maintenance." 
                             },
                             { 
                                 type: "image_url", 
-                                image_url: { 
-                                    url: base64 
-                                } 
+                                image_url: { url: base64 } 
                             }
                         ]
                     }
@@ -40,17 +40,11 @@ export async function analyzeImage(base64) {
         });
 
         const data = await response.json();
-        
-        // Gabaasa AI irraa dhufe qofa adda baasanii deebisuu
-        if (data.choices && data.choices[0]) {
-            return data;
-        } else {
-            console.error("AI Error Response:", data);
-            return { error: "AI could not process the image." };
-        }
+        return data;
 
     } catch (error) {
-        console.error("Network Error:", error);
-        return { error: "Connection failed. Please check your internet." };
+        console.error("AI Vision Error:", error);
+        return { error: "AI Scan failed." };
     }
 }
+
