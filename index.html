@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,17 +8,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         :root { --primary: #FFA500; --bg: #0f1117; --card: #1c1f26; --text: #e6edf3; --accent: #39FF14; }
-        body { margin: 0; background: var(--bg); color: var(--text); font-family: 'Roboto', sans-serif; line-height: 1.6; }
-        header { text-align: center; padding: 25px; background: linear-gradient(180deg, #FFA500, #111); border-radius: 0 0 20px 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
-        header h1 { margin: 0; font-family: 'Orbitron', sans-serif; font-size: 20px; color: #000; letter-spacing: 1px; }
+        body { margin: 0; background: var(--bg); color: var(--text); font-family: 'Roboto', sans-serif; }
+        header { text-align: center; padding: 25px; background: linear-gradient(180deg, #FFA500, #111); border-radius: 0 0 20px 20px; }
+        header h1 { margin: 0; font-family: 'Orbitron', sans-serif; font-size: 20px; color: #000; }
         .container { max-width: 700px; margin: auto; padding: 15px; }
-        .card { background: var(--card); padding: 20px; border-radius: 15px; margin: 15px 0; border: 1px solid #30363d; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+        .card { background: var(--card); padding: 20px; border-radius: 15px; margin: 15px 0; border: 1px solid #30363d; }
         h2 { color: var(--primary); font-size: 16px; margin-top: 0; border-bottom: 1px solid #333; padding-bottom: 8px; }
-        input, select, textarea, button { width: 100%; padding: 12px; margin: 8px 0; border-radius: 8px; border: 1px solid #444; font-size: 14px; box-sizing: border-box; background: #0d1117; color: white; }
-        button { background: var(--primary); color: #000; font-weight: bold; cursor: pointer; border: none; transition: 0.3s; }
-        button:hover { background: #e69500; transform: translateY(-2px); }
+        input, textarea, button { width: 100%; padding: 12px; margin: 8px 0; border-radius: 8px; border: 1px solid #444; background: #0d1117; color: white; box-sizing: border-box; }
+        button { background: var(--primary); color: #000; font-weight: bold; cursor: pointer; border: none; }
+        .payment-info { background: #252a33; padding: 15px; border-radius: 10px; border-left: 4px solid var(--primary); font-size: 13px; line-height: 1.6; }
+        .whatsapp-link { color: #25D366; font-weight: bold; text-decoration: none; display: block; margin-top: 10px; }
         #mainApp { display: none; }
-        .status-msg { font-size: 12px; text-align: center; margin-top: 5px; }
     </style>
 </head>
 <body>
@@ -29,29 +30,36 @@
 
 <div class="container">
     <div id="loginSection" class="card">
-        <h2>🔐 Admin Secure Access</h2>
-        <input type="email" id="email" placeholder="Email Address">
+        <h2>🔐 Admin Login</h2>
+        <input type="email" id="email" placeholder="Email (admin@example.com)">
         <input type="password" id="password" placeholder="Password">
         <button onclick="login()">SIGN IN</button>
-        <div id="authMsg" class="status-msg"></div>
+        <p id="authMsg" style="color:red; font-size:12px; text-align:center;"></p>
+        
+        <hr style="border: 0.5px solid #333; margin: 20px 0;">
+        
+        <div class="payment-info">
+            <h3 style="margin-top:0; color:var(--primary); font-size:14px;">💳 Subscription & Payment</h3>
+            <p><strong>Telebirr / e-birr / CBE-birr:</strong> 0988535068</p>
+            <p><strong>Commercial Bank of Ethiopia:</strong> 1000347503707</p>
+            <a href="https://wa.me/251904267186" class="whatsapp-link" target="_blank">🟢 Contact via WhatsApp: 0904267186</a>
+        </div>
     </div>
 
     <div id="mainApp">
         <div class="card">
-            <button onclick="logout()" style="width:auto; padding:5px 15px; background:#444; color:white; float:right; font-size:11px;">LOGOUT</button>
+            <button onclick="logout()" style="width:auto; float:right; background:#444; color:white; padding:5px 10px;">LOGOUT</button>
             <div style="clear:both;"></div>
-            
-            <h2>📸 AI Machine Fault Scanner</h2>
-            <p style="font-size:11px; color:#888;">Upload machine photo for AI analysis.</p>
+            <h2>📸 AI Machine Scanner</h2>
             <input type="file" id="imgFile" accept="image/*">
-            <button onclick="runVisionAI()" style="background:var(--accent); color:#000;">RUN AI ANALYSIS</button>
-            <textarea id="issue" rows="4" placeholder="AI analysis will appear here..."></textarea>
+            <button onclick="runVisionAI()" style="background:var(--accent);">RUN AI ANALYSIS</button>
+            <textarea id="issue" rows="4" placeholder="AI analysis result..."></textarea>
             <button onclick="saveReport()">SAVE TO CLOUD</button>
         </div>
-
+        
         <div class="card">
-            <h2>📈 Live Service Dashboard</h2>
-            <div id="reportList" style="font-size: 13px;"></div>
+            <h2>📈 Service Dashboard</h2>
+            <div id="reportList"></div>
         </div>
     </div>
 </div>
@@ -61,31 +69,24 @@
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
 <script type="module">
-    // Import AI logic from your sub-folder
+    // Simulation Mode or Real API based on your vision-ai.js file
     import { analyzeImage } from './api/vision-ai.js';
-
     window.runVisionAI = async () => {
         const file = document.getElementById("imgFile").files[0];
-        const issueBox = document.getElementById("issue");
-        if(!file) return alert("Please select an image first!");
-
+        if(!file) return alert("Select an image!");
         const reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = async () => {
-            issueBox.value = "🔄 AI is scanning... please wait.";
+            document.getElementById("issue").value = "🔄 AI is scanning...";
             try {
                 const data = await analyzeImage(reader.result);
-                issueBox.value = data.choices[0].message.content;
-            } catch (err) {
-                issueBox.value = "⚠️ Error: Make sure API Key is set in api/vision-ai.js";
-                console.error(err);
-            }
+                document.getElementById("issue").value = data.choices[0].message.content;
+            } catch (err) { alert("Error: Make sure api/vision-ai.js is present."); }
         };
     };
 </script>
 
 <script>
-    // Firebase Config
     const firebaseConfig = {
       apiKey: "AIzaSyC1_0Ptpna4V-2cfyJHNwIvWvbA2eGLv18",
       authDomain: "sbm-app-ecf59.firebaseapp.com",
@@ -94,21 +95,16 @@
       messagingSenderId: "666387083873",
       appId: "1:666387083873:web:bfd6d5e064ecaad6c73020"
     };
-
-    if (!firebase.apps.length) { firebase.initializeApp(firebaseConfig); }
+    firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
     const db = firebase.firestore();
 
     function login() {
         const e = document.getElementById("email").value;
         const p = document.getElementById("password").value;
-        const msg = document.getElementById("authMsg");
-        auth.signInWithEmailAndPassword(e, p)
-            .catch(err => msg.innerText = "❌ " + err.message);
+        auth.signInWithEmailAndPassword(e, p).catch(err => document.getElementById("authMsg").innerText = err.message);
     }
-
     function logout() { auth.signOut(); }
-
     auth.onAuthStateChanged(user => {
         document.getElementById("loginSection").style.display = user ? "none" : "block";
         document.getElementById("mainApp").style.display = user ? "block" : "none";
@@ -116,29 +112,18 @@
 
     function saveReport(){
         const i = document.getElementById("issue").value;
-        if(!i) return alert("Field is empty!");
-        db.collection("reports").add({
-            issue: i,
-            time: firebase.firestore.FieldValue.serverTimestamp()
-        }).then(() => {
-            alert("Report Saved!");
-            document.getElementById("issue").value = "";
-        });
+        if(!i) return alert("Report is empty!");
+        db.collection("reports").add({ issue: i, time: firebase.firestore.FieldValue.serverTimestamp() });
+        alert("Report Saved!");
     }
 
-    // Dashboard Listener
-    db.collection("reports").orderBy("time", "desc").limit(10).onSnapshot(snapshot => {
+    db.collection("reports").orderBy("time", "desc").onSnapshot(snap => {
         const list = document.getElementById("reportList");
         list.innerHTML = "";
-        snapshot.forEach(doc => {
-            const d = doc.data();
-            list.innerHTML += `<div style="padding:10px; border-bottom:1px solid #333; margin-bottom:5px;">
-                <small style="color:var(--primary)">${d.time ? d.time.toDate().toLocaleString() : 'Just now'}</small><br>
-                <span>${d.issue}</span>
-            </div>`;
+        snap.forEach(doc => {
+            list.innerHTML += `<div style="border-bottom:1px solid #333; padding:10px; font-size:13px;">${doc.data().issue}</div>`;
         });
     });
 </script>
 </body>
 </html>
-
