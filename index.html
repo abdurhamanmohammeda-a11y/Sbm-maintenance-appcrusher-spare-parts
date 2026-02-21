@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,43 +6,52 @@
     <title>SBM Smart Maintenance AI</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        :root{ --primary:#FFA500; --bg:#0f1117; --card:#1c1f26; --text:#e6edf3; --accent:#39FF14; --danger:#ff4444; }
-        body{ margin:0; background:var(--bg); color:var(--text); font-family:'Roboto',sans-serif; }
-        header{ text-align:center; padding:20px; background:linear-gradient(180deg,#FFA500,#111); border-radius:0 0 20px 20px; }
-        header h1{ margin:0; font-family:'Orbitron',sans-serif; font-size:22px; color: #000; }
-        .container{ max-width:800px; margin:auto; padding:15px; }
-        .card{ background:var(--card); padding:20px; border-radius:15px; margin:15px 0; border:1px solid #30363d; }
-        input,select,textarea,button{ width:100%; padding:14px; margin:10px 0; border-radius:10px; border:none; background: #0d1117; color: white; }
-        button{ background:var(--primary); color:#000; font-weight:bold; cursor:pointer; }
+        :root { --primary: #FFA500; --bg: #0f1117; --card: #1c1f26; --text: #e6edf3; --accent: #39FF14; }
+        body { margin: 0; background: var(--bg); color: var(--text); font-family: 'Roboto', sans-serif; line-height: 1.6; }
+        header { text-align: center; padding: 25px; background: linear-gradient(180deg, #FFA500, #111); border-radius: 0 0 20px 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+        header h1 { margin: 0; font-family: 'Orbitron', sans-serif; font-size: 20px; color: #000; letter-spacing: 1px; }
+        .container { max-width: 700px; margin: auto; padding: 15px; }
+        .card { background: var(--card); padding: 20px; border-radius: 15px; margin: 15px 0; border: 1px solid #30363d; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+        h2 { color: var(--primary); font-size: 16px; margin-top: 0; border-bottom: 1px solid #333; padding-bottom: 8px; }
+        input, select, textarea, button { width: 100%; padding: 12px; margin: 8px 0; border-radius: 8px; border: 1px solid #444; font-size: 14px; box-sizing: border-box; background: #0d1117; color: white; }
+        button { background: var(--primary); color: #000; font-weight: bold; cursor: pointer; border: none; transition: 0.3s; }
+        button:hover { background: #e69500; transform: translateY(-2px); }
         #mainApp { display: none; }
+        .status-msg { font-size: 12px; text-align: center; margin-top: 5px; }
     </style>
 </head>
 <body>
 
 <header>
     <h1>ABDURHAMAN MECHATRONICS</h1>
-    <p>AI Maintenance System</p>
+    <p style="margin:5px 0 0; font-size:12px; font-weight:bold; color:#000;">SBM SMART MAINTENANCE AI</p>
 </header>
 
 <div class="container">
     <div id="loginSection" class="card">
-        <h2>🔐 Admin Login</h2>
-        <input type="email" id="email" placeholder="Email">
+        <h2>🔐 Admin Secure Access</h2>
+        <input type="email" id="email" placeholder="Email Address">
         <input type="password" id="password" placeholder="Password">
         <button onclick="login()">SIGN IN</button>
+        <div id="authMsg" class="status-msg"></div>
     </div>
 
     <div id="mainApp">
         <div class="card">
-            <h2>📸 AI Machine Scanner</h2>
+            <button onclick="logout()" style="width:auto; padding:5px 15px; background:#444; color:white; float:right; font-size:11px;">LOGOUT</button>
+            <div style="clear:both;"></div>
+            
+            <h2>📸 AI Machine Fault Scanner</h2>
+            <p style="font-size:11px; color:#888;">Upload machine photo for AI analysis.</p>
             <input type="file" id="imgFile" accept="image/*">
-            <button onclick="runVisionAI()">ANALYZE WITH AI</button>
-            <textarea id="issue" placeholder="Analysis result..."></textarea>
-            <button onclick="saveReport()">SAVE REPORT</button>
+            <button onclick="runVisionAI()" style="background:var(--accent); color:#000;">RUN AI ANALYSIS</button>
+            <textarea id="issue" rows="4" placeholder="AI analysis will appear here..."></textarea>
+            <button onclick="saveReport()">SAVE TO CLOUD</button>
         </div>
+
         <div class="card">
-            <h2>📈 Live Dashboard</h2>
-            <div id="reportList"></div>
+            <h2>📈 Live Service Dashboard</h2>
+            <div id="reportList" style="font-size: 13px;"></div>
         </div>
     </div>
 </div>
@@ -53,57 +61,84 @@
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
 <script type="module">
+    // Import AI logic from your sub-folder
     import { analyzeImage } from './api/vision-ai.js';
+
     window.runVisionAI = async () => {
         const file = document.getElementById("imgFile").files[0];
-        if(!file) return alert("Select Image!");
+        const issueBox = document.getElementById("issue");
+        if(!file) return alert("Please select an image first!");
+
         const reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = async () => {
-            document.getElementById("issue").value = "Analyzing...";
+            issueBox.value = "🔄 AI is scanning... please wait.";
             try {
                 const data = await analyzeImage(reader.result);
-                document.getElementById("issue").value = data.choices[0].message.content;
-            } catch (err) { alert("AI Error: Check API Key in vision-ai.js"); }
+                issueBox.value = data.choices[0].message.content;
+            } catch (err) {
+                issueBox.value = "⚠️ Error: Make sure API Key is set in api/vision-ai.js";
+                console.error(err);
+            }
         };
     };
 </script>
 
 <script>
-const firebaseConfig = {
-  apiKey: "AIzaSyC1_0Ptpna4V-2cfyJHNwIvWvbA2eGLv18",
-  authDomain: "sbm-app-ecf59.firebaseapp.com",
-  projectId: "sbm-app-ecf59",
-  storageBucket: "sbm-app-ecf59.firebasestorage.app",
-  messagingSenderId: "666387083873",
-  appId: "1:666387083873:web:bfd6d5e064ecaad6c73020"
-};
-firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
-const db = firebase.firestore();
+    // Firebase Config
+    const firebaseConfig = {
+      apiKey: "AIzaSyC1_0Ptpna4V-2cfyJHNwIvWvbA2eGLv18",
+      authDomain: "sbm-app-ecf59.firebaseapp.com",
+      projectId: "sbm-app-ecf59",
+      storageBucket: "sbm-app-ecf59.firebasestorage.app",
+      messagingSenderId: "666387083873",
+      appId: "1:666387083873:web:bfd6d5e064ecaad6c73020"
+    };
 
-function login() {
-    const e = document.getElementById("email").value;
-    const p = document.getElementById("password").value;
-    auth.signInWithEmailAndPassword(e, p);
-}
-auth.onAuthStateChanged(user => {
-    document.getElementById("loginSection").style.display = user ? "none" : "block";
-    document.getElementById("mainApp").style.display = user ? "block" : "none";
-});
+    if (!firebase.apps.length) { firebase.initializeApp(firebaseConfig); }
+    const auth = firebase.auth();
+    const db = firebase.firestore();
 
-function saveReport(){
-    const i = document.getElementById("issue").value;
-    db.collection("reports").add({ issue: i, time: firebase.firestore.FieldValue.serverTimestamp() });
-}
+    function login() {
+        const e = document.getElementById("email").value;
+        const p = document.getElementById("password").value;
+        const msg = document.getElementById("authMsg");
+        auth.signInWithEmailAndPassword(e, p)
+            .catch(err => msg.innerText = "❌ " + err.message);
+    }
 
-db.collection("reports").orderBy("time", "desc").onSnapshot(snap => {
-    const list = document.getElementById("reportList");
-    list.innerHTML = "";
-    snap.forEach(doc => {
-        list.innerHTML += `<div style="border-bottom:1px solid #333; padding:10px;">${doc.data().issue}</div>`;
+    function logout() { auth.signOut(); }
+
+    auth.onAuthStateChanged(user => {
+        document.getElementById("loginSection").style.display = user ? "none" : "block";
+        document.getElementById("mainApp").style.display = user ? "block" : "none";
     });
-});
+
+    function saveReport(){
+        const i = document.getElementById("issue").value;
+        if(!i) return alert("Field is empty!");
+        db.collection("reports").add({
+            issue: i,
+            time: firebase.firestore.FieldValue.serverTimestamp()
+        }).then(() => {
+            alert("Report Saved!");
+            document.getElementById("issue").value = "";
+        });
+    }
+
+    // Dashboard Listener
+    db.collection("reports").orderBy("time", "desc").limit(10).onSnapshot(snapshot => {
+        const list = document.getElementById("reportList");
+        list.innerHTML = "";
+        snapshot.forEach(doc => {
+            const d = doc.data();
+            list.innerHTML += `<div style="padding:10px; border-bottom:1px solid #333; margin-bottom:5px;">
+                <small style="color:var(--primary)">${d.time ? d.time.toDate().toLocaleString() : 'Just now'}</small><br>
+                <span>${d.issue}</span>
+            </div>`;
+        });
+    });
 </script>
 </body>
 </html>
+
